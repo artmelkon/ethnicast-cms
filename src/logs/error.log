@@ -1,0 +1,14 @@
+[05:43:18] [32mINFO[39m (payload): [36mConnected to MongoDB server successfully![39m
+[05:43:18] [32mINFO[39m (payload): [36mStarting Payload...[39m
+[05:43:18] [32mINFO[39m (payload): [36mPayload Admin URL: http://localhost:3000/admin[39m
+[05:51:06] [31mERROR[39m (payload): [36mAuthenticationError: The email or password provided is incorrect.
+    at login (/Users/arthurmelkonyan/webdev/ethnicast-cms/node_modules/payload/src/auth/operations/login.ts:88:11)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async loginHandler (/Users/arthurmelkonyan/webdev/ethnicast-cms/node_modules/payload/src/auth/requestHandlers/login.ts:8:20)[39m
+[05:51:15] [31mERROR[39m (payload): [36mAuthenticationError: The email or password provided is incorrect.
+    at login (/Users/arthurmelkonyan/webdev/ethnicast-cms/node_modules/payload/src/auth/operations/login.ts:88:11)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async loginHandler (/Users/arthurmelkonyan/webdev/ethnicast-cms/node_modules/payload/src/auth/requestHandlers/login.ts:8:20)[39m
+[05:51:36] [32mINFO[39m (payload): [36mConnected to MongoDB server successfully![39m
+[05:51:36] [32mINFO[39m (payload): [36mStarting Payload...[39m
+[05:51:36] [32mINFO[39m (payload): [36mPayload Admin URL: http://localhost:3000/admin[39m
