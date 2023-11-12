@@ -9,6 +9,7 @@
 export interface Config {
   collections: {
     categories: Category;
+    pages: Page;
     media: Media;
     users: User;
     'payload-preferences': PayloadPreference;
@@ -19,6 +20,16 @@ export interface Config {
 export interface Category {
   id: string;
   title?: string;
+}
+export interface Page {
+  id: string;
+  title: string;
+  content: {
+    [k: string]: unknown;
+  }[];
+  slug?: string;
+  updatedAt: string;
+  createdAt: string;
 }
 export interface Media {
   id: string;
@@ -80,6 +91,7 @@ declare module 'payload' {
   export interface GeneratedTypes {
     collections: {
       'categories': Category
+      'pages': Page
       'media': Media
       'users': User
       'payload-preferences': PayloadPreference

@@ -6,11 +6,7 @@ import express from "express";
 import payload from "payload";
 import dotenv from "dotenv";
 
-if (process.env.NODE_ENV === 'development') {
-  dotenv.config({ path: './env/.env.dev' });
-} else {
-  dotenv.config({ path: './env/.env.prod' })
-}
+dotenv.config()
 
 const dev = process.env.NODE_ENV !== "production";
 const server = express();

@@ -6,21 +6,27 @@ import { slateEditor } from '@payloadcms/richtext-slate'
 import dotenv from 'dotenv';
 // import formBuilder from '@payloadcms/plugin-form-builder';
 
+// import BeforeLogin from "../components/BeforeLogin";
 import Users from "./collections/Users";
 import Media from "./collections/Media";
+import Pages from "./collections/Pages";
 import Category from "./collections/Categories";
 
-if (process.env.NODE_ENV === 'development') {
-  dotenv.config({ path: './env/.env.dev' })
-} else {
-  dotenv.config({ path: './env/.env.prod' })
-}
+dotenv.config()
+// if (process.env.NODE_ENV === 'development') {
+//   dotenv.config({ path: './env/.env.dev' })
+// } else {
+//   dotenv.config({ path: './env/.env.prod' })
+// }
 
 export default buildConfig({
   serverURL: process.env.CMS_URI,
   admin: {
     user: Users.slug,
-    bundler: webpackBundler()
+    bundler: webpackBundler(),
+    // components: {
+    //   beforeLogin: [BeforeLogin]
+    // },
   },
   db: mongooseAdapter({
     url: `${process.env.MONGODB_URI}`
@@ -28,10 +34,11 @@ export default buildConfig({
   editor: slateEditor({}),
   collections: [
     Category,
+    Pages,
     Media,
     Users,
   ],
-  cors: [`${process.env.NEXT_URI}`],
+  cors: [`${process.env.PUBLIC_URI}`],
   typescript: {
     outputFile: path.resolve(__dirname, "payload-types.ts"),
   },

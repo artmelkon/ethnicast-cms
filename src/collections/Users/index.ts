@@ -8,17 +8,37 @@ const Users: CollectionConfig = {
   slug: "users",
   auth: {
     depth: 0,
+    forgotPassword: {
+      generateEmailHTML: ({req: {token, user}}: any) => {
+        // Use the token provided to allow your user to reset their password
+        // We will send them to the frontend NextJS app instead of sending
+        // them to the Payload admin by default
+        const resetPasswordURL = `${process.env.PUBLIC_URI}/reset-password?token=${token}`;
+
+        return (`
+          <!doctype html>
+          <html>
+            <body>
+              <h1>Click below to reset your password.</h1>
+              <p>
+                <a href="${resetPasswordURL}">${resetPasswordURL}</a>
+              </p>
+            </body>
+          </html>
+        `);
+      }
+     }
   },
   admin: {
-    useAsTitle: "firstName",
+    useAsTitle: "email",
     defaultColumns: ["firstName", "email"],
   },
   access: {
-    create: isAdmin,
+    // Anyone can create a user
+    create: () => true,
     read: isAdminOrSelf,
     update: isAdminOrSelf,
     delete: isAdmin,
-    // admin: isSuperOrTenantAdmin,
   },
   fields: [
     // Email added by default
@@ -30,25 +50,24 @@ const Users: CollectionConfig = {
           name: "firstName",
           type: "text",
           required: true,
+          saveToJWT: true
         },
         {
           name: "lastName",
           type: "text",
           required: true,
+          saveToJWT: true
         },
       ],
     },
     {
       name: "roles",
-      saveToJWT: true,
       type: "select",
       hasMany: true,
-      defaultValue: ["user"],
       access: {
-        read: isAdminFieldLevel,
-        create: isAdminFieldLevel,
-        update: isAdminFieldLevel,
+        update: isAdmin,
       },
+      defaultValue: ["user"],
       options: [
         {
           label: "Admin",
@@ -58,10 +77,7 @@ const Users: CollectionConfig = {
           label: "User",
           value: "user",
         },
-      ],
-      hooks: {
-        beforeChange: [ensureFirstUserIsAdmin],
-      },
+      ]
     },
     // {
     //   name: 'dob',
