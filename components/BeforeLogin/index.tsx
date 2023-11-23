@@ -9,15 +9,15 @@ const BeforeLogin: React.FC = () => {
       </p>
       <p>
         The code for this example is open-source. The Payload CMS implementation
-        can be found
+        can be found{" "}
         <a
           href="https://github.com/payloadcms/next-auth-cms"
           target="_blank"
           rel="noopener noreferrer"
         >
           here
-        </a>
-        and the corresponding NextJS frontend can be found
+        </a>{" "}
+        and the corresponding NextJS frontend can be found{" "}
         <a
           href="https://github.com/payloadcms/next-auth-frontend"
           target="_blank"

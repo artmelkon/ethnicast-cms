@@ -1,6 +1,9 @@
-const Page = () => {
-  console.log(process.env.CMS_URI);
-  return <h1>Hello, Next.js</h1>;
-};
+import { GetStaticProps } from "next";
+import Page, { getStaticProps as sharedGetStaticProps } from "./[slug]";
 
 export default Page;
+
+export const getStaticProps: GetStaticProps = async (ctx) => {
+  const func = sharedGetStaticProps.bind(this);
+  return func(ctx);
+};

@@ -1,6 +1,7 @@
 import { CollectionConfig } from "payload/types";
 import { isAdmin } from "../access/isAdmin";
 import { slug } from "../fields/slug";
+import { FormBlock } from "../blocks/Forms";
 
 const Pages: CollectionConfig = {
   slug: 'pages',
@@ -20,9 +21,22 @@ const Pages: CollectionConfig = {
       required: true,
     },
     {
-      name: 'content',
-      type: 'richText',
-      required: true
+      type: 'tabs',
+      tabs: [
+        {
+          label: 'Content',
+          fields: [
+            {
+              name: 'layout',
+              type: 'blocks',
+              required: true,
+              blocks: [
+                FormBlock
+              ]
+            }
+          ]
+        }
+      ]
     },
     slug
   ]

@@ -12,6 +12,7 @@
 	  "editor.tabSize": 2,
 	  "editor.wordWrap": "on",
 	  "editor.fontLigatures": true,
+	  "editor.defaultFormatter": "esbenp.prettier-vscode",
 	  "workbench.colorCustomizations": {
 		"tab.activeBackground": "#226801",
 		"tab.activeBorder": "#ff0000"

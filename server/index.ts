@@ -11,6 +11,7 @@ dotenv.config()
 const dev = process.env.NODE_ENV !== "production";
 const server = express();
 const port = process.env.PORT;
+server.use('/assets', express.static(path.resolve(__dirname, '../assets')))
 
 const start = async (): Promise<void> => {
   await payload.init({

@@ -2,14 +2,14 @@ import { CollectionConfig } from "payload/types";
 import { isAdmin, isAdminFieldLevel } from "../../access/isAdmin";
 import { isAdminOrSelf } from "../../access/isAdminOrSelf";
 
-import { ensureFirstUserIsAdmin } from "./hooks/ensureFirstUserIsAdmin";
+// import { ensureFirstUserIsAdmin } from "./hooks/ensureFirstUserIsAdmin";
 
 const Users: CollectionConfig = {
   slug: "users",
   auth: {
     depth: 0,
     forgotPassword: {
-      generateEmailHTML: ({req: {token, user}}: any) => {
+      generateEmailHTML: ({ req: { token, user } }: any) => {
         // Use the token provided to allow your user to reset their password
         // We will send them to the frontend NextJS app instead of sending
         // them to the Payload admin by default
@@ -27,7 +27,7 @@ const Users: CollectionConfig = {
           </html>
         `);
       }
-     }
+    }
   },
   admin: {
     useAsTitle: "email",
@@ -35,7 +35,7 @@ const Users: CollectionConfig = {
   },
   access: {
     // Anyone can create a user
-    create: () => true,
+    create: isAdmin,
     read: isAdminOrSelf,
     update: isAdminOrSelf,
     delete: isAdmin,

@@ -27,7 +27,7 @@
       "payload/generate-types": ["src/payload-types.ts"]
     }
   },
-  "include": ["src", "next-env.d.ts", "**/*.ts", "**/*.tsx", "components"],
+  "include": ["src", "next-env.d.ts", "**/*.ts", "**/*.tsx", "components", "utilities/formatSlug.ts"],
   "exclude": ["node_modules", "dist", "build"],
   "ts-node": {
     "transpileOnly": true,
