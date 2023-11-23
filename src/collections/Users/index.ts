@@ -13,7 +13,7 @@ const Users: CollectionConfig = {
         // Use the token provided to allow your user to reset their password
         // We will send them to the frontend NextJS app instead of sending
         // them to the Payload admin by default
-        const resetPasswordURL = `${process.env.PUBLIC_URI}/reset-password?token=${token}`;
+        const resetPasswordURL = `${process.env.CMS_URI}/reset-password?token=${token}`;
 
         return (`
           <!doctype html>

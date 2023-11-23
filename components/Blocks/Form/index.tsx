@@ -176,7 +176,7 @@ export const FormBlock: React.FC<FormBlockType & { id?: string }> = (props) => {
                 })}
             </div>
             <Button
-              label={submitButtonLabel}
+              label={submitButtonLabel!}
               appearance="primary"
               el="button"
               form={formID}

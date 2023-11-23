@@ -52,8 +52,8 @@ export default buildConfig({
   editor: slateEditor({}),
   collections: [Category, Pages, Media, Podcasts, PublicUser, Users],
   globals: [MainMenu],
-  cors: [`${process.env.PUBLIC_URI}`, "http://localhost:3000"],
-  csrf: [`${process.env.PUBLIC_URI}`, "http://localhost:3000"],
+  cors: [`${process.env.CMS_URI}`, "http://localhost:3000"],
+  csrf: [`${process.env.CMS_URI}`, "http://localhost:3000"],
   typescript: {
     outputFile: path.resolve(__dirname, "payload-types.ts"),
   },
