@@ -40,7 +40,7 @@ export const getStaticProps: GetStaticProps = async (
 
 export const getStaticPaths: GetStaticPaths<{ slug: string }> = async () => {
   const pagesQuery: { docs: Page[] } = await fetch(
-    `${process.env.CMS_UIR}/api/pages?limit=100`
+    `${process.env.CMS_URI}/api/pages?limit=100`
   ).then((res) => res.json());
 
   return {

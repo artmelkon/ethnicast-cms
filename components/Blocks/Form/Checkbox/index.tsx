@@ -1,22 +1,22 @@
-import React, { useState } from 'react'
-import { CheckboxField } from 'payload-plugin-form-builder/dist/types'
-import { UseFormRegister, FieldErrorsImpl, FieldValues } from 'react-hook-form'
-import { Check } from '../../../icons/Check'
-import { Error } from '../Error'
-import { Width } from '../Width'
+import React, { useState } from "react";
+import { CheckboxField } from "payload-plugin-form-builder/dist/types";
+import { UseFormRegister, FieldErrorsImpl, FieldValues } from "react-hook-form";
+import { Check } from "../../../icons/Check";
+import { Error } from "../Error";
+import { Width } from "../Width";
 
-import classes from './index.module.scss'
+import classes from "./index.module.scss";
 
 export const Checkbox: React.FC<
   CheckboxField & {
-    register: UseFormRegister<FieldValues & any>
-    setValue: any
-    getValues: any
+    register: UseFormRegister<FieldValues & any>;
+    setValue: any;
+    getValues: any;
     errors: Partial<
       FieldErrorsImpl<{
-        [x: string]: any
+        [x: string]: any;
       }>
-    >
+    >;
   }
 > = ({
   name,
@@ -28,13 +28,17 @@ export const Checkbox: React.FC<
   required: requiredFromProps,
   errors,
 }) => {
-  const [checked, setChecked] = useState(false)
+  const [checked, setChecked] = useState(false);
 
-  const isCheckboxChecked = getValues(name)
+  const isCheckboxChecked = getValues(name);
 
   return (
     <Width width={width}>
-      <div className={[classes.checkbox, checked && classes.checked].filter(Boolean).join(' ')}>
+      <div
+        className={[classes.checkbox, checked && classes.checked]
+          .filter(Boolean)
+          .join(" ")}
+      >
         <div className={classes.container}>
           <input
             type="checkbox"
@@ -44,8 +48,8 @@ export const Checkbox: React.FC<
           <button
             type="button"
             onClick={() => {
-              setValue(name, !checked)
-              setChecked(!checked)
+              setValue(name, !checked);
+              setChecked(!checked);
             }}
           >
             <span className={classes.input}>
@@ -57,5 +61,5 @@ export const Checkbox: React.FC<
         {requiredFromProps && errors[name] && checked === false && <Error />}
       </div>
     </Width>
-  )
-}
+  );
+};

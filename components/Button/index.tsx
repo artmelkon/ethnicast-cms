@@ -1,9 +1,8 @@
-import React, { Fragment } from "react";
 import Link from "next/link";
-
+import React from "react";
 import classes from "./index.module.scss";
 
-export interface Props {
+export type Props = {
   label: string;
   appearance?: "default" | "primary" | "secondary";
   el?: "button" | "link" | "a";
@@ -12,7 +11,7 @@ export interface Props {
   form?: string;
   newTab?: boolean;
   className?: string;
-}
+};
 
 const elements = {
   a: "a",
@@ -56,14 +55,14 @@ export const Button: React.FC<Props> = ({
 
   return (
     <Element {...elementProps}>
-      <Fragment>
+      <React.Fragment>
         {el === "link" && (
           <a {...newTabProps} href={href} className={elementProps.className}>
             {content}
           </a>
         )}
-        {el !== "link" && <Fragment>{content}</Fragment>}
-      </Fragment>
+        {el !== "link" && <React.Fragment>{content}</React.Fragment>}
+      </React.Fragment>
     </Element>
   );
 };

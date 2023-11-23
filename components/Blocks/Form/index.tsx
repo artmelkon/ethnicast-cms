@@ -1,16 +1,17 @@
 import React, { useState, useCallback } from "react";
-import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
+import { useRouter } from "next/router";
 
-import { Form as FormType } from "payload/generate-types";
 import { buildInitialFormState } from "./buildInitialFormState";
 import { fields } from "./fields";
+import { Form as FormType } from "payload-plugin-form-builder/dist/types";
 import RichText from "../../RichText";
 import { Gutter } from "../../Gutter";
 import { Button } from "../../Button";
 import classes from "./index.module.scss";
 
 export type Value = unknown;
+
 export interface Property {
   [key: string]: Value;
 }
@@ -19,7 +20,7 @@ export interface Data {
   [key: string]: Value | Property | Property[];
 }
 
-export interface FormBlockType {
+export type FormBlockType = {
   blockName?: string;
   blockType?: "formBlock";
   enableIntro: Boolean;
@@ -27,9 +28,13 @@ export interface FormBlockType {
   introContent?: {
     [k: string]: unknown;
   }[];
-}
+};
 
-export const FormBlock: React.FC<FormBlockType & { id?: string }> = (props) => {
+export const FormBlock: React.FC<
+  FormBlockType & {
+    id?: string;
+  }
+> = (props) => {
   const {
     enableIntro,
     introContent,
@@ -96,7 +101,7 @@ export const FormBlock: React.FC<FormBlockType & { id?: string }> = (props) => {
 
           const res = await req.json();
 
-          clearTimeout(loadingTimerID);
+          clearTimeout(loadingTimerID as any);
 
           if (req.status >= 400) {
             setIsLoading(false);
@@ -126,6 +131,7 @@ export const FormBlock: React.FC<FormBlockType & { id?: string }> = (props) => {
           });
         }
       };
+
       submitForm();
     },
     [router, formID, redirect, confirmationType]

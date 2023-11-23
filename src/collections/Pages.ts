@@ -6,7 +6,8 @@ import { FormBlock } from "../blocks/Forms";
 const Pages: CollectionConfig = {
   slug: 'pages',
   admin: {
-    useAsTitle: 'title'
+    useAsTitle: 'title',
+    defaultColumns: ['title', 'slug', 'updatedAt'],
   },
   access: {
     create: isAdmin,

@@ -6,7 +6,6 @@ import { slateEditor } from "@payloadcms/richtext-slate";
 import dotenv from "dotenv";
 import FormBuilder from '@payloadcms/plugin-form-builder';
 
-// import BeforeLogin from '../components/BeforeLogin';
 import Users from "./collections/Users";
 import Media from "./collections/Media";
 import Pages from "./collections/Pages";
@@ -42,9 +41,6 @@ export default buildConfig({
       favicon: "/assets/favicon.png",
       ogImage: "/assets/logo.png",
     },
-    // components: {
-    //   beforeLogin: [BeforeLogin],
-    // },
   },
   db: mongooseAdapter({
     url: `${process.env.MONGODB_URI}`,
