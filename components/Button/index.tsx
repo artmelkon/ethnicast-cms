@@ -1,5 +1,5 @@
+import React, {Fragment} from "react";
 import Link from "next/link";
-import React from "react";
 import classes from "./index.module.scss";
 
 export type Props = {
@@ -31,6 +31,7 @@ export const Button: React.FC<Props> = ({
   const newTabProps = newTab
     ? { target: "_blank", rel: "noopener noreferrer" }
     : {};
+
   const Element = elements[el];
   const className = [
     classNameFromProps,
@@ -55,14 +56,14 @@ export const Button: React.FC<Props> = ({
 
   return (
     <Element {...elementProps}>
-      <React.Fragment>
+      <Fragment>
         {el === "link" && (
           <a {...newTabProps} href={href} className={elementProps.className}>
             {content}
           </a>
         )}
         {el !== "link" && <React.Fragment>{content}</React.Fragment>}
-      </React.Fragment>
+      </Fragment>
     </Element>
   );
 };

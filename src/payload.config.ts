@@ -10,8 +10,8 @@ import Users from "./collections/Users";
 import Media from "./collections/Media";
 import Pages from "./collections/Pages";
 import Category from "./collections/Categories";
-import PublicUser from "./collections/PublicUser";
-import Podcasts from "./collections/Podcasts";
+// import PublicUser from "./collections/PublicUser";
+// import Podcasts from "./collections/Podcasts";
 import { MainMenu } from "./globals/MainMenu";
 
 dotenv.config();
@@ -46,10 +46,16 @@ export default buildConfig({
     url: `${process.env.MONGODB_URI}`,
   }),
   editor: slateEditor({}),
-  collections: [Category, Pages, Media, Podcasts, PublicUser, Users],
+  collections: [
+    Category,
+    Pages,
+    Media,
+    // Podcasts,
+    // PublicUser,
+    Users],
   globals: [MainMenu],
-  cors: [`${process.env.CMS_URI}`, "http://localhost:3000"],
-  csrf: [`${process.env.CMS_URI}`, "http://localhost:3000"],
+  cors: [process.env.CMS_URI!, "http://localhost:3000"],
+  csrf: [process.env.CMS_URI!, "http://localhost:3000"],
   typescript: {
     outputFile: path.resolve(__dirname, "payload-types.ts"),
   },

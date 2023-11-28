@@ -4,7 +4,7 @@ module.exports = (phase) => {
   if (phase === PHASE_DEVELOPMENT_SERVER) {
     return {
       env: {
-        CMS_URI: "http://scorpio.local:3000/",
+        CMS_URI: "http://scorpio.local:3000",
       },
     };
   } else {

@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import React, { Fragment, useState, useCallback } from "react";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/router";
 
@@ -51,6 +51,7 @@ export const FormBlock: React.FC<
   const formMethods = useForm({
     defaultValues: buildInitialFormState(formFromProps.fields),
   });
+
   const {
     register,
     handleSubmit,
@@ -66,6 +67,8 @@ export const FormBlock: React.FC<
     { status?: string; message: string } | undefined
   >();
   const router = useRouter();
+
+  console.log(router);
 
   const onSubmit = useCallback(
     (data: Data) => {
@@ -136,7 +139,6 @@ export const FormBlock: React.FC<
     },
     [router, formID, redirect, confirmationType]
   );
-
   return (
     <Gutter>
       <div

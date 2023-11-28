@@ -12,7 +12,7 @@ export const FormBlock: Block = {
   },
   fields: [
     {
-      name: 'from',
+      name: 'form',
       type: 'relationship',
       relationTo: 'forms',
       required: true

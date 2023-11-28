@@ -101,12 +101,6 @@ const Users: CollectionConfig = {
     //     }
     //   ]
     // },
-    // {
-    //   name: "myPlayList",
-    //   type: "relationship",
-    //   relationTo: "playlist",
-    //   hasMany: true,
-    // },
   ],
   timestamps: true,
 };

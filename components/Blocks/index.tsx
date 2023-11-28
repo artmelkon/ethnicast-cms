@@ -14,29 +14,23 @@ const Blocks: React.FC<{
   const { blocks } = props;
 
   const hasBlocks = blocks && Array.isArray(blocks) && blocks.length > 0;
-
   if (hasBlocks) {
     return (
       <Fragment>
         {blocks.map((block, index) => {
           const { blockName, blockType, form } = block;
-
           const isFormBlock = blockType === "formBlock";
-          {
-            /*@ts-ignore*/
-          }
           const formID: string = isFormBlock && form && form.id;
 
           if (blockType && blockType in blockComponents) {
+            console.log(blockType);
             const Block = blockComponents[blockType];
-
             return (
               <VerticalPadding
                 key={isFormBlock ? formID : index}
                 top="small"
                 bottom="small"
               >
-                {/*@ts-ignore*/}
                 <Block id={toKebabCase(blockName)} {...block} />
               </VerticalPadding>
             );

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { GetStaticProps, GetStaticPropsContext, GetStaticPaths } from "next";
 import Blocks from "../components/Blocks";
 import type { Page, MainMenu } from "payload/generate-types";
@@ -12,29 +12,27 @@ const Page: React.FC<{
   } = props;
 
   return (
-    <React.Fragment>
+    <Fragment>
       <Blocks blocks={layout} />
-    </React.Fragment>
+    </Fragment>
   );
 };
-
-export default Page;
 
 export const getStaticProps: GetStaticProps = async (
   context: GetStaticPropsContext
 ) => {
-  const { params } = context;
-
-  const slug = params?.slug || "home";
-
+  const slug = context.params?.slug ?? 'home';
   const pageQuery = await fetch(
     `${process.env.CMS_URI}/api/pages?where[slug][equals]=${slug}`
   ).then((res) => res.json());
+
+  console.log(pageQuery);
 
   return {
     props: {
       page: pageQuery.docs[0],
     },
+    notFound: Boolean(!pageQuery.docs[0] ? true : false),
   };
 };
 
@@ -43,12 +41,14 @@ export const getStaticPaths: GetStaticPaths<{ slug: string }> = async () => {
     `${process.env.CMS_URI}/api/pages?limit=100`
   ).then((res) => res.json());
 
+  const paths = pagesQuery.docs.map((page) => ({
+    params: { slug: page.slug },
+  }));
+
   return {
-    paths: pagesQuery.docs.map((page) => ({
-      params: {
-        slug: page.slug,
-      },
-    })),
+    paths,
     fallback: "blocking",
   };
 };
+
+export default Page;

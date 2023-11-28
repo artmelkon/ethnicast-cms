@@ -1,6 +1,6 @@
-import App, { AppContext, AppProps } from "next/app";
+import React, { Fragment } from "react";
+import { AppProps } from "next/app";
 import { ModalContainer, ModalProvider } from "@faceless-ui/modal";
-import React from "react";
 import { Header } from "../components/Header";
 import { GlobalsProvider } from "../providers/Globals";
 import { CloseModalOnRouteChange } from "../components/CloseModalOnRouteChange";
@@ -13,27 +13,20 @@ export interface IGlobals {
 }
 
 export const getAllGlobals = async (): Promise<IGlobals> => {
-  const [mainMenu] = await Promise.all([
-    fetch(`${process.env.CMS_URI}/api/globals/main-menu?depth=1`).then((res) =>
-      res.json()
-    ),
-  ]);
-
+  const result = await fetch(
+    `${process.env.CMS_URI}/api/globals/main-menu?depth=1`
+  );
+  const mainMenu = await result.json();
   return {
     mainMenu,
   };
 };
 
-const PayloadApp = (
-  appProps: AppProps & {
-    globals: IGlobals;
-  }
-): React.ReactElement => {
-  const { Component, pageProps, globals } = appProps;
-
+const App = ({ Component, pageProps }: AppProps): React.ReactElement => {
   return (
-    <React.Fragment>
-      <GlobalsProvider {...globals}>
+    <Fragment>
+      <Component {...pageProps} />
+      {/* <GlobalsProvider {...globals}>
         <ModalProvider
           classPrefix="form"
           transTime={0}
@@ -44,20 +37,59 @@ const PayloadApp = (
           <Component {...pageProps} />
           <ModalContainer />
         </ModalProvider>
-      </GlobalsProvider>
-    </React.Fragment>
+      </GlobalsProvider> */}
+    </Fragment>
   );
 };
 
-PayloadApp.getInitialProps = async (appContext: AppContext) => {
-  const appProps = await App.getInitialProps(appContext);
+// const PayloadApp = (
+//   appProps: AppProps & {
+//     globals: IGlobals;
+//   }
+// ): React.ReactElement => {
+//   const { Component, pageProps, globals } = appProps;
 
-  const globals = await getAllGlobals();
+//   return (
+//     <React.Fragment>
+//       <GlobalsProvider {...globals}>
+//         <ModalProvider
+//           classPrefix="form"
+//           transTime={0}
+//           zIndex="var(--modal-z-index)"
+//         >
+//           <CloseModalOnRouteChange />
+//           <Header />
+//           <Component {...pageProps} />
+//           <ModalContainer />
+//         </ModalProvider>
+//       </GlobalsProvider>
+//     </React.Fragment>
+//   );
+// };
 
-  return {
-    ...appProps,
-    globals,
-  };
-};
+// export const getStaticProps = async () => {
+//   // const appProps = await App.getInitialProps(appContext);
 
-export default PayloadApp;
+//   const globals = await getAllGlobals();
+
+//   console.log("globals ", globals);
+
+//   return {
+//     props: {
+//       globals,
+//     },
+//   };
+// };
+
+// PayloadApp.getInitialProps = async (appContext: AppContext) => {
+//   const appProps = await App.getInitialProps(appContext);
+
+//   const globals = await getAllGlobals();
+
+//   return {
+//     ...appProps,
+//     globals,
+//   };
+// };
+
+export default App;

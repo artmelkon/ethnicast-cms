@@ -11,8 +11,6 @@ export interface Config {
     categories: Category;
     pages: Page;
     media: Media;
-    podcasts: Podcast;
-    'public-user': PublicUser;
     users: User;
     forms: Form;
     'form-submissions': FormSubmission;
@@ -31,7 +29,7 @@ export interface Page {
   id: string;
   title: string;
   layout: {
-    from: string | Form;
+    form: string | Form;
     enableIntro?: boolean | null;
     introContent?:
       | {
@@ -188,26 +186,6 @@ export interface Media {
   width?: number | null;
   height?: number | null;
 }
-export interface Podcast {
-  id: string;
-  creator: string;
-  email: string;
-  feed_url: string;
-}
-export interface PublicUser {
-  id: string;
-  emai: string;
-  password: string | null;
-  updatedAt: string;
-  createdAt: string;
-  email: string;
-  resetPasswordToken?: string | null;
-  resetPasswordExpiration?: string | null;
-  salt?: string | null;
-  hash?: string | null;
-  loginAttempts?: number | null;
-  lockUntil?: string | null;
-}
 export interface User {
   id: string;
   firstName: string;
@@ -239,15 +217,10 @@ export interface FormSubmission {
 }
 export interface PayloadPreference {
   id: string;
-  user:
-    | {
-        relationTo: 'public-user';
-        value: string | PublicUser;
-      }
-    | {
-        relationTo: 'users';
-        value: string | User;
-      };
+  user: {
+    relationTo: 'users';
+    value: string | User;
+  };
   key?: string | null;
   value?:
     | {
