@@ -94,8 +94,8 @@ const link: LinkType = ({ appearances, disableLabel = false, overrides = {} } = 
   ]
 
   if (!disableLabel) {
-    linkTypes[0].admin.width = '50%'
-    linkTypes[1].admin.width = '50%'
+    linkTypes[0].admin!.width = '50%'
+    linkTypes[1].admin!.width = '50%'
 
     linkResult.fields.push({
       type: 'row',

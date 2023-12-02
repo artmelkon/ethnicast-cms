@@ -1,7 +1,7 @@
+import React, { Fragment, useContext } from "react";
 import { ModalToggler } from "@faceless-ui/modal";
 import Link from "next/link";
-import React from "react";
-import { useGlobals } from "../../providers/Globals";
+import { useGlobals, GlobalsContext } from "../../providers/Globals";
 import { Gutter } from "../Gutter";
 import { MenuIcon } from "../icons/Menu";
 import { CMSLink } from "../Link";
@@ -36,21 +36,20 @@ export const HeaderBar: React.FC<HeaderBarProps> = ({ children }) => {
 };
 
 export const Header: React.FC = () => {
-  const {
-    mainMenu: { navItems },
-  } = useGlobals();
+  const navItems = useGlobals().mainMenu?.navItems;
+  console.log("use globals ",navItems);
 
   return (
-    <>
+    <Fragment>
       <HeaderBar>
         <nav className={classes.nav}>
-          {navItems.map(({ link }, i) => {
-            return <CMSLink key={i} {...link} />;
+          {navItems?.map(({ link }, i) => {
+            return <CMSLink key={i} {...link} />
           })}
         </nav>
       </HeaderBar>
 
       <MobileMenuModal navItems={navItems} />
-    </>
+    </Fragment>
   );
 };

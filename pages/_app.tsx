@@ -1,9 +1,12 @@
-import React, { Fragment } from "react";
-import { AppProps } from "next/app";
-import { ModalContainer, ModalProvider } from "@faceless-ui/modal";
-import { Header } from "../components/Header";
+import React, { Fragment, useState } from "react";
+import { AppProps, AppContext } from "next/app";
+import useSWR from "swr";
+
 import { GlobalsProvider } from "../providers/Globals";
+import { Header } from "@/components/Header";
+import { ModalContainer, ModalProvider } from "@faceless-ui/modal";
 import { CloseModalOnRouteChange } from "../components/CloseModalOnRouteChange";
+import Layout from "@/components/Layout";
 import { MainMenu } from "payload/generate-types";
 
 import "../css/app.scss";
@@ -12,21 +15,24 @@ export interface IGlobals {
   mainMenu: MainMenu;
 }
 
-export const getAllGlobals = async (): Promise<IGlobals> => {
-  const result = await fetch(
-    `${process.env.CMS_URI}/api/globals/main-menu?depth=1`
+const EthnicasApp = ({
+  Component,
+  pageProps,
+}: AppProps) => {
+  const fetcher = (url) =>
+    fetch(url)
+      .then((res) => res.json())
+  const {data, error, isLoading } = useSWR(
+    `${process.env.CMS_URI}/api/globals/main-menu?depth=1`,
+    fetcher
   );
-  const mainMenu = await result.json();
-  return {
-    mainMenu,
-  };
-};
-
-const App = ({ Component, pageProps }: AppProps): React.ReactElement => {
+  if(error) return <p>error</p>
+  const globals = {
+    mainMenu: data
+  }
   return (
     <Fragment>
-      <Component {...pageProps} />
-      {/* <GlobalsProvider {...globals}>
+      <GlobalsProvider {...globals}>
         <ModalProvider
           classPrefix="form"
           transTime={0}
@@ -37,59 +43,9 @@ const App = ({ Component, pageProps }: AppProps): React.ReactElement => {
           <Component {...pageProps} />
           <ModalContainer />
         </ModalProvider>
-      </GlobalsProvider> */}
+      </GlobalsProvider>
     </Fragment>
   );
 };
 
-// const PayloadApp = (
-//   appProps: AppProps & {
-//     globals: IGlobals;
-//   }
-// ): React.ReactElement => {
-//   const { Component, pageProps, globals } = appProps;
-
-//   return (
-//     <React.Fragment>
-//       <GlobalsProvider {...globals}>
-//         <ModalProvider
-//           classPrefix="form"
-//           transTime={0}
-//           zIndex="var(--modal-z-index)"
-//         >
-//           <CloseModalOnRouteChange />
-//           <Header />
-//           <Component {...pageProps} />
-//           <ModalContainer />
-//         </ModalProvider>
-//       </GlobalsProvider>
-//     </React.Fragment>
-//   );
-// };
-
-// export const getStaticProps = async () => {
-//   // const appProps = await App.getInitialProps(appContext);
-
-//   const globals = await getAllGlobals();
-
-//   console.log("globals ", globals);
-
-//   return {
-//     props: {
-//       globals,
-//     },
-//   };
-// };
-
-// PayloadApp.getInitialProps = async (appContext: AppContext) => {
-//   const appProps = await App.getInitialProps(appContext);
-
-//   const globals = await getAllGlobals();
-
-//   return {
-//     ...appProps,
-//     globals,
-//   };
-// };
-
-export default App;
+export default EthnicasApp;

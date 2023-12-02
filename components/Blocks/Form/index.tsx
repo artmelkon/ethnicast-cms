@@ -67,9 +67,6 @@ export const FormBlock: React.FC<
     { status?: string; message: string } | undefined
   >();
   const router = useRouter();
-
-  console.log(router);
-
   const onSubmit = useCallback(
     (data: Data) => {
       let loadingTimerID: NodeJS.Timer;

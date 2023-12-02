@@ -23,7 +23,6 @@ const Blocks: React.FC<{
           const formID: string = isFormBlock && form && form.id;
 
           if (blockType && blockType in blockComponents) {
-            console.log(blockType);
             const Block = blockComponents[blockType];
             return (
               <VerticalPadding

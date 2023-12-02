@@ -21,12 +21,10 @@ const Page: React.FC<{
 export const getStaticProps: GetStaticProps = async (
   context: GetStaticPropsContext
 ) => {
-  const slug = context.params?.slug ?? 'home';
+  const slug = context.params?.slug ?? "home";
   const pageQuery = await fetch(
     `${process.env.CMS_URI}/api/pages?where[slug][equals]=${slug}`
   ).then((res) => res.json());
-
-  console.log(pageQuery);
 
   return {
     props: {

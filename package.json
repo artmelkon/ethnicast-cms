@@ -35,7 +35,8 @@
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.48.2",
     "react-select": "^5.8.0",
-    "rss-parser": "^3.13.0"
+    "rss-parser": "^3.13.0",
+    "swr": "^2.2.4"
   },
   "devDependencies": {
     "@babel/register": "^7.22.15",
