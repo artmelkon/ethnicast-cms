@@ -19,6 +19,7 @@ export interface Config {
   };
   globals: {
     'main-menu': MainMenu;
+    footer: Footer;
   };
 }
 export interface Category {
@@ -244,6 +245,26 @@ export interface PayloadMigration {
 export interface MainMenu {
   id: string;
   navItems?:
+    | {
+        link: {
+          type?: ('reference' | 'custom') | null;
+          newTab?: boolean | null;
+          reference?: {
+            relationTo: 'pages';
+            value: string | Page;
+          } | null;
+          url?: string | null;
+          label: string;
+        };
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+export interface Footer {
+  id: string;
+  nav?:
     | {
         link: {
           type?: ('reference' | 'custom') | null;

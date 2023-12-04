@@ -37,7 +37,6 @@ export const HeaderBar: React.FC<HeaderBarProps> = ({ children }) => {
 
 export const Header: React.FC = () => {
   const navItems = useGlobals().mainMenu?.navItems;
-  console.log("use globals ",navItems);
 
   return (
     <Fragment>

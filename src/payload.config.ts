@@ -4,7 +4,7 @@ import { webpackBundler } from "@payloadcms/bundler-webpack";
 import { mongooseAdapter } from "@payloadcms/db-mongodb";
 import { slateEditor } from "@payloadcms/richtext-slate";
 import dotenv from "dotenv";
-import FormBuilder from '@payloadcms/plugin-form-builder';
+import FormBuilder from "@payloadcms/plugin-form-builder";
 
 import Users from "./collections/Users";
 import Media from "./collections/Media";
@@ -13,6 +13,7 @@ import Category from "./collections/Categories";
 // import PublicUser from "./collections/PublicUser";
 // import Podcasts from "./collections/Podcasts";
 import { MainMenu } from "./globals/MainMenu";
+import { Footer } from "./globals/Footer";
 
 dotenv.config();
 // if (process.env.NODE_ENV === 'development') {
@@ -52,29 +53,31 @@ export default buildConfig({
     Media,
     // Podcasts,
     // PublicUser,
-    Users],
-  globals: [MainMenu],
-  cors: [process.env.CMS_URI!, "http://localhost:3000"],
-  csrf: [process.env.CMS_URI!, "http://localhost:3000"],
+    Users,
+  ],
+  globals: [
+    MainMenu,
+    Footer
+  ],
+  cors: [`${process.env.CMS_URI}`, "http://localhost:3000"],
+  csrf: [`${process.env.CMS_URI}`, "http://localhost:3000"],
   typescript: {
     outputFile: path.resolve(__dirname, "payload-types.ts"),
   },
   plugins: [
-    FormBuilder(
-      {
-        fields: {
-          text: true,
-          textarea: true,
-          select: true,
-          email: true,
-          state: true,
-          country: true,
-          checkbox: true,
-          number: true,
-          message: true,
-          payment: false
-        }
-      }
-    )
-  ]
+    FormBuilder({
+      fields: {
+        text: true,
+        textarea: true,
+        select: true,
+        email: true,
+        state: true,
+        country: true,
+        checkbox: true,
+        number: true,
+        message: true,
+        payment: false,
+      },
+    }),
+  ],
 });
