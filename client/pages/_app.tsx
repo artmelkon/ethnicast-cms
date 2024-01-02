@@ -1,12 +1,13 @@
 import React, { Fragment, useState } from "react";
 import { AppProps, AppContext } from "next/app";
 import useSWR from "swr";
+import Head from 'next/head'
 
 import { GlobalsProvider } from "../providers/Globals";
-import { Header } from "@root/components/Header";
+import { Header } from "@components/Header";
 import { ModalContainer, ModalProvider } from "@faceless-ui/modal";
 import { CloseModalOnRouteChange } from "../components/CloseModalOnRouteChange";
-import Layout from "@root/components/RenderBlock";
+import Layout from "@components/RenderBlock";
 import { MainMenu } from "payload/generated-types";
 
 import "../css/app.scss";
@@ -34,6 +35,9 @@ const EthnicasApp = ({ Component, pageProps }: AppProps) => {
           zIndex="var(--modal-z-index)"
         >
           <CloseModalOnRouteChange />
+          <Head>
+            <title>Ethnicast</title>
+          </Head>
           <Header />
           <Component {...pageProps} />
           <ModalContainer />

@@ -1,4 +1,5 @@
 import { Fragment } from "react";
+import Head from "next/head";
 import Link from "next/link";
 
 import { Podcast } from "payload/generated-types";
