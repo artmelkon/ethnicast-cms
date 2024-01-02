@@ -9,7 +9,6 @@
     "esModuleInterop": true,
     "module": "esnext",
     "moduleResolution": "bundler",
-    "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
@@ -19,7 +18,8 @@
       }
     ],
     "paths": {
-      "@/*": ["./*"],
+      "@components/*": ["./components/*"],
+      "@blocks": ["./components/blocks/*"],
       "payload/generated-types": ["./payload-types.ts"]
     }
   },

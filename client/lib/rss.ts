@@ -1,5 +1,6 @@
-import Parser = require("rss-parser");
+import Parser from "rss-parser";
 const rssParser = new Parser();
 
-
-export const FEEDS = []
+export async function parseRss(rssfeed) {
+  return await rssParser.parseURL(rssfeed);
+}

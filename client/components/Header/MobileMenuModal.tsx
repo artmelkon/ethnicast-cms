@@ -1,6 +1,6 @@
 import { Modal } from "@faceless-ui/modal";
 import { HeaderBar } from ".";
-import { MainMenu } from "payload/generate-types";
+import { MainMenu } from "payload/generated-types";
 import { Gutter } from "../Gutter";
 import { CMSLink } from "../Link";
 

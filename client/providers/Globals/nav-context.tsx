@@ -1,13 +1,13 @@
 import { createContext } from "react";
-import { UserType } from "@/pages/demo";
+import { UserType } from "@root/pages/demo";
 
 interface UserProps {
-  user: UserType
+  user: UserType;
 }
 
-export const NavigationContext = createContext<UserProps | undefined>(undefined)
-
-
+export const NavigationContext = createContext<UserProps | undefined>(
+  undefined
+);
 
 // export const NavigationContextProvider = ({children}: any) => {
 //   const

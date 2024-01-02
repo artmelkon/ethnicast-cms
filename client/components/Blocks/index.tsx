@@ -1,5 +1,5 @@
 import React, { Fragment } from "react";
-import { Page } from "payload/generate-types";
+import { Page } from "payload/generated-types";
 import { toKebabCase } from "../../utilities/toKebabCase";
 import { VerticalPadding } from "../VerticalPadding";
 import { FormBlock } from "./Form";

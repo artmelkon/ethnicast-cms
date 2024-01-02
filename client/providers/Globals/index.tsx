@@ -1,5 +1,5 @@
 import React, { createContext, useContext } from "react";
-import { MainMenu } from "payload/generate-types";
+import { MainMenu } from "payload/generated-types";
 
 export type MainMenuType = MainMenu;
 

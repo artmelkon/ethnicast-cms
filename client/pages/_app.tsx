@@ -3,11 +3,11 @@ import { AppProps, AppContext } from "next/app";
 import useSWR from "swr";
 
 import { GlobalsProvider } from "../providers/Globals";
-import { Header } from "@/components/Header";
+import { Header } from "@root/components/Header";
 import { ModalContainer, ModalProvider } from "@faceless-ui/modal";
 import { CloseModalOnRouteChange } from "../components/CloseModalOnRouteChange";
-import Layout from "@/components/Layout";
-import { MainMenu } from "payload/generate-types";
+import Layout from "@root/components/RenderBlock";
+import { MainMenu } from "payload/generated-types";
 
 import "../css/app.scss";
 

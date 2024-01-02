@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { NavigationContext } from "@/providers/Globals/nav-context";
+import { NavigationContext } from "@root/providers/Globals/nav-context";
 
 const NavBar = () => {
   const user = useContext(NavigationContext);

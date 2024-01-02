@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import NavBar from "@/components/NavBar";
-import Layout from "@/components/Layout";
-import { NavigationContext } from "@/providers/Globals/nav-context";
+import NavBar from "@root/components/NavBar";
+import Layout from "@root/components/RenderBlock";
+import { NavigationContext } from "@root/providers/Globals/nav-context";
 
 export interface UserType {
   isLoggedIn: boolean;
