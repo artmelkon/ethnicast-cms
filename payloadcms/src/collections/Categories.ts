@@ -8,7 +8,7 @@ const Categories: CollectionConfig = {
   slug: "categories",
   admin: {
     useAsTitle: "name",
-    defaultColumns: ["title", "id"],
+    defaultColumns: ["name", "id"],
   },
   access: {
     create: isAdmin,

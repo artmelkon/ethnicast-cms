@@ -26,7 +26,7 @@ import { Steps } from "@blocks/Steps";
 import { StickyHighlights } from "@blocks/StickyHighlights";
 import { toKebabCase } from "@utilities/to-kebab-case";
 
-import { BlockSpacing } from "@components/BlockSpacing";
+import { BlockSpacing } from "@component/BlockSpacing";
 import { Page, ReusableContent } from "@root/payload-types";
 
 type ReusableContentBlockType = Extract<

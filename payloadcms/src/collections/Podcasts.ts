@@ -12,9 +12,9 @@ const Podcasts: CollectionConfig = {
     defaultColumns: ["title", "author", "creater"],
   },
   access: {
-    create: () => true,
+    create: isAdmin,
     read: () => true,
-    update: () => true,
+    update: isAdmin,
     delete: isLoggedIn,
   },
   fields: [

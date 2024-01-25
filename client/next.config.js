@@ -5,6 +5,7 @@ module.exports = (phase) => {
     return {
       env: {
         CMS_URI: "http://scorpio.local:4000",
+        NEXTAUTH_SECRET: 'xJdgA4Nbp6vSKuCWEDqhFwRZf3zUk2c5j8VHyQGTs9',
       },
     };
   } else {

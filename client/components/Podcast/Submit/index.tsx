@@ -25,7 +25,7 @@ const PodcastSubmit: React.FC = (props) => {
       if (!response.ok)
         throw Error(response.statusText || "Something went wrong");
       const data = await response.json();
-      console.log(data);
+      // console.log(data);
     } catch (err) {
       console.error(err);
     }

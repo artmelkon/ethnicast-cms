@@ -27,6 +27,7 @@
     "escape-html": "^1.0.3",
     "express": "^4.17.1",
     "lodash": "^4.17.21",
+    "nodemailer-sendgrid": "^1.0.3",
     "payload": "^2.0.0",
     "react-hook-form": "^7.48.2",
     "react-select": "^5.8.0",

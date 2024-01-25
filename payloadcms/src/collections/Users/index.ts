@@ -10,17 +10,18 @@ const Users: CollectionConfig = {
     useAPIKey: true,
     depth: 0,
     forgotPassword: {
-      generateEmailHTML: ({ req: { token, user } }: any) => {
+      generateEmailHTML: ({ req, token, user }: any) => {
         // Use the token provided to allow your user to reset their password
         // We will send them to the frontend NextJS app instead of sending
         // them to the Payload admin by default
-        const resetPasswordURL = `${process.env.CMS_URI}/reset-password?token=${token}`;
+        const resetPasswordURL = `${process.env.PUBLIC_URI}/auth/reset-password?token=${token}`;
 
         return `
           <!doctype html>
           <html>
             <body>
               <h1>Click below to reset your password.</h1>
+              <p>Hello, ${user.email}!</p>
               <p>
                 <a href="${resetPasswordURL}">${resetPasswordURL}</a>
               </p>
@@ -36,7 +37,7 @@ const Users: CollectionConfig = {
   },
   access: {
     // Anyone can create a user
-    create: isAdmin,
+    create: () => true,
     read: isAdminOrSelf,
     update: isAdminOrSelf,
     delete: isAdmin,

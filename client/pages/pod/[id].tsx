@@ -7,7 +7,7 @@ type Props = {
 }
 
 const FilterPods: React.FC<Props> = ({parsedFeed}) => {
-  console.log(parsedFeed.items);
+  // console.log(parsedFeed.items);
 
   const selectedPod = parsedFeed.items.map((item: string, i: number) => (<li key={i}>
     <img src={item.itunes.image} width="120" height="60" alt={item} />

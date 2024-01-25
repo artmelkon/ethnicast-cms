@@ -18,10 +18,12 @@
       }
     ],
     "paths": {
-      "@components/*": ["./components/*"],
-      "@blocks": ["./components/blocks/*"],
+      "@component/*": ["./components/*"],
+      "@blocks/*": ["./components/blocks/*"],
+      "@lib/*": ["./lib/*"],
       "payload/generated-types": ["./payload-types.ts"]
-    }
+    },
+    "resolveJsonModule": true
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
   "exclude": ["node_modules"]

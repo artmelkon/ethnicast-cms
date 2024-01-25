@@ -7,7 +7,7 @@ interface PodsProps {
   pods: Podcast[];
 }
 const PodcastList: React.FC<PodsProps> = ({ pods }) => {
-  console.log(pods);
+  // console.log(pods);
   const podcast = pods.map((pod: any, i: number) => (
     <div key={i}>
       <Link href={`/pod/${pod.id}`}>

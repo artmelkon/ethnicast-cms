@@ -1,14 +1,23 @@
-import React, { Fragment, useContext } from "react";
-import NavBar from "../NavBar";
-import Footer from "../Footer";
+import React, {Fragment} from "react";
+import { ModalContainer, ModalProvider } from "@faceless-ui/modal";
+import { CloseModalOnRouteChange } from "@component/CloseModalOnRouteChange";
+import Head from "next/head";
 
-const Layout: React.FC<any> = ({ children }) => {
+import { Header } from "@component/Header";
+import NavBar from "@component/NavBar";
+import Footer from "@component/Footer";
+
+const LayoutTemplate: React.FC<any> = ({ children }) => {
   return (
     <Fragment>
+      <Head>
+        <title>Ethnicast</title>
+      </Head>
       <NavBar />
       <main>{children}</main>
-      <Footer />
-    </Fragment>);
+      {/* <Footer /> */}
+    </Fragment>
+  );
 };
 
-export default Layout;
+export default LayoutTemplate;

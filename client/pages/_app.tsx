@@ -1,50 +1,42 @@
 import React, { Fragment, useState } from "react";
-import { AppProps, AppContext } from "next/app";
-import useSWR from "swr";
-import Head from 'next/head'
+import { AppProps } from "next/app";
+import { SessionProvider } from "next-auth/react";
+// import Head from "next/head";
 
-import { GlobalsProvider } from "../providers/Globals";
-import { Header } from "@components/Header";
-import { ModalContainer, ModalProvider } from "@faceless-ui/modal";
-import { CloseModalOnRouteChange } from "../components/CloseModalOnRouteChange";
-import Layout from "@components/RenderBlock";
-import { MainMenu } from "payload/generated-types";
+// import { GlobalsProvider } from "../providers/Globals";
+// import { ModalContainer, ModalProvider } from "@faceless-ui/modal";
+// import { CloseModalOnRouteChange } from "../components/CloseModalOnRouteChange";
+import Layout from "@component/Layout";
+// import { MainMenu } from "payload/generated-types";
 
 import "../css/app.scss";
 
-export interface IGlobals {
-  mainMenu: MainMenu;
-}
+// export interface IGlobals {
+//   mainMenu: MainMenu;
+// }
 
-const EthnicasApp = ({ Component, pageProps }: AppProps) => {
-  const fetcher = (url) => fetch(url).then((res) => res.json());
-  const { data, error, isLoading } = useSWR(
-    `${process.env.CMS_URI}/api/globals/main-menu?depth=1`,
-    fetcher
-  );
-  if (error) return <p>error</p>;
-  const globals = {
-    mainMenu: data,
-  };
+const App = ({ Component, pageProps: { session, ...pageProps } }: AppProps) => {
   return (
-    <Fragment>
-      <GlobalsProvider {...globals}>
+    <SessionProvider session={session} baseUrl={process.env.NEXTAUTH_URL}>
+      <Layout>
+        {/* <GlobalsProvider {...globals}>
         <ModalProvider
           classPrefix="form"
           transTime={0}
           zIndex="var(--modal-z-index)"
-        >
-          <CloseModalOnRouteChange />
+        > */}
+        {/* <CloseModalOnRouteChange />
           <Head>
             <title>Ethnicast</title>
           </Head>
-          <Header />
-          <Component {...pageProps} />
-          <ModalContainer />
-        </ModalProvider>
-      </GlobalsProvider>
-    </Fragment>
+          <Header /> */}
+        <Component {...pageProps} />
+        {/* <ModalContainer /> */}
+        {/* </ModalProvider>
+      </GlobalsProvider> */}
+      </Layout>
+    </SessionProvider>
   );
 };
 
-export default EthnicasApp;
+export default App;

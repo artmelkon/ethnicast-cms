@@ -4,6 +4,7 @@ import https from "https";
 import express from "express";
 import payload from "payload";
 import dotenv from "dotenv";
+import sendgridTransport from 'nodemailer-sendgrid';
 
 dotenv.config();
 
@@ -12,10 +13,26 @@ const app = express();
 const port = process.env.PORT;
 app.use("/assets", express.static(path.resolve(__dirname, "../assets")));
 
+console.log(process.env.SMTP_USER)
+
 const start = async (): Promise<void> => {
+
+
+  const sendGridApiKey = process.env.SG_APIKEY;
+  const transport = await sendgridTransport({
+    apiKey: sendGridApiKey
+  });
+
   await payload.init({
     secret: `${process.env.PAYLOAD_SECRET}`,
     express: app,
+    ...(sendGridApiKey ? {
+      email: {
+        transportOptions: transport,
+        fromName: "Admin",
+        fromAddress: "support@ethnicast.com",
+      }
+    } : {}),
     onInit: () => {
       payload.logger.info(`Payload Admin URL: ${payload.getAdminURL()}`);
     },

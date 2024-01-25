@@ -30,7 +30,7 @@ export default async function handler(
         self: feedData.paginationLinks?.self,
       },
     };
-    console.log(data);
+    // console.log(data);
     await fetch(`${process.env.CMS_URI}/api/podcasts`, {
       method: "POST",
       body: JSON.stringify(data),
