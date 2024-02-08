@@ -1,10 +1,22 @@
 import {GetStaticProps, GetStaticPropsContext} from 'next';
 
-import Pod, {getStaticProps as sharedGetStaticProps} from './pod'
+import Podcast from './podcast'
 
-export default Pod;
-
-export const getStaticProps: GetStaticProps = async (ctx: GetStaticPropsContext) => {
-  const func = await sharedGetStaticProps.bind(this);
-  return func(ctx)
+const Page = (props: any) => {
+  return <Podcast {...props} />
 }
+
+
+export async function getStaticProps() {
+  const feedsReq = await fetch(`${process.env.CMS_URI}/api/podcasts`);
+  const pods = await feedsReq.json();
+
+  return {
+    props: {
+      pods: pods.docs,
+    },
+  };
+}
+
+export default Page;
+

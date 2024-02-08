@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
 import { GetStaticProps, GetStaticPropsContext, GetStaticPaths } from "next";
-import Blocks from "../components/Blocks";
+// import Blocks from "../componentHOLD/Blocks";
 import type { Page, MainMenu } from "payload/generated-types";
 
 const Page: React.FC<{
@@ -13,7 +13,8 @@ const Page: React.FC<{
 
   return (
     <Fragment>
-      <Blocks blocks={layout} />
+
+      {/* <Blocks blocks={layout} /> */}
     </Fragment>
   );
 };

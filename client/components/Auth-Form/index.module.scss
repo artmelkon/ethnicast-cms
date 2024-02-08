@@ -1,10 +1,14 @@
+$colr-berkeleyblue: #1d3557;
+$color-nonphotoblue: #a8dadc;
+$color-cerulean: #457b9d;
+
 .auth {
   margin: 3rem auto;
   width: 95%;
   max-width: 25rem;
   border-radius: 6px;
-  background-color: #38015c;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+  background-color: $colr-berkeleyblue;
+  box-shadow: 0 1px 4px rgba($colr-berkeleyblue, 0.2);
   padding: 1rem;
   text-align: center;
 
@@ -26,7 +30,7 @@
 
   & input {
     font: inherit;
-    background-color: #f1e1fc;
+    background-color: $color-nonphotoblue;
     color: #38015c;
     border-radius: 4px;
     border: 1px solid white;
@@ -46,7 +50,7 @@
     cursor: pointer;
     font: inherit;
     color: white;
-    background-color: #9f5ccc;
+    background-color: $color-cerulean;
     border: 1px solid #9f5ccc;
     border-radius: 4px;
     padding: 0.5rem 2.5rem;

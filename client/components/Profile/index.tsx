@@ -5,7 +5,7 @@ import ChangePassword from "./change-password";
 
 const UserProfile = () => {
   async function changPasswordHandler(passwordData: PatchInput) {
-    const result = await fetch(`/api/user/reset-password`, {
+    const result = await fetch(`/api/users/reset-password`, {
       method: "POST",
       body: JSON.stringify(passwordData),
       headers: {

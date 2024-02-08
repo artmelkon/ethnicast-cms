@@ -1,0 +1,22 @@
+body {
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  line-height: 1.6;
+  font-size: 62.5%;
+  background-color: $color-honeydew-dark;
+}
+a {
+  text-decoration: none;
+  &:link,
+  &:visited {
+    color: $colr-berkeleyblue;
+  }
+
+  &:hover {
+    color: $colr-berkeleyblue;
+  }
+
+  &:avtive {
+    color: $colr-berkeleyblue;
+  }
+}

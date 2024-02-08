@@ -1,39 +1,23 @@
 import React, { Fragment, useState } from "react";
 import { AppProps } from "next/app";
 import { SessionProvider } from "next-auth/react";
-// import Head from "next/head";
+import Head from "next/head";
 
-// import { GlobalsProvider } from "../providers/Globals";
-// import { ModalContainer, ModalProvider } from "@faceless-ui/modal";
-// import { CloseModalOnRouteChange } from "../components/CloseModalOnRouteChange";
 import Layout from "@component/Layout";
-// import { MainMenu } from "payload/generated-types";
-
-import "../css/app.scss";
-
-// export interface IGlobals {
-//   mainMenu: MainMenu;
-// }
+import "../styles/global.scss";
 
 const App = ({ Component, pageProps: { session, ...pageProps } }: AppProps) => {
   return (
     <SessionProvider session={session} baseUrl={process.env.NEXTAUTH_URL}>
-      <Layout>
-        {/* <GlobalsProvider {...globals}>
-        <ModalProvider
-          classPrefix="form"
-          transTime={0}
-          zIndex="var(--modal-z-index)"
-        > */}
-        {/* <CloseModalOnRouteChange />
-          <Head>
-            <title>Ethnicast</title>
-          </Head>
-          <Header /> */}
+      <Layout >
+        <Head>
+          <title>Ethnicast</title>
+          <meta
+            name="viewport"
+            content="initial-scale=1.0, width=device-wdith"
+          />
+        </Head>
         <Component {...pageProps} />
-        {/* <ModalContainer /> */}
-        {/* </ModalProvider>
-      </GlobalsProvider> */}
       </Layout>
     </SessionProvider>
   );

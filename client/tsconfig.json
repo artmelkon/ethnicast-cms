@@ -19,7 +19,7 @@
     ],
     "paths": {
       "@component/*": ["./components/*"],
-      "@blocks/*": ["./components/blocks/*"],
+      "@blocks/*": ["componentHOLD/Blocks/*"],
       "@lib/*": ["./lib/*"],
       "payload/generated-types": ["./payload-types.ts"]
     },
