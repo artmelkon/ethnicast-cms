@@ -1,0 +1,9 @@
+@import "@scss/abstracts/variables";
+
+.audioplayer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 70%;
+  height: 15rem;
+}

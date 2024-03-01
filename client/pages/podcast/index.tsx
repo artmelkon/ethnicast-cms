@@ -1,7 +1,7 @@
 import Head from "next/head";
 import { Fragment } from "react";
 
-import PodcastList from "@component/Podcasts";
+import PodcastList from "@component/PodcastsList";
 
 import { Podcast as PodcastType } from "payload/generated-types";
 

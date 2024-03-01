@@ -1,25 +1,16 @@
-import React, {Fragment} from "react";
+import React, { Fragment } from "react";
 import { GetStaticProps, GetStaticPropsContext, GetStaticPaths } from "next";
 import { parseRss } from "../../lib/rss";
 
+import SelectedPodcst from "@component/PodcastsList/Selected";
+
 type Props = {
-  parsedFeed: any
-}
+  parsedFeed: any;
+};
 
-const FilterPods: React.FC<Props> = ({parsedFeed}) => {
+const FilterPods: React.FC<Props> = ({ parsedFeed }) => {
   // console.log(parsedFeed.items);
-
-  const selectedPod = parsedFeed.items.map((item: string, i: number) => (<li key={i}>
-    <img src={item.itunes.image} width="120" height="60" alt={item} />
-  </li>))
-
-  return <Fragment>
-    <div>
-      <ul>
-        {parsedFeed && selectedPod}
-      </ul>
-    </div>
-  </Fragment>;
+  return <SelectedPodcst parsedFeed={parsedFeed} />;
 };
 
 export async function getStaticProps<GetStaticProps>(
@@ -29,7 +20,7 @@ export async function getStaticProps<GetStaticProps>(
   const respond = await fetch(`${process.env.CMS_URI}/api/podcasts/${ctxId}`);
   const podcast = await respond.json();
 
-  const parsedFeed = await parseRss(podcast.feedUrl)
+  const parsedFeed = await parseRss(podcast.feedUrl);
   return {
     props: {
       parsedFeed,

@@ -1,0 +1,72 @@
+@import "../../styles/base/base";
+
+.sidebar {
+  flex: 0 0 350px;
+  background-color: $color-berkeleyblue;
+  padding: 2rem 3rem;
+  // min-height: 80rem;
+
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-between;
+}
+
+.sidenav1 {
+  width: 100%;
+
+  &__title {
+    color: $color-honeydew;
+    font-size: 1.8rem;
+    letter-spacing: 1.5px;
+    text-decoration: underline;
+    padding: 1rem 0;
+  }
+
+  &__list {
+    list-style-type: none;
+  }
+
+  &__item {
+    margin-bottom: 0.3rem;
+  }
+
+  &__link {
+    &:link,
+    &:visited {
+      color: $color-honeydew;
+      font-size: 1.4rem;
+    }
+    &:hover,
+    &:active {
+      color: $color-nonphotoblue;
+    }
+  }
+}
+
+.sidenav2 {
+  margin-left: 2.3rem;
+
+  &__list {
+    list-style: none;
+  }
+
+  &__item {
+    margin-top: 2rem;
+    margin-right: 0.6rem;
+  }
+
+  &__link {
+    &:link,
+    &:visited {
+      color: $color-honeydew;
+      font-size: 1.2rem;
+      font-weight: 200;
+      transition: all 0.2s;
+    }
+
+    &:hover,
+    &:active {
+      color: $color-indianred;
+    }
+  }
+}

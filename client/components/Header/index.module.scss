@@ -1,9 +1,80 @@
-$color-nonphotoblue: #A8DADC;
-$colr-berkeleyblue: #1D3557;
+@import "../../styles/base/base";
 
-.header {
-  width: 100%;
-  height: 6.6rem;
-  box-shadow: 0 .6rem 2rem rgba($colr-berkeleyblue, 0.2);
-  padding: 1.3rem 1.5rem;
+.logo {
+  flex: 0 0 20%;
+  height: 6.3rem;
+  margin-left: 3.3rem;
+}
+
+.search {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 0 0 40%;
+
+  &__input {
+    width: 100%;
+    font-size: inherit;
+    color: indianred;
+    background-color: #eee;
+    border: none;
+    border-radius: 50px;
+    padding: 0.7rem 2.3rem;
+    margin-right: -3.3rem;
+  }
+
+  &__btn {
+    border: none;
+    background-color: #eee;
+  }
+
+  &__icon {
+    height: 2.3rem;
+    width: 2.3rem;
+    color: $color-grey-dark-2;
+  }
+}
+
+.navbar {
+  margin-right: 1.5rem;
+  display: flex;
+  -webkit-flex-wrap: nowrap;
+  flex-wrap: nowrap;
+  align-items: center;
+  align-self: stretch;
+  // height: 100%;
+
+  &__item {
+    display: flex;
+    align-items: center;
+    padding: 0 2rem;
+    height: 100%;
+
+    &:hover {
+      background-color: $color-grey-light-1;
+    }
+  }
+  &__link {
+    font-size: 1.4rem !important;
+    &:link,
+    &:visited {
+      color: $color-grey-dark-4;
+      font-weight: 600;
+    }
+
+    &:hover,
+    &:active {
+      color: $color-grey-dark-5;
+      font-weight: 600;
+    }
+  }
+
+  &__btn {
+    border: none;
+    background-color: $btn-primary;
+    color: #fff;
+    padding: 0.7rem 2rem;
+    border-radius: 50px;
+    cursor: pointer;
+  }
 }

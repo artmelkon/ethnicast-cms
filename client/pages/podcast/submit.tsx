@@ -1,4 +1,4 @@
-import PodcastSubmit from "../../components/Podcasts/Submit";
+import PodcastSubmit from "../../components/PodcastsList/Submit";
 
 const FeedSubmit = () => {
   return <PodcastSubmit />;

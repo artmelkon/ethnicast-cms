@@ -1,16 +1,16 @@
 const { PHASE_DEVELOPMENT_SERVER } = require("next/constants");
-const path = require('path');
+const path = require("path");
 
 module.exports = (phase) => {
   if (phase === PHASE_DEVELOPMENT_SERVER) {
     return {
       env: {
         CMS_URI: "http://scorpio.local:4000",
-        NEXTAUTH_SECRET: 'xJdgA4Nbp6vSKuCWEDqhFwRZf3zUk2c5j8VHyQGTs9',
+        NEXTAUTH_SECRET: "xJdgA4Nbp6vSKuCWEDqhFwRZf3zUk2c5j8VHyQGTs9",
       },
       sassOptions: {
-        includePaths: [path.join(__dirname, 'styles')]
-      }
+        includePaths: [path.join(__dirname, "styles")],
+      },
     };
   } else {
     return {

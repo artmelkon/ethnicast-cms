@@ -19,9 +19,10 @@
     ],
     "paths": {
       "@component/*": ["./components/*"],
-      "@blocks/*": ["componentHOLD/Blocks/*"],
       "@lib/*": ["./lib/*"],
-      "payload/generated-types": ["./payload-types.ts"]
+      "@scss/*": ["./styles/*"],
+      "payload/generated-types": ["./payload-types.ts"],
+      "selection/icon": ["./selection.json"]
     },
     "resolveJsonModule": true
   },

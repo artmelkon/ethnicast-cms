@@ -1,14 +1,12 @@
-$colr-berkeleyblue: #1d3557;
-$color-nonphotoblue: #a8dadc;
-$color-cerulean: #457b9d;
+@import "@scss/abstracts/variables";
 
 .auth {
   margin: 3rem auto;
   width: 95%;
   max-width: 25rem;
   border-radius: 6px;
-  background-color: $colr-berkeleyblue;
-  box-shadow: 0 1px 4px rgba($colr-berkeleyblue, 0.2);
+  background-color: $color-berkeleyblue;
+  box-shadow: 0 1px 4px rgba($color-berkeleyblue, 0.2);
   padding: 1rem;
   text-align: center;
 

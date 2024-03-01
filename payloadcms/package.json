@@ -4,7 +4,9 @@
   "description": "This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).",
   "main": "index.js",
   "scripts": {
-    "dev": "NODE_ENV=development PAYLOAD_CONFIG_PATH=src/payload.config.ts nodemon",
+    "client:dev": "cd ../client && npm run dev",
+    "payload:dev": "NODE_ENV=development PAYLOAD_CONFIG_PATH=src/payload.config.ts nodemon",
+    "start:dev": "concurrently 'npm run payload:dev' 'npm run client:dev'",
     "build:server": "tsc --project tsconfig.server.json",
     "build:payload": "cross-env PAYLOAD_CONFIG_PATH=src/payload.config.ts payload build",
     "build": "cross-env NODE_ENV=production npm run build:payload && npm run build:server && npm run build:next",
@@ -44,6 +46,7 @@
     "@types/react": "^18.2.46",
     "@typescript-eslint/eslint-plugin": "^6.7.5",
     "@typescript-eslint/parser": "^6.7.5",
+    "concurrently": "^8.2.2",
     "copyfiles": "^2.4.1",
     "nodemon": "^2.0.22",
     "payload-plugin-form-builder": "^1.0.8",
