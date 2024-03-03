@@ -19,6 +19,7 @@
     "react-dom": "^18",
     "react-hook-form": "^7.49.2",
     "react-icomoon": "^2.5.7",
+    "react-icons": "^5.0.1",
     "react-select": "^5.8.0",
     "rss-parser": "^3.13.0",
     "slate": "^0.101.5",

@@ -1,10 +1,9 @@
 import NavBar from "./navbar";
 import Link from "next/link";
 import Image from "next/image";
-import cn from "classnames";
+import { MdSearch } from "react-icons/md";
 
 import classes from "./index.module.scss";
-import Icon from "../../utilities/icon";
 
 const Header = () => {
   return (
@@ -27,10 +26,7 @@ const Header = () => {
           placeholder="Search podcast"
         />
         <button className={classes.search__btn}>
-          <Icon
-            icon="magnifying-glass"
-            className={classes.search__icon}
-          />
+          <MdSearch className={classes.search__icon} />
         </button>
       </form>
       <NavBar className={classes} />

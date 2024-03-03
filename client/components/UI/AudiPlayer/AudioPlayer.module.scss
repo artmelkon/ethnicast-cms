@@ -1,0 +1,78 @@
+@import "@scss/abstracts/variables";
+
+.audioplayer {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+
+  &__wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 46.8rem;
+  }
+}
+
+.player {
+  &__audio {
+    background-color: $color-honeydew-dark-2;
+  }
+}
+
+.controls {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
+  margin: 1rem;
+
+  &__container {
+    display: flex;
+    flex: 1;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  .volume {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    padding: 0.4rem 0;
+
+    &__input {
+      min-width: 80%;
+    }
+  }
+  button {
+    display: block;
+    width: 3rem;
+    height: 3rem;
+    padding-top: 0.3rem;
+    border-radius: 50%;
+    background-color: #d8e7df;
+    margin-right: 8px;
+    cursor: pointer;
+  }
+  svg {
+    font-size: 1.8rem;
+  }
+}
+
+.progress {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  gap: 10px;
+  color: $color-honeydew;
+  &__time {
+    font-size: 1.4rem;
+  }
+  &__current {
+    color: $color-indianred-light;
+  }
+  input {
+    width: 100%;
+  }
+}
