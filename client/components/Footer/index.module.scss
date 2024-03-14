@@ -1,9 +1,11 @@
 @import "@scss/abstracts/variables";
 
-.footer__cnt {
+.footer__container {
   display: flex;
+  width: 100%;
   justify-content: center;
   align-items: center;
-  width: 70%;
-  height: 15rem;
+  height: 14.7rem;
+  background-color: $color-berkeleyblue;
+  border-radius: .8rem;
 }

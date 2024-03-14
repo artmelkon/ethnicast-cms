@@ -2,7 +2,8 @@
 
 .logo {
   flex: 0 0 20%;
-  height: 6.3rem;
+  height: 5.4rem;
+  width: 6.4rem;
   margin-left: 3.3rem;
 }
 
@@ -40,9 +41,7 @@
   display: flex;
   -webkit-flex-wrap: nowrap;
   flex-wrap: nowrap;
-  align-items: center;
   align-self: stretch;
-  // height: 100%;
 
   &__item {
     display: flex;
@@ -59,13 +58,12 @@
     &:link,
     &:visited {
       color: $color-grey-dark-4;
-      font-weight: 600;
+      font-weight: 300;
     }
 
     &:hover,
     &:active {
       color: $color-grey-dark-5;
-      font-weight: 600;
     }
   }
 

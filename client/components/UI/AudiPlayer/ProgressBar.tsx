@@ -1,5 +1,5 @@
 import classes from "./AudioPlayer.module.scss";
-const ProgressBar = ({ audioRef, duration, progressBarRef, timeProgress }) => {
+const ProgressBar = ({ audioRef, duration, progressBarRef, timeProgress }: any) => {
   const handleProgressChange = () => {
     audioRef.current.currentTime = progressBarRef.current.value;
   };

@@ -1,0 +1,10 @@
+@mixin controller-btn {
+  display: block;
+  width: 3rem;
+  height: 3rem;
+  padding-top: 0.3rem;
+  border-radius: 50%;
+  background-color: #d8e7df;
+  margin-right: 8px;
+  cursor: pointer;
+}
