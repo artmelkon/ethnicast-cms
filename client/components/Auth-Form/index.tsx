@@ -58,59 +58,102 @@ const AuthForm = () => {
 
   return (
     <section className={classes.auth}>
-      <h1>{isLoggedIn ? "Sign In" : "Sign Up"}</h1>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <div className={classes.control}>
-          <label htmlFor="email">Your Email</label>
-          <input type="email" id="email" {...register("email")} />
+      <div className={classes.auth__wrapper}>
+        <form onSubmit={handleSubmit(onSubmit)} className={classes.form}>
+          <h2 className={classes.form__title}>
+            {isLoggedIn ? "Sign In" : "Sign Up"}
+          </h2>
+          <div className={classes.form__control}>
+            <label htmlFor="email" className={classes.form__label}>
+              Your Email
+            </label>
+            <input
+              type="email"
+              id="email"
+              {...register("email")}
+              className={classes.form__input}
+            />
+          </div>
+          <div className={classes.form__control}>
+            <label htmlFor="password" className={classes.form__label}>
+              Your Password
+            </label>
+            <input
+              type="password"
+              id="password"
+              {...register("password", { minLength: 4, maxLength: 36 })}
+              className={classes.form__input}
+            />
+          </div>
+          {!isLoggedIn && (
+            <>
+              <div className={classes.form__control}>
+                <label
+                  htmlFor="confirmPassword"
+                  className={classes.form__label}
+                >
+                  Confirm Password
+                </label>
+                <input
+                  type="password"
+                  id="confirmPassword"
+                  {...register("confirmPassword", {
+                    minLength: 4,
+                    maxLength: 36,
+                  })}
+                  className={classes.form__input}
+                />
+              </div>
+              <div className={classes.form__control}>
+                <label
+                  htmlFor="firstName"
+                  className={classes.form__label}
+                >
+                  First Name
+                </label>
+                <input
+                  type="text"
+                  id="firstName"
+                  {...register("firstName")}
+                  className={classes.form__input}
+                />
+              </div>
+              <div className={classes.form__control}>
+                <label
+                  htmlFor="lastName"
+                  className={classes.form__label}
+                >
+                  Last Name
+                </label>
+                <input
+                  type="text"
+                  id="lastName"
+                  {...register("lastName")}
+                  className={classes.form__input}
+                />
+              </div>
+            </>
+          )}
+          <div className={classes.actions}>
+            <button>{isLoggedIn ? "Login" : "Create Account"}</button>
+          </div>
+        </form>
+        <div>
+
         </div>
-        <div className={classes.control}>
-          <label htmlFor="password">Your Password</label>
-          <input
-            type="password"
-            id="password"
-            {...register("password", { minLength: 4, maxLength: 36 })}
-          />
-        </div>
-        {!isLoggedIn && (
-          <>
-            <div className={classes.control}>
-              <label htmlFor="confirmPassword">Confirm Password</label>
-              <input
-                type="password"
-                id="confirmPassword"
-                {...register("confirmPassword", {
-                  minLength: 4,
-                  maxLength: 36,
-                })}
-              />
-            </div>
-            <div className={classes.control}>
-              <label htmlFor="firstName">First Name</label>
-              <input type="text" id="firstName" {...register("firstName")} />
-            </div>
-            <div className={classes.control}>
-              <label htmlFor="lastName">Last Name</label>
-              <input type="text" id="lastName" {...register("lastName")} />
-            </div>
-          </>
-        )}
         <div className={classes.actions}>
-          <button>{isLoggedIn ? "Login" : "Create Account"}</button>
+          <button className={classes.toggle} onClick={toggleAuthMethodHandler}>
+            {isLoggedIn
+              ? "Sign up a new account"
+              : "Sign in with existint account"}
+          </button>
         </div>
-      </form>
-      <div className={classes.actions}>
-        <button className={classes.toggle} onClick={toggleAuthMethodHandler}>
-          {isLoggedIn
-            ? "Sign up a new account"
-            : "Sign in with existint account"}
-        </button>
+        {isLoggedIn && (
+          <div className={classes.forgotPassword}>
+            <Link href="/auth/forgot-password">Forgot Password?</Link>
+          </div>
+        )}
       </div>
-      {isLoggedIn && (
-        <div className={classes.forgotPassword}>
-          <Link href="/auth/forgot-password">Forgot Password?</Link>
-        </div>
-      )}
     </section>
   );
 };

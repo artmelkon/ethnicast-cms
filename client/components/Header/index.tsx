@@ -1,11 +1,14 @@
 import NavBar from "./navbar";
 import Link from "next/link";
 import Image from "next/image";
-import { MdSearch } from "react-icons/md";
 
 import classes from "./index.module.scss";
+import SearchForm from '@component/UI/Search';
+
+
 
 const Header = () => {
+
   return (
     <>
       <Link href="/">
@@ -17,18 +20,7 @@ const Header = () => {
           className={classes.logo}
         />
       </Link>
-      <form className={classes.search}>
-        <input
-          type="search"
-          name="search"
-          color="#000"
-          className={classes.search__input}
-          placeholder="Search podcast"
-        />
-        <button className={classes.search__btn}>
-          <MdSearch className={classes.search__icon} />
-        </button>
-      </form>
+      <SearchForm />
       <NavBar className={classes} />
     </>
   );

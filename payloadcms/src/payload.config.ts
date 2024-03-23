@@ -13,6 +13,7 @@ import Categories from "./collections/Categories";
 import Podcasts from "./collections/Podcasts";
 import { MainMenu } from "./globals/MainMenu";
 import { Footer } from "./globals/Footer";
+import SubCategories from "./collections/SubCategories";
 
 dotenv.config();
 // if (process.env.NODE_ENV === 'development') {
@@ -46,7 +47,7 @@ export default buildConfig({
     url: `${process.env.MONGODB_URI}`,
   }),
   editor: slateEditor({}),
-  collections: [Categories, Pages, Media, Podcasts, Users],
+  collections: [Categories, SubCategories, Pages, Media, Podcasts, Users],
   globals: [MainMenu, Footer],
   cors: [`${process.env.PUBLIC_URI}`],
   csrf: [`${process.env.PUBLIC_URI}`],

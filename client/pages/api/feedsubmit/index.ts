@@ -1,14 +1,23 @@
 import { NextApiRequest, NextApiResponse } from "next";
+import { getServerSession } from "next-auth";
 
 import { parseRss } from "../../../lib/rss";
+import { authOptions } from "../auth/[...nextauth]";
 
 
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
+    const session = await getServerSession(req, res, authOptions)
+    console.log('server session ', session?.user?.token)
+  if (!session) {
+    res.status(401).json({ message: "You must be loggedin!" })
+  }
+
   if (req.method === "POST") {
-    const { feedUrl } = req.body;
+    const { feedUrl, language, genre } = req.body;
+    console.log('feed url', req.body)
     const feedData = await parseRss(feedUrl);
 
     const email = feedData.itunes?.owner?.email;
@@ -29,6 +38,8 @@ export default async function handler(
       paginationLink: {
         self: feedData.paginationLinks?.self,
       },
+      language,
+      genre
     };
     // console.log(data);
     await fetch(`${process.env.CMS_URI}/api/podcasts`, {
@@ -36,7 +47,9 @@ export default async function handler(
       body: JSON.stringify(data),
       headers: {
         "Content-Type": "application/json",
+        cookie: `lng=en;payload-token=${session?.user?.token}`
       },
+      credentials: 'include',
     });
     res.status(200).json({ message: "The post was a Success!" });
   }

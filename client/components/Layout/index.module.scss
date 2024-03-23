@@ -25,8 +25,12 @@
 }
 
 .content {
-  flex: 1;
-  display: flex;
+  // flex: 1;
+  // display: flex;
+  overflow-y: auto;
+  width: 100%;
+  height: auto;
+  border-radius: .8rem;
 }
 
 .footer {

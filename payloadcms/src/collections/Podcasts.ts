@@ -9,7 +9,7 @@ const Podcasts: CollectionConfig = {
   slug: "podcasts",
   admin: {
     useAsTitle: "title",
-    defaultColumns: ["title", "author", "creater"],
+    defaultColumns: ["title", "author", "creater", 'language', 'genre'],
   },
   access: {
     create: isAdmin,
@@ -61,6 +61,10 @@ const Podcasts: CollectionConfig = {
       type: "text",
     },
     {
+      name: "description",
+      type: "text",
+    },
+    {
       name: "paginationLink",
       type: "group",
       fields: [
@@ -73,21 +77,19 @@ const Podcasts: CollectionConfig = {
     },
     {
       name: "language",
-      type: "text",
-    },
-    {
-      name: 'country',
-      type: 'text',
-    },
-    {
-      name: "description",
-      type: "text",
-    },
-    {
-      name: "genres",
       type: "relationship",
-      hasMany: true,
-      relationTo: "categories",
+      relationTo: 'subcategories',
+      admin: {
+        position: 'sidebar'
+      }
+    },
+    {
+      name: "genre",
+      type: "relationship",
+      relationTo: "subcategories",
+      admin: {
+        position: 'sidebar'
+      }
     },
   ],
   timestamps: false,

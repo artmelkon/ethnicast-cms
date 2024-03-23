@@ -7,35 +7,6 @@
   margin-left: 3.3rem;
 }
 
-.search {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex: 0 0 40%;
-
-  &__input {
-    width: 100%;
-    font-size: inherit;
-    color: indianred;
-    background-color: #eee;
-    border: none;
-    border-radius: 50px;
-    padding: 0.7rem 2.3rem;
-    margin-right: -3.3rem;
-  }
-
-  &__btn {
-    border: none;
-    background-color: #eee;
-  }
-
-  &__icon {
-    height: 2.3rem;
-    width: 2.3rem;
-    color: $color-grey-dark-2;
-  }
-}
-
 .navbar {
   margin-right: 1.5rem;
   display: flex;

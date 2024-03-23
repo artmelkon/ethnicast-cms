@@ -13,6 +13,15 @@ const SubCategories: CollectionConfig = {
       name: "name",
       type: "text",
     },
+    {
+      name: "value",
+      type: 'text'
+    },
+    // {
+    //   name: 'category',
+    //   type: 'relationship',
+    //   relationTo: 'categories'
+    // }
   ],
   timestamps: false,
 };

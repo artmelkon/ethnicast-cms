@@ -1,11 +1,39 @@
 import { useForm, SubmitHandler } from "react-hook-form";
 import { DevTool } from "@hookform/devtools";
+import _ from "lodash";
+
+import classes from "./index.module.scss";
 
 interface Input {
   feedUrl: string;
+  languages: string;
+  genres: string;
 }
 
-const PodcastSubmit: React.FC = (props) => {
+interface Props {
+  languages: {
+    id: string;
+    name: string;
+    value: string;
+  };
+  genres: {
+    id: string;
+    name: string;
+    value: string;
+  };
+}
+
+const PodcastSubmit: React.FC<Props> = ({ languages, genres }) => {
+  const languageList = _.map(languages, (item: any) => (
+    <option key={item.id} value={item.id}>
+      {item.name}
+    </option>
+  ));
+  const gernreList = _.map(genres, (item: any) => (
+    <option key={item.id} value={item.id}>
+      {item.name}
+    </option>
+  ));
   const {
     register,
     handleSubmit,
@@ -25,17 +53,23 @@ const PodcastSubmit: React.FC = (props) => {
       if (!response.ok)
         throw Error(response.statusText || "Something went wrong");
       const data = await response.json();
-      // console.log(data);
     } catch (err) {
       console.error(err);
     }
   };
 
   return (
-    <div>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <div>
-          <label htmlFor="rssFeed">Eneer RSS Feed url</label>
+    <div className={classes.container}>
+      <form onSubmit={handleSubmit(onSubmit)} className={classes.form}>
+        <h3 className={classes["form__title-h3"]}>Submit RSS Feed</h3>
+
+        <div className={classes.form__controller}>
+          <label
+            htmlFor="rssFeed"
+            className={classes["form__controller-label"]}
+          >
+            Eneer RSS Feed url
+          </label>
           <input
             id="rssFeed"
             {...register("feedUrl", {
@@ -44,12 +78,36 @@ const PodcastSubmit: React.FC = (props) => {
                 message: "RSS Feed url required!",
               },
             })}
+            className={classes["form__controller-input"]}
+            placeholder="Enter RSS Feed"
           />
+          <p>{errors.feedUrl?.message}</p>
         </div>
-        <p>{errors.feedUrl?.message}</p>
-        <input type="submit" />
+        <div className={classes.form__controller}>
+          <div className={classes["form__controller-wrapper"]}>
+            <select
+              id="language"
+              {...register("language")}
+              className={classes["form__controller-select"]}
+            >
+              <option>Select Language</option>
+              {languageList}
+            </select>
+            <select
+              id=""
+              {...register("genre")}
+              className={classes["form__controller-select"]}
+            >
+              <option>Select Genre</option>
+              {gernreList}
+            </select>
+          </div>
+        </div>
+        <div className={classes.form__controller}>
+          <button className={classes.btn}>Submit RSS Feed</button>
+        </div>
       </form>
-      <DevTool control={control} />
+      {/* <DevTool control={control} /> */}
     </div>
   );
 };

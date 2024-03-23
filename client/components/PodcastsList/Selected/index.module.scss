@@ -3,9 +3,7 @@
 .podcaster {
   display: flex;
   min-height: min-content;
-  border-radius: .8rem;
   background-color: $color-berkeleyblue;
-  overflow-x: auto;
 
 
   &__card {
@@ -68,7 +66,7 @@
 
   &:hover {
     background-color: rgba($color-paynesgray, 0.3);
-    border: none;
+    border-bottom: 1px solid transparent;
   }
 
   &__img {
@@ -105,6 +103,10 @@
 .audioplay__btn {
   margin-top: 1rem;
   @include controller-btn;
+
+  &:active {
+    background-color: #1fae1f;
+  }
 }
 .podcast__footer {
   display: block;
