@@ -6,7 +6,6 @@ const Page = (props: any) => {
   return <Podcast {...props} />
 }
 
-
 export async function getStaticProps() {
   const feedsReq = await fetch(`${process.env.CMS_URI}/api/podcasts`);
   const pods = await feedsReq.json();

@@ -1,38 +1,47 @@
-@import '../../../styles/base/base';
+@import "../../../styles/base/base";
 
 .search {
   display: flex;
-  justify-content: center;
+  // flex: 1;
+  justify-content: space-around;
   align-items: center;
-  flex: 0 0 40%;
+
+  &__form {
+    display: flex;
+    flex: 1;
+  }
 
   &__input {
     width: 100%;
     font-size: inherit;
+    // margin-right: -.5rem;
+  }
+  &__select {
+    outline: none;
+  }
+
+  &__input,
+  &__select {
     color: $color-grey-dark-2;
     background-color: $color-grey-light-1;
     border: none;
     border-radius: 50px;
     padding: 0.7rem 2.3rem;
-    margin-right: -15rem;
   }
-  &__select {
-    border: none;
-    background-color: $color-grey-light-1;
-    margin-right: 3rem;
-    outline: none;
-    color: $color-grey-dark-2;
-    border-bottom: 3px solid $color-grey-light-4;
+  .language {
+    margin-right: 1rem;
   }
   &__btn {
     border: none;
     background-color: $color-grey-light-1;
+    margin-left: -4rem;
+    margin-right: 3rem;
   }
 
   &__icon {
     height: 2.3rem;
     width: 2.3rem;
-    margin-top: .3rem;
+    margin-top: 0.3rem;
     color: $color-grey-dark-2;
   }
 }

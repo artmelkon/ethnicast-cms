@@ -107,6 +107,7 @@ const PodcastSubmit: React.FC<Props> = ({ languages, genres }) => {
           <button className={classes.btn}>Submit RSS Feed</button>
         </div>
       </form>
+      {/* The DevTool throus React related errors, probably a bug */}
       {/* <DevTool control={control} /> */}
     </div>
   );
