@@ -1,7 +1,30 @@
-@import '../../styles/base/base';
-
+@import "../../../styles/base/base";
+.card__container {
+  display: flex;
+  flex-flow: row wrap;
+  width: 100%;
+  overflow-y: auto;
+}
 .card {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  color: $color-honeydew;
   position: relative;
+  width: 20rem;
   height: 20rem;
-  border: 1px solid $color-berkeleyblue;
+  padding: 1rem 1.6rem;
+  margin-right: 0.6rem;
+  margin-bottom: 0.6rem;
+  border-radius: 0.8rem;
+
+  &__image {
+    width: 90%;
+  }
+  &__title {
+    font-size: 2.2rem;
+    font-weight: 400;
+    text-align: center;
+  }
 }

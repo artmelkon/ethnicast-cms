@@ -3,6 +3,14 @@
 .container {
   display: flex;
   flex-direction: column;
+
+  // &__wrapper {
+  //   display: flex;
+  //   width: 100%;
+  //   padding: 1rem;
+  //   background-color: $color-cerulean-light;
+  //   overflow-y: auto;
+  // }
 }
 
 .header {
@@ -19,7 +27,7 @@
   left: 0;
   right: 0;
   bottom: 15rem;
-  padding: .3rem;
+  padding: 0.3rem;
   display: flex;
   gap: 2px;
 }
@@ -30,7 +38,7 @@
   overflow-y: auto;
   width: 100%;
   height: auto;
-  border-radius: .8rem;
+  border-radius: 0.8rem;
 }
 
 .footer {
@@ -39,6 +47,6 @@
   left: 0;
   bottom: 0;
   width: 100%;
-  padding: .3rem;
+  padding: 0.3rem;
   align-items: center;
 }

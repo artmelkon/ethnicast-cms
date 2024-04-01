@@ -227,8 +227,8 @@ export interface Podcast {
   paginationLink?: {
     self?: string | null;
   };
-  language?: (string | null) | Subcategory;
-  genre?: (string | null) | Subcategory;
+  languageId?: (string | null) | Subcategory;
+  genreId?: (string | null) | Subcategory;
 }
 export interface User {
   id: string;

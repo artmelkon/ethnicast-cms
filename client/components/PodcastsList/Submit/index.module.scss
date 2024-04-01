@@ -1,4 +1,4 @@
-@import '../../../styles/base/base';
+@import "../../../styles/base/base";
 
 .container {
   display: flex;
@@ -35,16 +35,16 @@
     &-label {
       font-size: 1.2rem;
       font-weight: 300;
-      padding-bottom: .3rem;
+      padding-bottom: 0.3rem;
       color: $color-honeydew;
     }
 
     &-input {
       border: 0;
       // border-bottom: 1px solid $color-grey-dark-1;
-      background-color:  $color-grey-light-1;
+      background-color: $color-grey-light-1;
       border-radius: 8px;
-      padding: .5rem 1rem;
+      padding: 0.5rem 1rem;
       color: $color-grey-dark-4;
       font-weight: 300;
     }
@@ -55,7 +55,7 @@
     &-select {
       border: 0;
       width: 45%;
-      padding: .5rem 1rem;
+      padding: 0.5rem 1rem;
       background-color: $color-grey-light-1;
       border-radius: 8px;
       color: $color-grey-dark-2;
@@ -65,10 +65,12 @@
 }
 
 .btn {
+  display: block;
   width: 100%;
-  padding: .5rem 1rem;
+  padding: 0.5rem 1rem;
   background-color: $btn-primary;
   border: 0;
   border-radius: 8px;
   color: #fff;
+  cursor: pointer;
 }

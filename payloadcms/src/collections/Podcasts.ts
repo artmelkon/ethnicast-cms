@@ -76,7 +76,7 @@ const Podcasts: CollectionConfig = {
       ],
     },
     {
-      name: "language",
+      name: "languageId",
       type: "relationship",
       relationTo: 'subcategories',
       admin: {
@@ -84,7 +84,7 @@ const Podcasts: CollectionConfig = {
       }
     },
     {
-      name: "genre",
+      name: "genreId",
       type: "relationship",
       relationTo: "subcategories",
       admin: {
