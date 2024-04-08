@@ -38,7 +38,6 @@ const SearchForm: React.FC<Props> = (props) => {
   );
 
   const onSubmit: SubmitHandler<Input> = async (data) => {
-    console.log("data ", data);
     const { q, languageId, genreId } = data;
     let searchQry;
     for (var [slug, val] of Object.entries(data)) {

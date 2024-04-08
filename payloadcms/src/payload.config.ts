@@ -4,7 +4,7 @@ import { webpackBundler } from "@payloadcms/bundler-webpack";
 import { mongooseAdapter } from "@payloadcms/db-mongodb";
 import { slateEditor } from "@payloadcms/richtext-slate";
 import dotenv from "dotenv";
-import FormBuilder from "@payloadcms/plugin-form-builder";
+import FormBuilder, { fields } from "@payloadcms/plugin-form-builder";
 
 import Users from "./collections/Users";
 import Media from "./collections/Media";
@@ -14,6 +14,7 @@ import Podcasts from "./collections/Podcasts";
 import { MainMenu } from "./globals/MainMenu";
 import { Footer } from "./globals/Footer";
 import SubCategories from "./collections/SubCategories";
+import search from "@payloadcms/plugin-search";
 
 dotenv.config();
 // if (process.env.NODE_ENV === 'development') {
@@ -68,6 +69,18 @@ export default buildConfig({
         message: true,
         payment: false,
       },
+    }),
+    search({
+      collections: ['podcasts'],
+      defaultPriorities: {
+        podcasts: 10,
+      },
+      searchOverrides: {
+        fields: [
+          { name: 'author', type: 'text' },
+          { name: 'title', type: 'text' }
+        ]
+      }
     }),
   ],
 });

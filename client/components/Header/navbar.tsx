@@ -4,7 +4,6 @@ import Image from "next/image";
 
 const NavBar = ({ className }: any) => {
   const { data: session, status } = useSession();
-  console.log("navbar status ", status);
 
   return (
     <div className={className.navbar}>

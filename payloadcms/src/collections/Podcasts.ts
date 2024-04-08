@@ -3,13 +3,13 @@ import { isAdmin } from "../access/isAdmin";
 import { isLoggedIn } from "../access/isLoggedIn";
 
 import { CategoryType } from "./Categories";
-
+import payload from "payload";
 
 const Podcasts: CollectionConfig = {
   slug: "podcasts",
   admin: {
     useAsTitle: "title",
-    defaultColumns: ["title", "author", "creater", 'language', 'genre'],
+    defaultColumns: ["title", "author", "creater", "language", "genre"],
   },
   access: {
     create: isAdmin,
@@ -21,10 +21,12 @@ const Podcasts: CollectionConfig = {
     {
       name: "title",
       type: "text",
+      index: true,
     },
     {
       name: "creator",
       type: "text",
+      index: true,
     },
     {
       name: "email",
@@ -59,6 +61,7 @@ const Podcasts: CollectionConfig = {
     {
       name: "author",
       type: "text",
+      index: true,
     },
     {
       name: "description",
@@ -78,21 +81,35 @@ const Podcasts: CollectionConfig = {
     {
       name: "languageId",
       type: "relationship",
-      relationTo: 'subcategories',
+      relationTo: "subcategories",
       admin: {
-        position: 'sidebar'
-      }
+        position: "sidebar",
+      },
     },
     {
       name: "genreId",
       type: "relationship",
       relationTo: "subcategories",
       admin: {
-        position: 'sidebar'
-      }
+        position: "sidebar",
+      },
     },
   ],
   timestamps: false,
+  endpoints: [
+    {
+      path: "/search",
+      method: "get",
+      handler: async (req, res, next) => {
+        console.log("param q: ", req.query.q);
+        const searchQry = req.query.q;
+        const Podcast = payload.db.collections['podcasts'];
+        const searchData = await Podcast.find({ $text: { $search: searchQry } });
+        console.log('search: ', searchData)
+        res.json(searchData);
+      },
+    },
+  ],
 };
 
 export default Podcasts;
