@@ -1,5 +1,10 @@
 import classes from "./AudioPlayer.module.scss";
-const ProgressBar = ({ audioRef, duration, progressBarRef, timeProgress }: any) => {
+const ProgressBar = ({
+  audioRef,
+  duration,
+  progressBarRef,
+  timeProgress,
+}: any) => {
   const handleProgressChange = () => {
     audioRef.current.currentTime = progressBarRef.current.value;
   };
@@ -12,12 +17,14 @@ const ProgressBar = ({ audioRef, duration, progressBarRef, timeProgress }: any) 
       const formatSeconds = seconds < 10 ? `0${seconds}` : `${seconds}`;
       return `${formatMinutes}:${formatSeconds}`;
     }
-    return "00:00";
+    return "0:00";
   }
 
   return (
     <div className={classes.progress}>
-      <span className={`${classes.progress__time} ${classes.progress__current}`}>
+      <span
+        className={`${classes.progress__time} ${classes.progress__current}`}
+      >
         {formatTime(timeProgress)}
       </span>
       <input

@@ -11,6 +11,8 @@ const Controls = ({ audioRef, duration, progressBarRef, setTimeProgress }) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const playAnimationRef = useRef();
 
+  console.log("audio Ref: ", audioRef.current?.duration || 0);
+  const episodeDuration = audioRef.current?.duration || 0;
   const repeat = useCallback(() => {
     const currentTime = audioRef.current.currentTime;
     setTimeProgress(currentTime);
@@ -44,19 +46,33 @@ const Controls = ({ audioRef, duration, progressBarRef, setTimeProgress }) => {
   return (
     <div className={classes.controllers__wrapper}>
       <div className={classes.controler}>
-        <button onClick={playBack}>
-          <MdOutlineReplay10 />
-        </button>
+        {episodeDuration > 0 ? (
+          <button onClick={playBack}>
+            <MdOutlineReplay10 />
+          </button>
+        ) : (
+          <button style={{backgroundColor: '#aaa'}}>
+            <MdOutlineReplay10 />
+          </button>
+        )}
       </div>
       <div className={classes.controler}>
-        <button onClick={togglePlayPause}>
-          {isPlaying ? <MdOutlinePause /> : <MdPlayArrow />}
-        </button>
+        {episodeDuration > 0 ? (
+          <button onClick={togglePlayPause}>
+            {isPlaying ? <MdOutlinePause /> : <MdPlayArrow />}
+          </button>
+        ) : (
+          <button style={{ backgroundColor: "#aaa" }}>
+            <MdPlayArrow />
+          </button>
+        )}
       </div>
       <div className={classes.controler}>
-        <button onClick={playForward}>
+        {episodeDuration > 0 ? (<button onClick={playForward}>
           <MdForward10 />
-        </button>
+        </button>) : (<button style={{backgroundColor: '#aaa'}}>
+          <MdForward10 />
+        </button>)}
       </div>
     </div>
   );

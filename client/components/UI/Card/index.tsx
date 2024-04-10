@@ -3,8 +3,6 @@ import Link from "next/link";
 import classes from "./index.module.scss";
 
 const Card = ({ slug, data }) => {
-  console.log("slug card ", slug);
-  // console.log("data card ", data);
   function bgcolorSelector() {
     const bgColorList = [
       "#414833",
@@ -22,11 +20,11 @@ const Card = ({ slug, data }) => {
     return bgColorList[rN];
   }
   if(slug === 'q') {
-    console.log('card data: ', data)
     const card = data?.map((item) => {
+      console.log('q data: ', item._id)
       const randomBgColor = bgcolorSelector();
       return (
-        <Link href={`/search/${slug}/${item.id}`} key={item.id}>
+        <Link href={`/podcast/${item._id}`} key={item._id}>
           <div
             className={classes.card}
             style={{ backgroundColor: randomBgColor }}
@@ -45,11 +43,11 @@ const Card = ({ slug, data }) => {
     });
     return <div className={classes.card__container}>{card}</div>;  }
   if (slug === "languageId") {
-    console.log('language ', slug)
     const card = data?.map((item) => {
+      console.log('language data: ', item)
       const randomBgColor = bgcolorSelector();
       return (
-        <Link href={`/search/${slug}/${item.id}`} key={item.id}>
+        <Link href={`/podcast/${item.id}`} key={item.id}>
           <div
             className={classes.card}
             style={{ backgroundColor: randomBgColor }}
@@ -70,9 +68,10 @@ const Card = ({ slug, data }) => {
   }
   if (slug === "genreId") {
     const card = data?.map((item) => {
+      console.log('genre data: ', item)
       const randomBgColor = bgcolorSelector();
       return (
-        <Link href={`/search/${slug}/${item.id}`} key={item.id}>
+        <Link href={`/podcast/${item.id}`} key={item.id}>
           <div
             className={classes.card}
             style={{ backgroundColor: randomBgColor }}
