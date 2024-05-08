@@ -5,7 +5,7 @@ import useSWR from "swr";
 import Card from "../../components/UI/Card";
 
 const Search: React.FC = () => {
-  const [searchData, setSearchData] = useState(null);
+  // const [searchData, setSearchData] = useState(null);
   const router = useRouter();
   const { slug = [] } = router.query;
 
@@ -13,7 +13,7 @@ const Search: React.FC = () => {
 
   const fetcher = (url: string) => fetch(url).then((res) => res.json());
   if (slug.length > 0 && slug.length === 2 && slug[0] === "q") {
-    const { data, isLoading, errors } = useSWR(
+    const { data, isLoading, error } = useSWR(
       `${process.env.CMS_URI}/api/podcasts/search?q=${slug[1]}`,
       fetcher
     );

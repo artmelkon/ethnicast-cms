@@ -11,38 +11,36 @@ const Page: React.FC<{
     page: { layout },
   } = props;
 
-  return (
-    <Fragment>
-
-      {/* <Blocks blocks={layout} /> */}
-    </Fragment>
-  );
+  return <h3>hello</h3>;
 };
 
 export const getStaticProps: GetStaticProps = async (
   context: GetStaticPropsContext
 ) => {
   const slug = context.params?.slug ?? "home";
+  console.log("slug home: ", slug);
   const pageQuery = await fetch(
     `${process.env.CMS_URI}/api/pages?where[slug][equals]=${slug}`
   );
   const page = await pageQuery.json();
 
+  if (page.docs.length === 0) {
+    return { notFound: true };
+  }
+
   return {
     props: {
       page: page.docs[0],
     },
-    notFound: Boolean(!page.docs[0] ? true : false),
+    notFound: Boolean(page.docs.length === 0 ? true : false),
   };
 };
 
 export const getStaticPaths: GetStaticPaths<{ slug: string }> = async () => {
-  const pagesQuery: { docs: Page[] } = await fetch(
-    `${process.env.CMS_URI}/api/pages?limit=100`
-  );
+  const pagesQuery = await fetch(`${process.env.CMS_URI}/api/pages?limit=100`);
   const page = await pagesQuery.json();
 
-  const paths = page.docs.map((page) => ({
+  const paths = page.docs.map((page: any) => ({
     params: { slug: page.slug },
   }));
 

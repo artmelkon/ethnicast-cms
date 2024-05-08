@@ -9,14 +9,14 @@ type Props = {
 };
 
 const FilterPods: React.FC<Props> = ({ parsedFeed }) => {
-  // console.log(parsedFeed.items);
   return <SelectedPodcst parsedFeed={parsedFeed} />;
 };
 
 export async function getStaticProps<GetStaticProps>(
   ctx: GetStaticPropsContext
 ) {
-  const ctxId = ctx?.params?.id;
+  const ctxId = ctx?.params?.podcastId;
+  console.log("podcast Id: ", ctxId);
   const respond = await fetch(`${process.env.CMS_URI}/api/podcasts/${ctxId}`);
   const podcast = await respond.json();
 
@@ -32,9 +32,7 @@ export async function getStaticPaths<GetStaticPaths>() {
   const respond = await fetch(`${process.env.CMS_URI}/api/podcasts`);
   const podcasts = await respond.json();
   const paths = podcasts.docs.map((pod: any) => ({
-    params: {
-      id: pod.id,
-    },
+    params: { podcastId: pod.id },
   }));
 
   return { paths, fallback: "blocking" };
