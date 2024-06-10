@@ -5,7 +5,9 @@ import { isLoggedIn } from '../access/isLoggedIn';
 
 const Media: CollectionConfig = {
   slug: 'media',
-  upload: true,
+  upload: {
+    mimeTypes: ['image/*']
+  },
   access: {
     create: isLoggedIn,
     update: isAdminOrHasSiteAccess(),

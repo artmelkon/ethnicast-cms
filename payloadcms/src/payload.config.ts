@@ -8,9 +8,15 @@ import FormBuilder, { fields } from "@payloadcms/plugin-form-builder";
 
 import Users from "./collections/Users";
 import Media from "./collections/Media";
+import Audio from "./collections/Audio";
 import Pages from "./collections/Pages";
 import Categories from "./collections/Categories";
 import Podcasts from "./collections/Podcasts";
+import AudioBooks from "./collections/Audobooks";
+import Authors from './collections/Authors';
+import Narrators from "./collections/Narrators";
+import Publishers from "./collections/Publisher";
+import Ratings from "./collections/Rating";
 import { MainMenu } from "./globals/MainMenu";
 import { Footer } from "./globals/Footer";
 import SubCategories from "./collections/SubCategories";
@@ -48,7 +54,7 @@ export default buildConfig({
     url: `${process.env.MONGODB_URI}`,
   }),
   editor: slateEditor({}),
-  collections: [Categories, SubCategories, Pages, Media, Podcasts, Users],
+  collections: [Categories, SubCategories, Pages, Media, Audio, AudioBooks, Authors, Narrators, Publishers, Podcasts, Ratings, Users],
   globals: [MainMenu, Footer],
   cors: [`${process.env.PUBLIC_URI}`],
   csrf: [`${process.env.PUBLIC_URI}`],
