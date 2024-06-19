@@ -13,11 +13,7 @@ const app = express();
 const port = process.env.PORT;
 app.use("/assets", express.static(path.resolve(__dirname, "../assets")));
 
-console.log(process.env.SMTP_USER)
-
 const start = async (): Promise<void> => {
-
-
   const sendGridApiKey = process.env.SG_APIKEY;
   const transport = await sendgridTransport({
     apiKey: sendGridApiKey

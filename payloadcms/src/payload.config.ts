@@ -8,26 +8,18 @@ import FormBuilder, { fields } from "@payloadcms/plugin-form-builder";
 
 import Users from "./collections/Users";
 import Media from "./collections/Media";
-import Audio from "./collections/Audio";
+import AudioFiles from "./collections/AudioFiles";
 import Pages from "./collections/Pages";
 import Categories from "./collections/Categories";
 import Podcasts from "./collections/Podcasts";
 import AudioBooks from "./collections/Audobooks";
-import Authors from './collections/Authors';
-import Narrators from "./collections/Narrators";
-import Publishers from "./collections/Publisher";
 import Ratings from "./collections/Rating";
+import Profiles from "./collections/Profiles";
 import { MainMenu } from "./globals/MainMenu";
 import { Footer } from "./globals/Footer";
-import SubCategories from "./collections/SubCategories";
 import search from "@payloadcms/plugin-search";
 
 dotenv.config();
-// if (process.env.NODE_ENV === 'development') {
-//   dotenv.config({ path: './env/.env.dev' })
-// } else {
-//   dotenv.config({ path: './env/.env.prod' })
-// }
 export default buildConfig({
   serverURL: process.env.CMS_URI,
   admin: {
@@ -54,7 +46,17 @@ export default buildConfig({
     url: `${process.env.MONGODB_URI}`,
   }),
   editor: slateEditor({}),
-  collections: [Categories, SubCategories, Pages, Media, Audio, AudioBooks, Authors, Narrators, Publishers, Podcasts, Ratings, Users],
+  collections: [
+    Categories,
+    Pages,
+    Media,
+    AudioFiles,
+    AudioBooks,
+    Podcasts,
+    Ratings,
+    Users,
+    Profiles,
+  ],
   globals: [MainMenu, Footer],
   cors: [`${process.env.PUBLIC_URI}`],
   csrf: [`${process.env.PUBLIC_URI}`],
@@ -77,16 +79,26 @@ export default buildConfig({
       },
     }),
     search({
-      collections: ['podcasts'],
+      collections: ["podcasts"],
       defaultPriorities: {
         podcasts: 10,
       },
       searchOverrides: {
         fields: [
-          { name: 'author', type: 'text' },
-          { name: 'title', type: 'text' }
-        ]
-      }
+          { name: "author", type: "text" },
+          { name: "title", type: "text" },
+        ],
+      },
     }),
   ],
+  localization: {
+    locales: [
+      { label: "Arabic", code: "ar" },
+      { label: "Armenian", code: "hye" },
+      { label: "English", code: "en" },
+      { label: "Russian", code: "ru" },
+    ],
+    defaultLocale: "en",
+    fallback: true,
+  },
 });

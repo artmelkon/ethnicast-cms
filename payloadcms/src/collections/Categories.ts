@@ -1,22 +1,20 @@
 import { CollectionConfig } from "payload/types";
-
 import { isAdmin } from "../access/isAdmin";
-import { slug } from '../fields/slug';
-
-export type CategoryType = { name: string | undefined }
+import { anyone } from "../access/anyone";
+import { RowLabelArgs } from "payload/dist/admin/components/forms/RowLabel/types";
+import { slug } from "../fields/slug";
 
 const Categories: CollectionConfig = {
   slug: "categories",
   admin: {
-    useAsTitle: "name",
-    defaultColumns: ["title", "id"],
+    useAsTitle: "title",
+    defaultColumns: ['title', 'id']
   },
   access: {
     create: isAdmin,
-    read: (): boolean => true,
-    //     read: customerAdmin,
+    read: anyone,
     update: isAdmin,
-    delete: isAdmin,
+    delete: isAdmin
   },
   fields: [
     {
@@ -24,14 +22,29 @@ const Categories: CollectionConfig = {
       type: "text",
       required: true
     },
-    {
-      name: 'subcategory',
-      type: 'relationship',
-      hasMany: true,
-      relationTo: 'subcategories'
-    },
-    slug,
-
+    // {
+    //   name: 'categoryName',
+    //   type: 'array',
+    //   label: 'Sub-Category',
+    //   fields: [
+    //     {
+    //       name: 'title',
+    //       type: 'text',
+    //     },
+    //     {
+    //       name: 'slug',
+    //       type: 'text'
+    //     }
+    //   ],
+    //   admin: {
+    //     components: {
+    //       RowLabel: ({ data, index }: RowLabelArgs) => {
+    //         return data?.title || `Untitled`
+    //       },
+    //     },
+    //   },
+    // }
+    slug
   ],
   timestamps: false,
 };

@@ -4,7 +4,8 @@ import { CollectionConfig } from "payload/types";
 const Authors: CollectionConfig = {
   slug: 'authors',
   admin: {
-    useAsTitle: 'firstname'
+    useAsTitle: 'name',
+    defaultColumns: ['name', 'id']
   },
   access: {
     create: () => true,
@@ -14,13 +15,9 @@ const Authors: CollectionConfig = {
   },
   fields: [
     {
-      name: 'firstname',
+      name: 'name',
       type: 'text',
       required: true
-    },
-    {
-      name: 'lastname',
-      type: 'text',
     },
     {
       name: 'authorImage',
@@ -46,6 +43,14 @@ const Authors: CollectionConfig = {
         }
       })
     },
+    {
+      name: 'profile',
+      type: 'relationship',
+      relationTo: 'profiles',
+      defaultValue: ({ user }) => {
+        if (!user.roles.includes('admin') && user.profiles?.[0]) return user.profiles[0]
+      }
+    }
   ],
   timestamps: false
 }

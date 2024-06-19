@@ -1,4 +1,7 @@
 import { CollectionConfig } from 'payload/types'
+import { isAdmin } from '../access/isAdmin';
+import { isLoggedIn } from '../access/isLoggedIn';
+import { isAdminOrContributor } from '../access/isAdminOrContributor';
 
 const Ratings: CollectionConfig = {
   slug: 'ratings',
@@ -7,10 +10,10 @@ const Ratings: CollectionConfig = {
     defaultColumns: ['audiobook', 'user', 'value']
   },
   access: {
-    create: () => true,
-    read: () => true,
-    update: () => true,
-    delete: () => true
+    create: isLoggedIn,
+    read: isAdminOrContributor(),
+    update: isLoggedIn,
+    delete: isAdminOrContributor()
   },
   fields: [
     {
@@ -24,10 +27,18 @@ const Ratings: CollectionConfig = {
       type: 'relationship',
       relationTo: 'users',
     },
+    // {
+    //   name: 'audiobook',
+    //   type: 'relationship',
+    //   relationTo: 'audiobooks'
+    // },
     {
-      name: 'audiobook',
+      name: 'profile',
       type: 'relationship',
-      relationTo: 'audiobooks'
+      relationTo: 'profiles',
+      defaultValue: ({ user }) => {
+        if (!user.rolse?.includes('admin') && user.profiles?.[0]) return user.profiles[0]
+      }
     }
   ]
 }

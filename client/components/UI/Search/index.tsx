@@ -13,8 +13,9 @@ interface Props {
 
 interface Input {
   search: string;
-  language: string;
-  genre: string;
+  languageId: string;
+  genreId: string;
+  q: any;
 }
 
 const SearchForm: React.FC<Props> = (props) => {
@@ -27,7 +28,7 @@ const SearchForm: React.FC<Props> = (props) => {
     reset,
   } = useForm<Input>();
 
-  const fetcher = (...args) => fetch(...args).then((res) => res.json());
+  const fetcher = (...args: any[]) => fetch(...args).then((res) => res.json());
   const languageReq = useSWR(
     `${process.env.CMS_URI}/api/categories?where[slug][equals]=language&depth=1`,
     fetcher
@@ -42,7 +43,7 @@ const SearchForm: React.FC<Props> = (props) => {
     let searchQry;
     for (var [slug, val] of Object.entries(data)) {
       if (val) {
-      // if (val && slug === 'languageId' || val && slug === 'genreId') {
+        // if (val && slug === 'languageId' || val && slug === 'genreId') {
         searchQry = `/search/${slug}/${val}`;
         router.push(searchQry);
       }
@@ -51,14 +52,20 @@ const SearchForm: React.FC<Props> = (props) => {
       //   router.push(searchQry);
       // }
     }
-    if (languageId) {console.log('languageId ', languageId); reset({languageId: ''})};
-    if (genreId) {console.log('genreId ', genreId); reset({genreId: ''})};
+    if (languageId) {
+      console.log("languageId ", languageId);
+      reset({ languageId: "" });
+    }
+    if (genreId) {
+      console.log("genreId ", genreId);
+      reset({ genreId: "" });
+    }
   };
 
   if (languageReq.error) return <div>unable to fetch data!</div>;
   if (!languageReq.data) return <div>Loading...!</div>;
-  if (genreReq.error) return <div>unable to fetch data!</div>;
   if (!genreReq.data) return <div>Loading...!</div>;
+  if (genreReq.error) return <div>unable to fetch data!</div>;
 
   const language = _.map(
     languageReq.data.docs[0].subcategory,
@@ -68,11 +75,14 @@ const SearchForm: React.FC<Props> = (props) => {
       </option>
     )
   );
+
   const genre = _.map(genreReq.data.docs[0].subcategory, ({ id, name }) => (
     <option key={id} value={id}>
       {name}
     </option>
   ));
+
+  console.log('genre: ', genre)
 
   return (
     <div className={classes.search}>

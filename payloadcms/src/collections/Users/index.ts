@@ -37,7 +37,7 @@ const Users: CollectionConfig = {
   },
   access: {
     // Anyone can create a user
-    create: () => true,
+    create: isAdmin,
     read: isAdminOrSelf,
     update: isAdminOrSelf,
     delete: isAdmin,
@@ -67,18 +67,22 @@ const Users: CollectionConfig = {
       type: "select",
       hasMany: true,
       access: {
-        create: isAdmin,
-        update: isAdmin,
+        create: isAdminFieldLevel,
+        update: isAdminFieldLevel,
       },
-      defaultValue: ["user"],
+      defaultValue: ["subscriber"],
       options: [
         {
           label: "Admin",
           value: "admin",
         },
         {
-          label: "User",
-          value: "user",
+          label: 'Contributor',
+          value: 'contributor'
+        },
+        {
+          label: "Subscriber",
+          value: "subscriber",
         },
       ],
     },
@@ -104,6 +108,23 @@ const Users: CollectionConfig = {
     //     }
     //   ]
     // },
+    {
+      name: 'profiles',
+      // Save this field to JWT so we can use from `req.user`
+      saveToJWT: true,
+      type: 'relationship',
+      relationTo: 'profiles',
+      hasMany: true,
+      access: {
+        // Only admins can create or update a value for this field
+        create: isAdminFieldLevel,
+        update: isAdminFieldLevel,
+      },
+      admin: {
+        condition: ({ roles }) => (roles && !roles.includes('admin')),
+        description: 'This field sets which sites that this user has access to.'
+      }
+    }
   ],
   timestamps: true,
 };

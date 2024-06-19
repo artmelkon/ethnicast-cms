@@ -10,10 +10,15 @@ export interface Config {
   collections: {
     categories: Category;
     subcategories: Subcategory;
+    countrylist: Countrylist;
     pages: Page;
     media: Media;
+    audiofiles: Audiofile;
+    audiobooks: Audiobook;
     podcasts: Podcast;
+    ratings: Rating;
     users: User;
+    profiles: Profile;
     forms: Form;
     'form-submissions': FormSubmission;
     search: Search;
@@ -35,6 +40,12 @@ export interface Subcategory {
   id: string;
   name?: string | null;
   value?: string | null;
+}
+export interface Countrylist {
+  id: string;
+  customSelectField?: string | null;
+  updatedAt: string;
+  createdAt: string;
 }
 export interface Page {
   id: string;
@@ -66,8 +77,10 @@ export interface Page {
       )[]
     | null;
   slug?: string | null;
+  profile?: (string | null) | Profile;
   updatedAt: string;
   createdAt: string;
+  _status?: ('draft' | 'published') | null;
 }
 export interface Form {
   id: string;
@@ -199,9 +212,16 @@ export interface Form {
   updatedAt: string;
   createdAt: string;
 }
+export interface Profile {
+  id: string;
+  username: string;
+  updatedAt: string;
+  createdAt: string;
+}
 export interface Media {
   id: string;
   alt: string;
+  profile?: (string | null) | Profile;
   updatedAt: string;
   createdAt: string;
   url?: string | null;
@@ -210,6 +230,73 @@ export interface Media {
   filesize?: number | null;
   width?: number | null;
   height?: number | null;
+}
+export interface Audiofile {
+  id: string;
+  excerpt?: string | null;
+  isSample?: boolean | null;
+  profile?: (string | null) | Profile;
+  updatedAt: string;
+  createdAt: string;
+  url?: string | null;
+  filename?: string | null;
+  mimeType?: string | null;
+  filesize?: number | null;
+  width?: number | null;
+  height?: number | null;
+}
+export interface Audiobook {
+  id: string;
+  title: string;
+  publishingRights?: ('own' | 'public') | null;
+  audience: {
+    isSexual: 'yes' | 'no';
+  };
+  audiofile?: (string | null) | Audiofile;
+  puglisher_data: {
+    publisherName: string;
+    language: string;
+    publishedDate: string;
+  };
+  narratorName: string;
+  author_data: {
+    authorName: string;
+    authorImage?: (string | null) | Media;
+  };
+  genres?: (string | Subcategory)[] | null;
+  profile?: (string | null) | Profile;
+  rating?: (string | Rating)[] | null;
+  updatedAt: string;
+  createdAt: string;
+  _status?: ('draft' | 'published') | null;
+}
+export interface Rating {
+  id: string;
+  value?: number | null;
+  user?: (string | null) | User;
+  profile?: (string | null) | Profile;
+  updatedAt: string;
+  createdAt: string;
+}
+export interface User {
+  id: string;
+  firstName: string;
+  lastName: string;
+  roles?: ('admin' | 'contributor' | 'subscriber')[] | null;
+  profiles?: (string | Profile)[] | null;
+  updatedAt: string;
+  createdAt: string;
+  enableAPIKey?: boolean | null;
+  apiKey?: string | null;
+  apiKeyIndex?: string | null;
+  email: string;
+  resetPasswordToken?: string | null;
+  resetPasswordExpiration?: string | null;
+  salt?: string | null;
+  hash?: string | null;
+  loginAttempts?: number | null;
+  lockUntil?: string | null;
+  password: string | null;
 }
 export interface Podcast {
   id: string;
@@ -230,25 +317,6 @@ export interface Podcast {
   };
   languageId?: (string | null) | Subcategory;
   genreId?: (string | null) | Subcategory;
-}
-export interface User {
-  id: string;
-  firstName: string;
-  lastName: string;
-  roles?: ('admin' | 'user')[] | null;
-  updatedAt: string;
-  createdAt: string;
-  enableAPIKey?: boolean | null;
-  apiKey?: string | null;
-  apiKeyIndex?: string | null;
-  email: string;
-  resetPasswordToken?: string | null;
-  resetPasswordExpiration?: string | null;
-  salt?: string | null;
-  hash?: string | null;
-  loginAttempts?: number | null;
-  lockUntil?: string | null;
-  password: string | null;
 }
 export interface FormSubmission {
   id: string;

@@ -2,8 +2,10 @@ import { CollectionConfig } from "payload/types";
 import { isAdmin } from "../access/isAdmin";
 import { isLoggedIn } from "../access/isLoggedIn";
 
-import { CategoryType } from "./Categories";
+// import { CategoryType } from "./Categories";
+import { customLanguageSelectField } from '../fields/customSelectLanguages/field';
 import payload from "payload";
+import { isAdminOrContributor } from "../access/isAdminOrContributor";
 
 const Podcasts: CollectionConfig = {
   slug: "podcasts",
@@ -15,7 +17,7 @@ const Podcasts: CollectionConfig = {
     create: isAdmin,
     read: () => true,
     update: isAdmin,
-    delete: isLoggedIn,
+    delete: isAdminOrContributor(),
   },
   fields: [
     {
@@ -78,18 +80,12 @@ const Podcasts: CollectionConfig = {
         },
       ],
     },
+    customLanguageSelectField,
     {
-      name: "languageId",
+      name: "genre",
       type: "relationship",
-      relationTo: "subcategories",
-      admin: {
-        position: "sidebar",
-      },
-    },
-    {
-      name: "genreId",
-      type: "relationship",
-      relationTo: "subcategories",
+      relationTo: "categories",
+      hasMany: true,
       admin: {
         position: "sidebar",
       },
