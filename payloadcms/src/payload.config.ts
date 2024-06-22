@@ -10,14 +10,18 @@ import Users from "./collections/Users";
 import Media from "./collections/Media";
 import AudioFiles from "./collections/AudioFiles";
 import Pages from "./collections/Pages";
-import Categories from "./collections/Categories";
+import AudiobookGenres from "./collections/AudiobookGenres";
+import PodcastGenres from "./collections/PodcastGenres";
+import Languages from "./collections/Languages";
 import Podcasts from "./collections/Podcasts";
-import AudioBooks from "./collections/Audobooks";
+import AudioBooks from "./collections/Audiobooks";
 import Ratings from "./collections/Rating";
 import Profiles from "./collections/Profiles";
 import { MainMenu } from "./globals/MainMenu";
 import { Footer } from "./globals/Footer";
 import search from "@payloadcms/plugin-search";
+
+import Example from "./collections/Example";
 
 dotenv.config();
 export default buildConfig({
@@ -47,7 +51,9 @@ export default buildConfig({
   }),
   editor: slateEditor({}),
   collections: [
-    Categories,
+    AudiobookGenres,
+    PodcastGenres,
+    Languages,
     Pages,
     Media,
     AudioFiles,
@@ -56,6 +62,7 @@ export default buildConfig({
     Ratings,
     Users,
     Profiles,
+    Example
   ],
   globals: [MainMenu, Footer],
   cors: [`${process.env.PUBLIC_URI}`],

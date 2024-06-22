@@ -5,7 +5,7 @@ import Head from "next/head";
 
 import { MediaProvider } from "../context/media-context";
 import Layout from "@component/Layout";
-import "../styles/global.scss";
+import "../styles/globals.scss";
 
 const App = ({ Component, pageProps: { session, ...pageProps } }: AppProps) => {
   return (

@@ -1,10 +1,13 @@
-@import "../../styles/base/base";
+@import "@scss/abstracts/_abstracts-dir";
+@import "@scss/base/_base-dir";
+@import "@scss/components/_components-dir";
+@import "@scss/layout/_layout-dir";
 
 .sidebar {
   flex: 0 0 350px;
   background-color: $color-berkeleyblue;
   padding: 2rem 3rem;
-  border-radius: .8rem;
+  border-radius: 0.8rem;
 
   display: flex;
   flex-flow: column nowrap;

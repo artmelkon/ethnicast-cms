@@ -1,10 +1,7 @@
-@import "../../../styles/base/base";
-.card__container {
-  display: flex;
-  flex-flow: row wrap;
-  width: 100%;
-  overflow-y: auto;
-}
+@import "@scss/abstracts/_abstracts-dir";
+@import "@scss/base/_base-dir";
+@import "@scss/components/_components-dir";
+
 .card {
   display: flex;
   flex-direction: column;
@@ -23,7 +20,7 @@
     width: 90%;
   }
   &__title {
-    font-size: 2.2rem;
+    font-size: 1.2rem;
     font-weight: 400;
     text-align: center;
   }

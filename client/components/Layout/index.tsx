@@ -20,7 +20,6 @@ const LayoutTemplate: React.FC<any> = ({ children }) => {
       <footer className={classes.footer}>
         <Footer />
       </footer>
-      ``
     </div>
   );
 };

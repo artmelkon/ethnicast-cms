@@ -4,6 +4,8 @@ import { isAdminOrContributor } from '../access/isAdminOrContributor';
 import { isLoggedIn } from '../access/isLoggedIn';
 import { anyone } from '../access/anyone';
 import { customLanguageSelectField } from '../fields/customSelectLanguages/field'
+import { isAdminOrContributorOrPublished } from "../access/isAdminContributorOrPublished";
+// import { customSelectedGenres } from "../fields/customSelectedGenres/field";
 
 const AudioBooks: CollectionConfig = {
   slug: "audiobooks",
@@ -17,7 +19,7 @@ const AudioBooks: CollectionConfig = {
   access: {
     create: isLoggedIn,
     update: isAdminOrContributor(),
-    read: isAdminOrContributor(),
+    read: isAdminOrContributorOrPublished,
     delete: isAdminOrContributor()
   },
   fields: [
@@ -28,6 +30,7 @@ const AudioBooks: CollectionConfig = {
     },
     {
       name: 'publishingRights',
+      label: 'Publisher\'s Rights',
       type: 'radio',
       defaultValue: 'own',
       admin: {
@@ -71,20 +74,34 @@ const AudioBooks: CollectionConfig = {
       type: 'relationship',
       relationTo: 'audiofiles'
     },
+    customLanguageSelectField,
     {
-      name: 'puglisher_data',
+      name: 'genres',
+      label: 'Select Genre',
+      type: 'relationship',
+      relationTo: 'audiobook-genres',
+      hasMany: true,
+    },
+    {
+      name: 'publisher_data',
+      label: 'Publisher\'s Info',
       type: 'group',
-
       admin: {
-        description: `Publisher Data`
+        description: `Publisher\'s Data`
       },
       fields: [
         {
           name: 'publisherName',
+          label: 'Publisher\s Name',
           type: 'text',
           required: true
         },
-        customLanguageSelectField,
+        {
+          name: 'bookCover',
+          type: 'relationship',
+          relationTo: 'media',
+          required: true
+        },
         {
           name: 'publishedDate',
           type: 'date',
@@ -107,9 +124,9 @@ const AudioBooks: CollectionConfig = {
     {
       name: 'author_data',
       type: 'group',
-      label: 'Author Info',
+      label: 'Author\'s Info',
       admin: {
-        description: `Author Data`
+        description: `Author's Data`
       },
       fields: [
         {
@@ -125,12 +142,6 @@ const AudioBooks: CollectionConfig = {
       ]
     },
     {
-      name: 'genres',
-      type: 'relationship',
-      relationTo: ['categories'],
-      hasMany: true,
-    },
-    {
       name: 'profile',
       type: 'relationship',
       relationTo: 'profiles',
@@ -138,16 +149,16 @@ const AudioBooks: CollectionConfig = {
         if (!user.roles.includes('admin') && user.profiles?.[0]) return user.profiles[0]
       }
     },
-    {
-      name: 'rating',
-      type: 'relationship',
-      relationTo: 'ratings',
-      hasMany: true,
-      access: {
-        create: isAdminFieldLevel,
-        update: isAdmin,
-      }
-    },
+    // {
+    //   name: 'rating',
+    //   type: 'relationship',
+    //   relationTo: 'ratings',
+    //   hasMany: true,
+    //   access: {
+    //     create: isAdminFieldLevel,
+    //     update: isAdmin,
+    //   }
+    // },
   ],
   timestamps: true
 }

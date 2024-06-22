@@ -8,9 +8,9 @@
 
 export interface Config {
   collections: {
-    categories: Category;
-    subcategories: Subcategory;
-    countrylist: Countrylist;
+    'audiobook-genres': AudiobookGenre;
+    'podcast-genres': PodcastGenre;
+    languages: Language;
     pages: Page;
     media: Media;
     audiofiles: Audiofile;
@@ -19,6 +19,7 @@ export interface Config {
     ratings: Rating;
     users: User;
     profiles: Profile;
+    example: Example;
     forms: Form;
     'form-submissions': FormSubmission;
     search: Search;
@@ -30,22 +31,20 @@ export interface Config {
     footer: Footer;
   };
 }
-export interface Category {
+export interface AudiobookGenre {
   id: string;
-  title: string;
-  subcategory?: (string | Subcategory)[] | null;
+  title?: string | null;
   slug?: string | null;
 }
-export interface Subcategory {
+export interface PodcastGenre {
   id: string;
-  name?: string | null;
-  value?: string | null;
+  title?: string | null;
+  slug?: string | null;
 }
-export interface Countrylist {
+export interface Language {
   id: string;
-  customSelectField?: string | null;
-  updatedAt: string;
-  createdAt: string;
+  title?: string | null;
+  slug: string;
 }
 export interface Page {
   id: string;
@@ -253,9 +252,11 @@ export interface Audiobook {
     isSexual: 'yes' | 'no';
   };
   audiofile?: (string | null) | Audiofile;
-  puglisher_data: {
+  languages?: string | null;
+  genres?: (string | AudiobookGenre)[] | null;
+  publisher_data: {
     publisherName: string;
-    language: string;
+    bookCover: string | Media;
     publishedDate: string;
   };
   narratorName: string;
@@ -263,12 +264,30 @@ export interface Audiobook {
     authorName: string;
     authorImage?: (string | null) | Media;
   };
-  genres?: (string | Subcategory)[] | null;
   profile?: (string | null) | Profile;
-  rating?: (string | Rating)[] | null;
   updatedAt: string;
   createdAt: string;
   _status?: ('draft' | 'published') | null;
+}
+export interface Podcast {
+  id: string;
+  title?: string | null;
+  creator?: string | null;
+  email?: string | null;
+  link?: string | null;
+  feedUrl?: string | null;
+  image?: {
+    link?: string | null;
+    url?: string | null;
+    title?: string | null;
+  };
+  author?: string | null;
+  description?: string | null;
+  paginationLink?: {
+    self?: string | null;
+  };
+  languages?: string | null;
+  genres?: (string | PodcastGenre)[] | null;
 }
 export interface Rating {
   id: string;
@@ -298,25 +317,11 @@ export interface User {
   lockUntil?: string | null;
   password: string | null;
 }
-export interface Podcast {
+export interface Example {
   id: string;
-  title?: string | null;
-  creator?: string | null;
-  email?: string | null;
-  link?: string | null;
-  feedUrl?: string | null;
-  image?: {
-    link?: string | null;
-    url?: string | null;
-    title?: string | null;
-  };
-  author?: string | null;
-  description?: string | null;
-  paginationLink?: {
-    self?: string | null;
-  };
-  languageId?: (string | null) | Subcategory;
-  genreId?: (string | null) | Subcategory;
+  categories?: (string | null) | Language;
+  updatedAt: string;
+  createdAt: string;
 }
 export interface FormSubmission {
   id: string;

@@ -11,6 +11,16 @@ module.exports = (phase) => {
       sassOptions: {
         includePaths: [path.join(__dirname, "styles")],
       },
+      images: {
+        remotePatterns: [
+          {
+            protocol: 'http',
+            hostname: 'scorpio.local',
+            port: '4000',
+            pathname: '/media/**',
+          },
+        ],
+      },
     };
   } else {
     return {

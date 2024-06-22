@@ -7,12 +7,12 @@ import { slug } from "../fields/slug";
 const Categories: CollectionConfig = {
   slug: "categories",
   admin: {
-    useAsTitle: "title",
-    defaultColumns: ['title', 'id']
+    useAsTitle: "name",
+    defaultColumns: ['name', 'id']
   },
   access: {
     create: isAdmin,
-    read: anyone,
+    read: isAdmin,
     update: isAdmin,
     delete: isAdmin
   },
@@ -20,31 +20,29 @@ const Categories: CollectionConfig = {
     {
       name: "title",
       type: "text",
-      required: true
     },
-    // {
-    //   name: 'categoryName',
-    //   type: 'array',
-    //   label: 'Sub-Category',
-    //   fields: [
-    //     {
-    //       name: 'title',
-    //       type: 'text',
-    //     },
-    //     {
-    //       name: 'slug',
-    //       type: 'text'
-    //     }
-    //   ],
-    //   admin: {
-    //     components: {
-    //       RowLabel: ({ data, index }: RowLabelArgs) => {
-    //         return data?.title || `Untitled`
-    //       },
-    //     },
-    //   },
-    // }
-    slug
+    {
+      name: 'categoryName',
+      type: 'array',
+      label: 'Sub-Category',
+      fields: [
+        {
+          name: 'label',
+          type: 'text',
+        },
+        {
+          name: 'value',
+          type: 'text'
+        }
+      ],
+      admin: {
+        components: {
+          RowLabel: ({ data, index }: RowLabelArgs) => {
+            return data?.label || `Untitled`
+          },
+        },
+      },
+    }
   ],
   timestamps: false,
 };

@@ -1,14 +1,17 @@
+import { useState, useEffect } from "react";
 import NavBar from "./navbar";
 import Link from "next/link";
 import Image from "next/image";
+import { useRouter } from "next/router";
+import _ from "lodash";
 
 import classes from "./index.module.scss";
-import SearchForm from '@component/UI/Search';
-
-
+import SearchForm from "@component/UI/Search";
 
 const Header = () => {
-
+  const router = useRouter();
+  const pathName = router.pathname;
+ 
   return (
     <>
       <Link href="/">
@@ -20,7 +23,7 @@ const Header = () => {
           className={classes.logo}
         />
       </Link>
-      <SearchForm />
+      {pathName !== "/" && <SearchForm />}
       <NavBar className={classes} />
     </>
   );

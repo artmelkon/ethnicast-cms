@@ -1,16 +1,15 @@
-@import "../../../styles/base/base";
+@import "@scss/abstracts/_abstracts-dir";
 
 .podcaster {
   display: flex;
   min-height: min-content;
   background-color: $color-berkeleyblue;
 
-
   &__card {
     display: flex;
     padding: 5rem 0;
     height: 38rem;
-    border-top-left-radius: .8rem;
+    border-top-left-radius: 0.8rem;
     background-image: linear-gradient($color-cerulean, $color-berkeleyblue);
   }
   &__img {
@@ -62,7 +61,6 @@
   padding: 2rem;
   margin: 1.2rem;
   border-bottom: 1px solid $color-grey-light-4;
-
 
   &:hover {
     background-color: rgba($color-paynesgray, 0.3);

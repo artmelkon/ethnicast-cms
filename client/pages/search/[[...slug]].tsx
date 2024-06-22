@@ -1,49 +1,69 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
+import _ from "lodash";
 import { useRouter } from "next/router";
 import useSWR from "swr";
 
 import Card from "../../components/UI/Card";
 
 const Search: React.FC = () => {
-  // const [searchData, setSearchData] = useState(null);
+  const [reqData, setReqData] = useState(null);
   const router = useRouter();
   const { slug = [] } = router.query;
-
-  // console.log("slug: ", slug[0], "\nid: ", slug[1]);
+  function bgcolorSelector() {
+    const bgColorList = [
+      "#414833",
+      "#FB5607",
+      "#FF006E",
+      "#8338EC",
+      "#3A86FF",
+      "#004fc1",
+      "#386641",
+      "#e63946",
+      "#003566",
+      "#3a0ca3",
+    ];
+    const rN = Math.floor(Math.random() * 10);
+    return bgColorList[rN];
+  }
 
   const fetcher = (url: string) => fetch(url).then((res) => res.json());
-  if (slug.length > 0 && slug.length === 2 && slug[0] === "q") {
-    const { data, isLoading, error } = useSWR(
-      `${process.env.CMS_URI}/api/podcasts/search?q=${slug[1]}`,
-      fetcher
-    );
-    return <Card slug={slug[0]} data={data} />;
+  let queryString;
+  if (slug.length > 0 && slug.length === 3) {
+    if (slug[1] === "q") {
+      queryString = `/api/podcasts/search?q=${slug[2]}`;
+    }
+    if (
+      (slug[0] === "podcast" && slug[1] === "genres") ||
+      slug[1] === "languages"
+    ) {
+      queryString = `/api/podcasts?where[${slug[1]}][contains]=${slug[2]}`;
+    } else {
+      queryString = `/api/audiobooks?where[${slug[1]}][contains]=${slug[2]}`;
+    }
   }
-  if (
-    slug.length > 0 &&
-    slug.length === 2 &&
-    (slug[0] === "languageId" || slug[0] === "genreId")
-  ) {
-    const fetchUri = `${process.env.CMS_URI}/api/podcasts?where[${slug[0]}][equals]=${slug[1]}&depth=0`;
-    console.log("fetch Uri: ", fetchUri);
-    const { data, error, isLoading } = useSWR(
-      `${process.env.CMS_URI}/api/podcasts?where[${slug[0]}][equals]=${slug[1]}&depth=0`,
-      fetcher
-    );
-    if (isLoading) return <h2>Loading...!</h2>;
-    return <Card slug={slug[0]} data={data?.docs} />;
-  }
-  // if(slug.length > 0 && slug.length === 2 && slug[0] === 'q') {
-  //   const {data, error, isLoading} = useSWR(`${process.env.CMS_URI}/api/podcasts/search?q=${slug[1]}`, fetcher)
-  //   console.log('search data: ', data)
-  //   return <Card slug={slug[0]} data={data} />;
-  // }
-  const { data, error, isLoading } = useSWR(
-    `${process.env.CMS_URI}/api/categories?where[slug][equals]=genre&depth=1`,
+  const { data, isLoading, error } = useSWR(
+    `${process.env.CMS_URI}${queryString}`,
     fetcher
   );
+  useEffect(() => {
+    if (data) return setReqData(data);
+  }, [data]);
 
-  return <Card data={data?.docs} />;
+  console.log("[[...slug] data: ", data);
+  if (reqData) {
+    var returnedData = _.map(reqData.docs, (item) => {
+      return (
+        <Card
+          key={item.id}
+          slug={slug[0]}
+          data={item}
+          bgcolorSelector={bgcolorSelector()}
+        />
+      );
+    });
+  }
+
+  return <div className="container-overflowY">{returnedData}</div>;
 };
 
 export default Search;

@@ -1,4 +1,6 @@
-@import "../../../styles/base/base";
+@import "@scss/abstracts/_abstracts-dir";
+@import "@scss/base/_base-dir";
+@import "@scss/components/_components-dir";
 
 .search {
   display: flex;

@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import { useForm, SubmitHandler, Controller } from "react-hook-form";
 import { useRouter } from "next/router";
 import { MdSearch, MdFilterList } from "react-icons/md";
@@ -13,13 +14,25 @@ interface Props {
 
 interface Input {
   search: string;
-  languageId: string;
-  genreId: string;
+  languages: string;
+  genres: string;
   q: any;
 }
 
-const SearchForm: React.FC<Props> = (props) => {
+const SearchForm: React.FC = () => {
+  const [selectedPath, setSelectedPath] = useState();
   const router = useRouter();
+  const pathName: any = router.pathname;
+  const { slug = [] }: any = router.query;
+  useEffect(() => {
+    if (pathName === "/podcast" || pathName === "/audiobook") {
+      setSelectedPath(pathName?.split("/").pop());
+    }
+    if (slug[0] === "podcast" || slug[0] === "audiobook") {
+      setSelectedPath(slug[0]);
+    }
+  }, [pathName, slug]);
+
   const {
     register,
     handleSubmit,
@@ -29,36 +42,29 @@ const SearchForm: React.FC<Props> = (props) => {
   } = useForm<Input>();
 
   const fetcher = (...args: any[]) => fetch(...args).then((res) => res.json());
-  const languageReq = useSWR(
-    `${process.env.CMS_URI}/api/categories?where[slug][equals]=language&depth=1`,
-    fetcher
-  );
-  const genreReq = useSWR(
-    `${process.env.CMS_URI}/api/categories?where[slug][equals]=genre&depth=1`,
+  const languageReq = useSWR(`${process.env.CMS_URI}/api/languages`, fetcher);
+  const genreReq = useSWR(`${process.env.CMS_URI}/api/podcast-genres`, fetcher);
+  const audiobookReq = useSWR(
+    `${process.env.CMS_URI}/api/audiobook-genres`,
     fetcher
   );
 
   const onSubmit: SubmitHandler<Input> = async (data) => {
-    const { q, languageId, genreId } = data;
+    const { q, languages, genres } = data;
     let searchQry;
     for (var [slug, val] of Object.entries(data)) {
       if (val) {
-        // if (val && slug === 'languageId' || val && slug === 'genreId') {
-        searchQry = `/search/${slug}/${val}`;
+        searchQry = `/search/${selectedPath}/${slug}/${val}`;
         router.push(searchQry);
       }
-      // if(val && slug === 'q') {
-      //   searhQry = `/search/${slug}/${val}`;
-      //   router.push(searchQry);
-      // }
     }
-    if (languageId) {
-      console.log("languageId ", languageId);
-      reset({ languageId: "" });
+    if (languages) {
+      console.log("languages ", languages);
+      reset({ languages: "" });
     }
-    if (genreId) {
-      console.log("genreId ", genreId);
-      reset({ genreId: "" });
+    if (genres) {
+      console.log("genres ", genres);
+      reset({ genres: "" });
     }
   };
 
@@ -66,23 +72,32 @@ const SearchForm: React.FC<Props> = (props) => {
   if (!languageReq.data) return <div>Loading...!</div>;
   if (!genreReq.data) return <div>Loading...!</div>;
   if (genreReq.error) return <div>unable to fetch data!</div>;
+  if (!audiobookReq.data) return <div>Loading...!</div>;
+  if (audiobookReq.error) return <div>unable to fetch data!</div>;
 
-  const language = _.map(
-    languageReq.data.docs[0].subcategory,
-    ({ id, name }) => (
-      <option key={id} value={id}>
-        {name}
-      </option>
-    )
-  );
-
-  const genre = _.map(genreReq.data.docs[0].subcategory, ({ id, name }) => (
-    <option key={id} value={id}>
-      {name}
+  const language = _.map(languageReq.data.docs, ({ id, title, slug }) => (
+    <option key={id} value={slug}>
+      {title}
     </option>
   ));
 
-  console.log('genre: ', genre)
+  // console.log("header pathname: ", selectedPath);
+
+  let genre: any[] = [];
+  if (selectedPath === "podcast") {
+    genre = _.map(genreReq.data.docs, ({ id, title }) => (
+      <option key={id} value={id}>
+        {title}
+      </option>
+    ));
+  }
+
+  if (selectedPath === "audiobook")
+    genre = _.map(audiobookReq.data.docs, ({ id, title }) => (
+      <option key={id} value={id}>
+        {title}
+      </option>
+    ));
 
   return (
     <div className={classes.search}>
@@ -99,7 +114,7 @@ const SearchForm: React.FC<Props> = (props) => {
       </form>
       <select
         className={`${classes.search__select} ${classes.language}`}
-        {...register("languageId", {
+        {...register("languages", {
           onChange: handleSubmit(onSubmit),
         })}
       >
@@ -108,7 +123,7 @@ const SearchForm: React.FC<Props> = (props) => {
       </select>
       <select
         className={classes.search__select}
-        {...register("genreId", {
+        {...register("genres", {
           onChange: handleSubmit(onSubmit),
         })}
       >

@@ -6,6 +6,18 @@ import { isLoggedIn } from "../access/isLoggedIn";
 import { anyone } from "../access/anyone";
 import { isAdminOrSelf } from "../access/isAdminOrSelf";
 
+
+export type Type = {
+  filename: string
+  slug: string
+  alt?: string
+  mimeType: string
+  width: number
+  height: number
+  filesize: number
+  url: string
+}
+
 const Media: CollectionConfig = {
   slug: "media",
   admin: {
@@ -17,8 +29,8 @@ const Media: CollectionConfig = {
   },
   access: {
     create: isLoggedIn,
+    read: anyone,
     update: isAdminOrContributor(),
-    read: isAdminOrContributor(),
     delete: isAdminOrContributor(),
   },
   fields: [

@@ -1,8 +1,6 @@
 import { CollectionConfig } from "payload/types";
 import { isAdmin } from "../access/isAdmin";
-import { isLoggedIn } from "../access/isLoggedIn";
-
-// import { CategoryType } from "./Categories";
+import { anyone } from "../access/anyone";
 import { customLanguageSelectField } from '../fields/customSelectLanguages/field';
 import payload from "payload";
 import { isAdminOrContributor } from "../access/isAdminOrContributor";
@@ -15,7 +13,7 @@ const Podcasts: CollectionConfig = {
   },
   access: {
     create: isAdmin,
-    read: () => true,
+    read: anyone,
     update: isAdmin,
     delete: isAdminOrContributor(),
   },
@@ -82,14 +80,13 @@ const Podcasts: CollectionConfig = {
     },
     customLanguageSelectField,
     {
-      name: "genre",
-      type: "relationship",
-      relationTo: "categories",
-      hasMany: true,
-      admin: {
-        position: "sidebar",
-      },
-    },
+      name: 'genres',
+      label: 'Selecte Genres',
+      type: 'relationship',
+      relationTo: 'podcast-genres',
+      hasMany: true
+    }
+
   ],
   timestamps: false,
   endpoints: [

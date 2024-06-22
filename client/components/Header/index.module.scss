@@ -1,4 +1,7 @@
-@import "../../styles/base/base";
+@import "@scss/abstracts/_abstracts-dir";
+@import "@scss/base/_base-dir";
+@import "@scss/components/_components-dir";
+@import "@scss/layout/_layout-dir";
 
 .logo {
   flex: 0 0 20%;
