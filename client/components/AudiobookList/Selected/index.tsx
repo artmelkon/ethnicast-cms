@@ -8,7 +8,7 @@ const SelectedAudiobook = ({ data }: any) => {
   console.log("audobook data: ", data);
 
   // const { playMedia } = useContext(MediaContext);
-  // const { title, image, description } = parsedFeed;
+  // const { author: {authorName, description},title, publisher_data: {boockCover: {url, alt}}, rawPlaylistTracks, description } = data;
   // console.log("parsed feed ", parsedFeed.language);
 
   // const selectedPod = parsedFeed.items.map((item: string, i: number) => (
@@ -34,10 +34,10 @@ const SelectedAudiobook = ({ data }: any) => {
   //   </li>
   // ));
   // return (
-  //   <div className={classes.podcaster}>
-  //     <div className={classes.podcaster__box}>
-  //       <div className={classes.podcaster__card}>
-  //         <div className={classes.podcaster__img}>
+  //   <div className={classes.audiocontent}>
+  //     <div className={classes.audiocontent__box}>
+  //       <div className={classes.audocontent__card}>
+  //         <div className={classes.auidcontent__img}>
   //           <img src={image.url} alt={title} />
   //         </div>
   //         <div className={classes.podcaster__text}>
@@ -50,16 +50,6 @@ const SelectedAudiobook = ({ data }: any) => {
   //       <ul className={classes.episodes__list}>{parsedFeed && selectedPod}</ul>
   //       <div className={classes.podcast__footer}>Podcast Footer</div>
   //     </div>
-  //   </div>
-  // );
-  // return (
-  //   <div>
-  //     <p>Adio player</p>
-  //     <audio
-  //       controls
-  //       src="http://scorpio.local:4000/audio/AesopsFables64kbps_librivox-1.m4b"
-  //       type="audio/m4b"
-  //     ></audio>
   //   </div>
   // );
   return <h2>Audio Player Tracks go here</h2>;

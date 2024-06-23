@@ -233,7 +233,6 @@ export interface Media {
 export interface Audiofile {
   id: string;
   title: string;
-  isSample?: boolean | null;
   profile?: (string | null) | Profile;
   updatedAt: string;
   createdAt: string;
@@ -254,6 +253,7 @@ export interface Audiobook {
   rawPlaylistTracks?:
     | {
         audiofile?: (string | null) | Audiofile;
+        isSample?: boolean | null;
         id?: string | null;
       }[]
     | null;
@@ -268,7 +268,7 @@ export interface Audiobook {
   author_data: {
     authorName: string;
     authorImage?: (string | null) | Media;
-    excerpt?: string | null;
+    description?: string | null;
   };
   profile?: (string | null) | Profile;
   updatedAt: string;

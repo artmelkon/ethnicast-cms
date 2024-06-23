@@ -167,7 +167,7 @@ const AudioBooks: CollectionConfig = {
           relationTo: 'media'
         },
         {
-          name: 'excerpt',
+          name: 'description',
           type: 'textarea'
         },
       ]

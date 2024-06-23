@@ -232,8 +232,7 @@ export interface Media {
 }
 export interface Audiofile {
   id: string;
-  excerpt?: string | null;
-  isSample?: boolean | null;
+  title: string;
   profile?: (string | null) | Profile;
   updatedAt: string;
   createdAt: string;
@@ -251,7 +250,13 @@ export interface Audiobook {
   audience: {
     isSexual: 'yes' | 'no';
   };
-  audiofile?: (string | null) | Audiofile;
+  rawPlaylistTracks?:
+  | {
+    audiofile?: (string | null) | Audiofile;
+    isSample?: boolean | null;
+    id?: string | null;
+  }[]
+  | null;
   languages?: string | null;
   genres?: (string | AudiobookGenre)[] | null;
   publisher_data: {
@@ -263,6 +268,7 @@ export interface Audiobook {
   author_data: {
     authorName: string;
     authorImage?: (string | null) | Media;
+    description?: string | null;
   };
   profile?: (string | null) | Profile;
   updatedAt: string;
