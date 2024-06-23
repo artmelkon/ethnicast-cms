@@ -6,6 +6,8 @@ import { anyone } from '../access/anyone';
 import { customLanguageSelectField } from '../fields/customSelectLanguages/field'
 import { isAdminOrContributorOrPublished } from "../access/isAdminContributorOrPublished";
 // import { customSelectedGenres } from "../fields/customSelectedGenres/field";
+import { RowLabelArgs } from "payload/dist/admin/components/forms/RowLabel/types";
+
 
 const AudioBooks: CollectionConfig = {
   slug: "audiobooks",
@@ -70,9 +72,34 @@ const AudioBooks: CollectionConfig = {
       ]
     },
     {
-      name: 'audiofile',
-      type: 'relationship',
-      relationTo: 'audiofiles'
+      name: 'rawPlaylistTracks',
+      label: 'Playlist Tracks',
+      type: 'array',
+      minRows: 1,
+      maxRows: 60,
+      labels: {
+        singular: 'Track',
+        plural: 'Tracks'
+      },
+      fields: [
+        {
+          name: 'audiofile',
+          type: 'relationship',
+          relationTo: 'audiofiles'
+        },
+        {
+          name: 'isSample',
+          type: 'checkbox',
+          defaultValue: false
+        },
+      ],
+      // admin: {
+      //   components: {
+      //     RowLabel: ({ data, index }: RowLabelArgs) => {
+      //       return data?.label || `Untitled`
+      //     },
+      //   },
+      // },
     },
     customLanguageSelectField,
     {
@@ -138,6 +165,10 @@ const AudioBooks: CollectionConfig = {
           name: 'authorImage',
           type: 'relationship',
           relationTo: 'media'
+        },
+        {
+          name: 'excerpt',
+          type: 'textarea'
         },
       ]
     },

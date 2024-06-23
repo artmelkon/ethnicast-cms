@@ -20,13 +20,10 @@ const AudioFiles: CollectionConfig = {
   },
   fields: [
     {
-      name: 'excerpt',
-      type: 'textarea'
-    },
-    {
-      name: 'isSample',
-      type: 'checkbox',
-      defaultValue: false
+      name: 'title',
+      label: 'Track Title',
+      type: 'text',
+      required: true,
     },
     {
       name: 'profile',

@@ -52,16 +52,17 @@ const SelectedAudiobook = ({ data }: any) => {
   //     </div>
   //   </div>
   // );
-  return (
-    <div>
-      <p>Adio player</p>
-      <audio
-        controls
-        src="http://scorpio.local:4000/audio/AesopsFables64kbps_librivox-1.m4b"
-        type="audio/m4b"
-      ></audio>
-    </div>
-  );
+  // return (
+  //   <div>
+  //     <p>Adio player</p>
+  //     <audio
+  //       controls
+  //       src="http://scorpio.local:4000/audio/AesopsFables64kbps_librivox-1.m4b"
+  //       type="audio/m4b"
+  //     ></audio>
+  //   </div>
+  // );
+  return <h2>Audio Player Tracks go here</h2>;
 };
 
 export default SelectedAudiobook;
