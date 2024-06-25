@@ -15,7 +15,7 @@ const AudioFiles: CollectionConfig = {
   access: {
     create: isLoggedIn,
     update: isAdminOrContributor(),
-    read: isAdminOrContributor(),
+    read: () => true,
     delete: isAdminOrContributor(),
   },
   fields: [

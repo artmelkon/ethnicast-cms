@@ -17,7 +17,9 @@ export async function getStaticProps<GetStaticProps>(
 ) {
   const ctxId = ctx?.params?.audiobookId;
   console.log("podcast Id: ", ctxId);
-  const respond = await fetch(`${process.env.CMS_URI}/api/audiobooks/${ctxId}`);
+  const respond = await fetch(
+    `${process.env.CMS_URI}/api/audiobooks/${ctxId}?depth=1`
+  );
   const audiobook = await respond.json();
 
   return {
