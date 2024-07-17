@@ -1,0 +1,77 @@
+@import "@scss/abstracts/_abstracts-dir";
+@import "@scss/base/_base-dir";
+@import "@scss/components/_components-dir";
+
+.container {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  margin-top: 2rem;
+  overflow-y: auto;
+}
+
+.form {
+  width: 38rem;
+  height: 20rem;
+  background-color: $color-berkeleyblue;
+  padding: 2rem;
+  border-radius: 8px;
+
+  &__title-h3 {
+    font-size: 1.6rem;
+    font-weight: 400;
+    letter-spacing: 1px;
+    color: $color-honeydew;
+  }
+
+  &__controller {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-bottom: 1rem;
+
+    &:not(:first-child) {
+      margin-top: 0;
+    }
+
+    &-label {
+      font-size: 1.2rem;
+      font-weight: 300;
+      padding-bottom: 0.3rem;
+      color: $color-honeydew;
+    }
+
+    &-input {
+      border: 0;
+      background-color: $color-grey-light-1;
+      border-radius: 8px;
+      padding: 0.5rem 1rem;
+      color: $color-grey-dark-4;
+      font-weight: 300;
+    }
+    &-wrapper {
+      display: flex;
+      justify-content: space-between;
+    }
+    &-select {
+      border: 0;
+      width: 45%;
+      padding: 0.5rem 1rem;
+      background-color: $color-grey-light-1;
+      border-radius: 8px;
+      color: $color-grey-dark-2;
+      font-weight: 300;
+    }
+  }
+}
+
+.btn {
+  display: block;
+  width: 100%;
+  padding: 0.5rem 1rem;
+  background-color: $btn-primary;
+  border: 0;
+  border-radius: 8px;
+  color: #fff;
+  cursor: pointer;
+}

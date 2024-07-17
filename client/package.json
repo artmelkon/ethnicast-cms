@@ -1,0 +1,41 @@
+{
+  "name": "ethnicast-app",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@faceless-ui/modal": "^2.0.1",
+    "@hookform/devtools": "^4.3.1",
+    "bcrypt": "^5.1.1",
+    "escape-html": "^1.0.3",
+    "lodash": "^4.17.21",
+    "next": "14.0.4",
+    "next-auth": "^4.24.5",
+    "react": "^18",
+    "react-dom": "^18",
+    "react-hook-form": "^7.49.2",
+    "react-icomoon": "^2.5.7",
+    "react-icons": "^5.0.1",
+    "react-select": "^5.8.0",
+    "rss-parser": "^3.13.0",
+    "slate": "^0.101.5",
+    "swr": "^2.2.4"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "classnames": "^2.5.1",
+    "eslint": "^8",
+    "eslint-config-next": "14.0.4",
+    "eslint-plugin-react-hooks": "^4.6.2",
+    "sass": "^1.69.6",
+    "ts-node": "^10.9.2",
+    "typescript": "^5"
+  }
+}

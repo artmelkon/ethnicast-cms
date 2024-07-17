@@ -1,0 +1,27 @@
+@import "@scss/abstracts/_abstracts-dir";
+@import "@scss/base/_base-dir";
+@import "@scss/components/_components-dir";
+
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  color: $color-honeydew;
+  position: relative;
+  width: 20rem;
+  height: 20rem;
+  padding: 1rem 1.6rem;
+  margin-right: 0.6rem;
+  margin-bottom: 0.6rem;
+  border-radius: 0.8rem;
+
+  &__image {
+    width: 90%;
+  }
+  &__title {
+    font-size: 1.2rem;
+    font-weight: 400;
+    text-align: center;
+  }
+}

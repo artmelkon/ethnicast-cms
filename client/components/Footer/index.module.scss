@@ -1,0 +1,13 @@
+@import "@scss/abstracts/_abstracts-dir";
+@import "@scss/base/_base-dir";
+@import "@scss/components/_components-dir";
+
+.footer__container {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  height: 14.7rem;
+  background-color: $color-berkeleyblue;
+  border-radius: 0.8rem;
+}

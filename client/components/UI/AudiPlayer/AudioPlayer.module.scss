@@ -1,0 +1,53 @@
+@import "@scss/abstracts/_abstracts-dir";
+@import "@scss/base/_base-dir";
+@import "@scss/components/_components-dir";
+@import "@scss/layout/_layout-dir";
+
+.controllers {
+  display: flex;
+  width: 33%;
+  flex-direction: column;
+  align-items: center;
+
+  &__wrapper {
+    display: flex;
+  }
+}
+
+.controler {
+  margin: 1rem;
+}
+.volume {
+  display: flex;
+  align-items: center;
+  padding: 0.4rem 0;
+  &__volume {
+    width: 80%;
+  }
+  svg {
+    font-size: 1.8rem;
+  }
+}
+
+.controler button,
+.volume button {
+  @include controller-btn;
+}
+
+.progress {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  gap: 10px;
+  color: $color-honeydew;
+  &__time {
+    font-size: 1.4rem;
+  }
+  &__current {
+    color: $color-indianred-light;
+  }
+  input {
+    width: 100%;
+  }
+}

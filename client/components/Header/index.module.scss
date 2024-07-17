@@ -1,0 +1,52 @@
+@import "@scss/abstracts/_abstracts-dir";
+@import "@scss/base/_base-dir";
+@import "@scss/components/_components-dir";
+@import "@scss/layout/_layout-dir";
+
+.logo {
+  flex: 0 0 20%;
+  height: 5.4rem;
+  width: 6.4rem;
+  margin-left: 3.3rem;
+}
+
+.navbar {
+  margin-right: 1.5rem;
+  display: flex;
+  -webkit-flex-wrap: nowrap;
+  flex-wrap: nowrap;
+  align-self: stretch;
+
+  &__item {
+    display: flex;
+    align-items: center;
+    padding: 0 2rem;
+    height: 100%;
+
+    &:hover {
+      background-color: $color-grey-light-1;
+    }
+  }
+  &__link {
+    font-size: 1.4rem !important;
+    &:link,
+    &:visited {
+      color: $color-grey-dark-4;
+      font-weight: 300;
+    }
+
+    &:hover,
+    &:active {
+      color: $color-grey-dark-5;
+    }
+  }
+
+  &__btn {
+    border: none;
+    background-color: $btn-primary;
+    color: #fff;
+    padding: 0.7rem 2rem;
+    border-radius: 50px;
+    cursor: pointer;
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "incremental": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    "paths": {
+      "@component/*": ["./components/*"],
+      "@lib/*": ["./lib/*"],
+      "@scss/*": ["./styles/*"],
+      "payload/generated-types": ["./payload-types.ts"],
+      "selection/icon": ["./selection.json"]
+    },
+    "resolveJsonModule": true
+  },
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    "pages/[slug].tsx",
+    "pages/podcast/index.tsx"
+  ],
+  "exclude": ["node_modules"]
+}

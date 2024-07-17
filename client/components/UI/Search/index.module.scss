@@ -1,0 +1,49 @@
+@import "@scss/abstracts/_abstracts-dir";
+@import "@scss/base/_base-dir";
+@import "@scss/components/_components-dir";
+
+.search {
+  display: flex;
+  // flex: 1;
+  justify-content: space-around;
+  align-items: center;
+
+  &__form {
+    display: flex;
+    flex: 1;
+  }
+
+  &__input {
+    width: 100%;
+    font-size: inherit;
+    // margin-right: -.5rem;
+  }
+  &__select {
+    outline: none;
+  }
+
+  &__input,
+  &__select {
+    color: $color-grey-dark-2;
+    background-color: $color-grey-light-1;
+    border: none;
+    border-radius: 50px;
+    padding: 0.7rem 2.3rem;
+  }
+  .language {
+    margin-right: 1rem;
+  }
+  &__btn {
+    border: none;
+    background-color: $color-grey-light-1;
+    margin-left: -4rem;
+    margin-right: 3rem;
+  }
+
+  &__icon {
+    height: 2.3rem;
+    width: 2.3rem;
+    margin-top: 0.3rem;
+    color: $color-grey-dark-2;
+  }
+}

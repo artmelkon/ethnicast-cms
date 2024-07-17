@@ -1,0 +1,56 @@
+@import "@scss/abstracts/_abstracts-dir";
+@import "@scss/base/_base-dir";
+@import "@scss/components/_components-dir";
+
+.podcast {
+  width: 100%;
+  padding: 1rem;
+  // background-color: $color-cerulean-light;
+  overflow-y: auto;
+
+  &__heading {
+    margin-left: 2rem;
+    padding-top: 1rem;
+    font-size: 2rem;
+    letter-spacing: 1.5px;
+    text-decoration: underline;
+    color: $color-berkeleyblue;
+    margin-bottom: 2.3rem;
+  }
+
+  &__list {
+    display: flex;
+    flex-flow: row wrap;
+    list-style: none;
+  }
+
+  &__item {
+    margin-bottom: 4rem;
+    margin-left: 2rem;
+    width: 20.2rem;
+    height: 20rem;
+  }
+
+  &__figure {
+    padding: 1rem;
+    background-color: $color-cerulean-light;
+    border-radius: 5px;
+    box-shadow: 0 0.3rem 1rem rgba($color-berkeleyblue, 0.7);
+
+    & figcaption {
+      margin-top: 0.8rem;
+      color: $color-honeydew;
+    }
+  }
+
+  &__img {
+    width: 100%;
+    border-radius: 5px;
+  }
+
+  &__title {
+    font-size: 1rem;
+    margin: 0.4rem;
+    color: $color-berkeleyblue;
+  }
+}

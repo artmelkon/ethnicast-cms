@@ -1,0 +1,97 @@
+@import "@scss/abstracts/_abstracts-dir";
+@import "@scss/base/_base-dir";
+@import "@scss/components/_components-dir";
+@import "@scss/layout/_layout-dir";
+
+.sidebar {
+  flex: 0 0 28rem;
+  background-color: $color-berkeleyblue;
+  padding: 2rem 3rem;
+  border-radius: 0.8rem;
+
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-between;
+}
+.sidenavMenu {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  width: 100%;
+
+  &__item {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: $color-honeydew;
+    padding: 0 1rem;
+
+    & svg {
+      font-size: 2rem;
+    }
+  }
+  &__title {
+    font-size: 1rem;
+    text-transform: capitalize;
+    padding-top: 0.5rem;
+  }
+}
+
+.sidenavMyList {
+  &__title {
+    color: $color-honeydew;
+    font-size: 1.4rem;
+    letter-spacing: 1.5px;
+    text-decoration: underline;
+    padding: 1rem 0;
+  }
+
+  &__list {
+    list-style-type: none;
+  }
+
+  &__item {
+    margin-bottom: 0.3rem;
+  }
+
+  &__link {
+    &:link,
+    &:visited {
+      color: $color-honeydew;
+      font-size: 1.2rem;
+    }
+    &:hover,
+    &:active {
+      color: $color-nonphotoblue;
+    }
+  }
+}
+
+.sidenavFooter {
+  margin-left: 2.3rem;
+
+  &__list {
+    list-style: none;
+  }
+
+  &__item {
+    margin-top: 2rem;
+    margin-right: 0.6rem;
+  }
+
+  &__link {
+    &:link,
+    &:visited {
+      color: $color-honeydew;
+      font-size: 1.2rem;
+      font-weight: 200;
+      transition: all 0.2s;
+    }
+
+    &:hover,
+    &:active {
+      color: $color-indianred;
+    }
+  }
+}
