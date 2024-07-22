@@ -7,6 +7,7 @@ const AudioFiles: CollectionConfig = {
   slug: 'audiofiles',
   admin: {
     useAsTitle: 'filename',
+    defaultColumns: ['filename', 'id']
   },
   upload: {
     staticURL: '/audio',
@@ -15,8 +16,8 @@ const AudioFiles: CollectionConfig = {
   },
   access: {
     create: isAdminOrContributor(),
-    update: isAdminOrContributor(),
     read: isLoggedIn,
+    update: isAdminOrContributor(),
     delete: isAdminOrContributor(),
   },
   fields: [
@@ -32,7 +33,10 @@ const AudioFiles: CollectionConfig = {
       relationTo: 'profiles',
       defaultValue: ({ user }) => {
         if (!user.roles.includes('admin') && user.profiles?.[0]) return user.profiles[0]
-      }
+      },
+      // access: {
+      //   read: () => true
+      // }
     }
   ]
 }

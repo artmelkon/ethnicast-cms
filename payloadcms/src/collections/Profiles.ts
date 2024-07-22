@@ -1,4 +1,4 @@
-import { CollectionConfig } from "payload/types";
+import { CollectionConfig } from 'payload/types';
 import { isAdmin } from '../access/isAdmin';
 import { isAdminOrHasSiteAccess } from "../access/isAdminOrHasSiteAcess";
 import { v4 as uuidv4 } from 'uuid';

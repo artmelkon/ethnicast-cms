@@ -19,38 +19,15 @@ const SelectedAudiobook: React.FC<any> = ({ data }) => {
     },
     rawPlaylistTracks,
   } = data;
-  console.log("audiobook id: ", id);
-  // const fetcher = (url: string) =>
-  //   fetch(url, {
-  //     credentials: "include",
-  //     headers: {
-  //       "Contyent-Type": "application/json",
-  //       Authorization: `JWT ${token}`,
-  //     },
-  //   }).then((res) => res.json());
-  // const result = useSWR(
-  //   `${process.env.CMS_URI}/api/audiobooks/${dataId}`,
-  //   fetcher
-  // );
-  // console.log("audiobook daata: ", data);
-  // const {
-  //   author_data: { authorName, description },
-  //   title,
-  //   publisher_data: {
-  //     bookCover: { url, alt },
-  //   },
-  //   rawPlaylistTracks,
-  // } = data;
-  // console.log("selected audiobood data: ", data);
 
-  // console.log("parsed feed ", parsedFeed.language);
+  console.log('raw Palyst Track: ', rawPlaylistTracks)
 
-  const selectedPod = _.map(
+  const selectedMedia = _.map(
     rawPlaylistTracks,
     ({ audiofile: { id, title, mimeType, url } }, i: number) => {
+      console.log("ID: ", id);
       console.log("track title: ", title);
       console.log("track mp3: ", url);
-      // {id, title, mimeType, url}
 
       return (
         <li key={id} className={classes.track__item}>
@@ -90,7 +67,7 @@ const SelectedAudiobook: React.FC<any> = ({ data }) => {
             <p dangerouslySetInnerHTML={{ __html: description }}></p>
           </div>
         </div>
-        <ul className={classes.track__list}>{selectedPod}</ul>
+        <ul className={classes.track__list}>{selectedMedia}</ul>
         <div className={classes.podcast__footer}>Audobook Footer</div>
       </div>
     </div>

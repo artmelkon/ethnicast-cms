@@ -18,7 +18,7 @@
     "strictNullChecks": true,
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./*"],
+      "@/*": ["./src/*"],
       "payload/generate-types": ["../client/payload-types.ts"]
     }
   },

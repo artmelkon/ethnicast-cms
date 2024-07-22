@@ -1,7 +1,7 @@
 {
   "name": "ethnicast-cms",
   "version": "1.0.0",
-  "description": "This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).",
+  "description": "Ethnicast CMS tool",
   "main": "index.js",
   "scripts": {
     "client:dev": "cd ../client && npm run dev",
@@ -20,23 +20,21 @@
   "license": "ISC",
   "dependencies": {
     "@faceless-ui/modal": "^2.0.1",
-    "@payloadcms/bundler-webpack": "^1.0.0",
-    "@payloadcms/db-mongodb": "^1.0.0",
+    "@payloadcms/bundler-webpack": "^1.0.7",
+    "@payloadcms/db-mongodb": "^1.6.0",
     "@payloadcms/plugin-form-builder": "^1.0.15",
     "@payloadcms/plugin-search": "^1.1.0",
     "@payloadcms/richtext-slate": "^1.0.0",
     "cross-env": "^7.0.3",
-    "dotenv": "^8.2.0",
+    "dotenv": "^8.6.0",
     "escape-html": "^1.0.3",
     "express": "^4.17.1",
     "lodash": "^4.17.21",
     "nodemailer-sendgrid": "^1.0.3",
     "payload": "^2.0.0",
-    "punycode": "^2.3.1",
     "react-hook-form": "^7.48.2",
     "react-select": "^5.8.0",
-    "rss-parser": "^3.13.0",
-    "swr": "^2.2.4"
+    "rss-parser": "^3.13.0"
   },
   "devDependencies": {
     "@babel/register": "^7.22.15",
@@ -50,7 +48,7 @@
     "@typescript-eslint/parser": "^6.7.5",
     "concurrently": "^8.2.2",
     "copyfiles": "^2.4.1",
-    "nodemon": "^2.0.22",
+    "nodemon": "^3.1.4",
     "payload-plugin-form-builder": "^1.0.8",
     "sass": "^1.69.6",
     "ts-node": "^9.1.1",

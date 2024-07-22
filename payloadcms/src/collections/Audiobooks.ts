@@ -7,6 +7,7 @@ import { customLanguageSelectField } from '../fields/customSelectLanguages/field
 import { isAdminOrContributorOrPublished } from "../access/isAdminContributorOrPublished";
 // import { customSelectedGenres } from "../fields/customSelectedGenres/field";
 import { RowLabelArgs } from "payload/dist/admin/components/forms/RowLabel/types";
+import payload from "payload";
 
 
 const AudioBooks: CollectionConfig = {
@@ -20,8 +21,8 @@ const AudioBooks: CollectionConfig = {
   },
   access: {
     create: isLoggedIn,
-    update: isAdminOrContributor(),
     read: isAdminOrContributorOrPublished,
+    update: isAdminOrContributor(),
     delete: isAdminOrContributor()
   },
   fields: [
@@ -85,7 +86,10 @@ const AudioBooks: CollectionConfig = {
         {
           name: 'audiofile',
           type: 'relationship',
-          relationTo: 'audiofiles'
+          relationTo: 'audiofiles',
+          // access: {
+          //   read: ({ req: { user } }) => Boolean(user?.roles?.includes('subscriber') ? true : false)
+          // }
         },
         {
           name: 'isSample',
@@ -191,7 +195,19 @@ const AudioBooks: CollectionConfig = {
     //   }
     // },
   ],
-  timestamps: true
+  timestamps: true,
+  endpoints: [{
+    path: "/search",
+    method: "get",
+    handler: async (req, res, next) => {
+      const { q } = req.query;
+      console.log('params q: ', q);
+      const Audiobook = payload.db.collections['audiobooks']
+      const data = await Audiobook.find({ $text: { $search: q } })
+      console.log(data)
+      res.json(data)
+    }
+  }]
 }
 
 export default AudioBooks;

@@ -15,13 +15,13 @@ import PodcastGenres from "./collections/PodcastGenres";
 import Languages from "./collections/Languages";
 import Podcasts from "./collections/Podcasts";
 import AudioBooks from "./collections/Audiobooks";
-import Ratings from "./collections/Rating";
+// import Ratings from "./collections/Rating";
 import Profiles from "./collections/Profiles";
 import { MainMenu } from "./globals/MainMenu";
 import { Footer } from "./globals/Footer";
 import search from "@payloadcms/plugin-search";
 
-import Example from "./collections/Example";
+// import Example from "./collections/Example";
 
 dotenv.config();
 export default buildConfig({
@@ -31,6 +31,7 @@ export default buildConfig({
     bundler: webpackBundler(),
     webpack: (config) => {
       config.resolve!.fallback = {
+        util: false,
         stream: false,
         url: false,
         timers: false,
@@ -46,10 +47,10 @@ export default buildConfig({
       ogImage: "/assets/logo.png",
     },
   },
+  editor: slateEditor({}),
   db: mongooseAdapter({
     url: `${process.env.MONGODB_URI}`,
   }),
-  editor: slateEditor({}),
   collections: [
     AudiobookGenres,
     PodcastGenres,
@@ -59,10 +60,10 @@ export default buildConfig({
     AudioFiles,
     AudioBooks,
     Podcasts,
-    Ratings,
+    // Ratings,
     Users,
     Profiles,
-    Example
+    // Example
   ],
   globals: [MainMenu, Footer],
   cors: [`${process.env.PUBLIC_URI}`],
@@ -86,16 +87,17 @@ export default buildConfig({
       },
     }),
     search({
-      collections: ["podcasts"],
+      collections: ["podcasts", "audiobooks"],
       defaultPriorities: {
         podcasts: 10,
       },
-      searchOverrides: {
-        fields: [
-          { name: "author", type: "text" },
-          { name: "title", type: "text" },
-        ],
-      },
+      // searchOverrides: {
+      //   fields: [
+      //     { name: "author", type: "text" },
+      //     // { name: "title", type: "text" },
+      //     // { name: "creator", type: "text" },
+      //   ],
+      // },
     }),
   ],
   localization: {

@@ -12,7 +12,7 @@ const Card: React.FC<{
   console.log("card bgcolor: ", bgcolorSelector);
 
   return (
-    <Link href={`/podcast/${data.id}`} key={data.id}>
+    <Link href={`/${slug}/${data.id ?? data._id}`} key={data.id}>
       <div
         className={classes.card}
         style={{ backgroundColor: bgcolorSelector }}

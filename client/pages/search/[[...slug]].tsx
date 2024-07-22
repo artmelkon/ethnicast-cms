@@ -1,12 +1,15 @@
 import { useEffect, useState } from "react";
 import _ from "lodash";
 import { useRouter } from "next/router";
+import { useSession } from "next-auth/react";
 import useSWR from "swr";
 
 import Card from "../../components/UI/Card";
 
 const Search: React.FC = () => {
   const [reqData, setReqData] = useState(null);
+  const { data: session } = useSession();
+  console.log("catch all session: ", session);
   const router = useRouter();
   const { slug = [] } = router.query;
   function bgcolorSelector() {
@@ -29,41 +32,59 @@ const Search: React.FC = () => {
   const fetcher = (url: string) => fetch(url).then((res) => res.json());
   let queryString;
   if (slug.length > 0 && slug.length === 3) {
-    if (slug[1] === "q") {
+    if (slug.includes("q") && slug.includes("podcast")) {
       queryString = `/api/podcasts/search?q=${slug[2]}`;
+      console.log("query String: ", queryString);
+    }
+    if (slug.includes("q") && slug.includes("audiobook")) {
+      queryString = `/api/audiobooks/search?q=${slug[2]}`;
+      console.log("query String: ", queryString);
     }
     if (
-      (slug[0] === "podcast" && slug[1] === "genres") ||
-      slug[1] === "languages"
+      slug.includes("podcast") &&
+      (slug.includes("genres") || slug.includes("languages"))
     ) {
       queryString = `/api/podcasts?where[${slug[1]}][contains]=${slug[2]}`;
-    } else {
+    }
+    if (
+      slug.includes("audiobook") &&
+      (slug.includes("genres") || slug.includes("languages"))
+    ) {
       queryString = `/api/audiobooks?where[${slug[1]}][contains]=${slug[2]}`;
     }
   }
+
   const { data, isLoading, error } = useSWR(
     `${process.env.CMS_URI}${queryString}`,
     fetcher
   );
+  console.log("[[..SWR data]]: ", data);
+
   useEffect(() => {
-    if (data) return setReqData(data);
+    if (Array.isArray(data)) setReqData(data);
+    if (data?.hasOwnProperty("docs")) setReqData(data.docs);
   }, [data]);
 
-  console.log("[[...slug] data: ", data);
-  if (reqData) {
-    var returnedData = _.map(reqData.docs, (item) => {
-      return (
-        <Card
-          key={item.id}
-          slug={slug[0]}
-          data={item}
-          bgcolorSelector={bgcolorSelector()}
-        />
-      );
-    });
-  }
+  console.log("[[..req data]]: ", reqData);
+  if (isLoading)
+    return <h2 style={{ textAlign: "center" }}>loadBindings...!</h2>;
+  if (error)
+    return <h2 style={{ textAlign: "center", color: "red" }}>Error...!</h2>;
+  const returnedData = _.map(reqData, (item: any) => {
+    const id = item.id ?? item._id;
+    return (
+      <Card
+        key={id}
+        slug={slug[0]}
+        data={item}
+        bgcolorSelector={bgcolorSelector()}
+      />
+    );
+  });
 
   return <div className="container-overflowY">{returnedData}</div>;
+
+  return <p>hello</p>;
 };
 
 export default Search;

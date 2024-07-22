@@ -59,11 +59,9 @@ const SearchForm: React.FC = () => {
       }
     }
     if (languages) {
-      console.log("languages ", languages);
       reset({ languages: "" });
     }
     if (genres) {
-      console.log("genres ", genres);
       reset({ genres: "" });
     }
   };

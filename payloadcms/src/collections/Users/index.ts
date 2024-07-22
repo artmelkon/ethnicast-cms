@@ -36,15 +36,12 @@ const Users: CollectionConfig = {
     defaultColumns: ["firstName", "email"],
   },
   access: {
-    // Anyone can create a user
     create: isAdmin,
     read: isAdminOrSelf,
     update: isAdminOrSelf,
     delete: isAdmin,
   },
   fields: [
-    // Email added by default
-    // Add more fields as needed
     {
       type: "row",
       fields: [
