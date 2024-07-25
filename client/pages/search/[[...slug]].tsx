@@ -33,14 +33,6 @@ const Search: React.FC = () => {
     fetch(url, {
       credentials: "include",
     }).then((res) => res.json());
-  // const fetcher = (url: string) =>
-  //   fetch(url, {
-  //     credentials: "include",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //       authorization: `JWT ${session?.user?.token}`,
-  //     },
-  //   }).then((res) => res.json());
   let queryString;
   if (slug.length > 0 && slug.length === 3) {
     if (slug.includes("q") && slug.includes("podcast")) {

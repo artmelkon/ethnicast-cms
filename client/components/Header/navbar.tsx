@@ -1,8 +1,20 @@
+import { useEffect } from "react";
 import { signOut, useSession } from "next-auth/react";
 import Link from "next/link";
 
 const NavBar = ({ className }: any) => {
-  const { data: session, status } = useSession();
+  const { data: session, update, status } = useSession();
+
+  useEffect(() => {
+    // TIP: You can also use `navigator.onLine` and some extra event handlers
+    // to check if the user is online and only update the session if they are.
+    // https://developer.mozilla.org/en-US/docs/Web/API/Navigator/onLine
+    const interval = setInterval(() => update(), 1000 * 60 * 60);
+    return () => clearInterval(interval);
+  }, [update]);
+
+  console.log("header session: ", session);
+  console.log("header status: ", status);
 
   return (
     <div className={className.navbar}>

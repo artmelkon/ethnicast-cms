@@ -48,12 +48,12 @@ export const authOptions: NextAuthOptions = {
     })
   ],
   callbacks: {
-    async jwt({ token, user, trigger, session }) {
-      // console.log('auth update: ', trigger)
-      // console.log('auth session: ', session)
-      // if (trigger === 'update') {
-      //   return { ...token, ...session.user }
-      // }
+    async jwt({ token, user, trigger }) {
+      if (trigger === 'update') {
+        console.log('auth update: ', trigger)
+        console.log('auth user: ', user)
+        return { ...token, ...user }
+      }
       return { ...token, ...user };
     },
     async session({ session, token, user }) {
