@@ -1,7 +1,3 @@
-import React, { Fragment } from "react";
-import { ModalContainer, ModalProvider } from "@faceless-ui/modal";
-
-// import NavBar from "@component/NavBar";
 import Header from "@component/Header";
 import SideBar from "@component/SideBar";
 import Footer from "@component/Footer";

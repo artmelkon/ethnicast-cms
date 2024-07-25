@@ -9,7 +9,7 @@ interface AudoBookProps {
 }
 
 const AudiobookList = ({ data }: { data: any }) => {
-  
+
   const { data: session, status } = useSession();
   const podcast = data.map(
     ({
@@ -21,8 +21,7 @@ const AudiobookList = ({ data }: { data: any }) => {
       title: string;
       publisher_data: any;
     }) => {
-      // console.log("item ", id);
-      // console.log("publisher data: ", publisher_data);
+      console.log("publisher data: ", publisher_data);
       return (
         <li key={id} className={classes.podcast__item}>
           <Link href={`/audiobook/${id}`} className={classes.card__item}>

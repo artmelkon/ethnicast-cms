@@ -12,7 +12,8 @@ const FilterPods: React.FC<Props> = () => {
   console.log("audobook session: ", session);
   const router = useRouter();
   const { audiobookId } = router.query;
-  const fetcher = (url: string) => fetch(url).then((res) => res.json());
+  const fetcher = (url: string) =>
+    fetch(url, { credentials: "include" }).then((res) => res.json());
   const { data, isLoading, error } = useSWR(
     `/api/audiobook/${audiobookId}`,
     fetcher

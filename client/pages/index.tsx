@@ -7,8 +7,6 @@ interface ContentType {
   audiobooks: any;
 }
 
-console.log("cms uri ", process.env.CMS_URI);
-
 const Page: React.FC<ContentType> = ({ podcasts: pods, audiobooks }) => {
   // console.log("podcast list: ", pods);
   // console.log("audiobook list ", audiobooks);

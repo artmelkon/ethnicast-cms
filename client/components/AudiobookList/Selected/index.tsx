@@ -9,7 +9,7 @@ import classes from "./index.module.scss";
 const SelectedAudiobook: React.FC<any> = ({ data }) => {
   console.log("selected audobook data: ", data);
 
-  const { playMedia } = useContext(MediaContext);
+  const { playMedia } = useContext(MediaContext) as any;
   const {
     id,
     author_data: { description },
@@ -20,7 +20,7 @@ const SelectedAudiobook: React.FC<any> = ({ data }) => {
     rawPlaylistTracks,
   } = data;
 
-  console.log('raw Palyst Track: ', rawPlaylistTracks)
+  console.log("raw Palyst Track: ", rawPlaylistTracks);
 
   const selectedMedia = _.map(
     rawPlaylistTracks,

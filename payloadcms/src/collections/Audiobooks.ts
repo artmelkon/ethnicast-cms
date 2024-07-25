@@ -20,8 +20,8 @@ const AudioBooks: CollectionConfig = {
     drafts: true
   },
   access: {
-    create: isLoggedIn,
-    read: isAdminOrContributorOrPublished,
+    create: isAdminOrContributor(),
+    read: () => true,
     update: isAdminOrContributor(),
     delete: isAdminOrContributor()
   },
@@ -85,7 +85,7 @@ const AudioBooks: CollectionConfig = {
       fields: [
         {
           name: 'audiofile',
-          type: 'relationship',
+          type: 'upload',
           relationTo: 'audiofiles',
           // access: {
           //   read: ({ req: { user } }) => Boolean(user?.roles?.includes('subscriber') ? true : false)
@@ -97,13 +97,6 @@ const AudioBooks: CollectionConfig = {
           defaultValue: false
         },
       ],
-      // admin: {
-      //   components: {
-      //     RowLabel: ({ data, index }: RowLabelArgs) => {
-      //       return data?.label || `Untitled`
-      //     },
-      //   },
-      // },
     },
     customLanguageSelectField,
     {
@@ -129,7 +122,7 @@ const AudioBooks: CollectionConfig = {
         },
         {
           name: 'bookCover',
-          type: 'relationship',
+          type: 'upload',
           relationTo: 'media',
           required: true
         },
@@ -167,7 +160,7 @@ const AudioBooks: CollectionConfig = {
         },
         {
           name: 'authorImage',
-          type: 'relationship',
+          type: 'upload',
           relationTo: 'media'
         },
         {
@@ -203,8 +196,14 @@ const AudioBooks: CollectionConfig = {
       const { q } = req.query;
       console.log('params q: ', q);
       const Audiobook = payload.db.collections['audiobooks']
-      const data = await Audiobook.find({ $text: { $search: q } })
-      console.log(data)
+      // const data = await Audiobook.find({ $text: { $search: q } })
+      const data = await Audiobook.aggregate([
+        { $match: { $text: { $search: q } } },
+        { $project: { title: 1, publisher_data: 1 } },
+        { $project: { title: 1, bookCover: { $toObjectId: "$publisher_data.bookCover" } } },
+        {$lookup: {from: "media", localField: "bookCover", foreignField: "_id", as: "bookCoverData"}}
+      ])
+      console.log('audobook search data: ', data)
       res.json(data)
     }
   }]

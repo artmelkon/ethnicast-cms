@@ -48,16 +48,21 @@ export const authOptions: NextAuthOptions = {
     })
   ],
   callbacks: {
-    async jwt({ token, user }) {
+    async jwt({ token, user, trigger, session }) {
+      // console.log('auth update: ', trigger)
+      // console.log('auth session: ', session)
+      // if (trigger === 'update') {
+      //   return { ...token, ...session.user }
+      // }
       return { ...token, ...user };
     },
     async session({ session, token, user }) {
       session.user = token as any;
       return session;
     },
-    async authorized({ req, token }) {
-      if (token) return true;
-    },
+    // async authorized({ req, token }) {
+    //   if (token) return true;
+    // },
   },
   pages: {
     signIn: '/auth'

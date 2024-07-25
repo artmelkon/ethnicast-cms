@@ -90,14 +90,8 @@ export default buildConfig({
       collections: ["podcasts", "audiobooks"],
       defaultPriorities: {
         podcasts: 10,
+        audiobooks: 10
       },
-      // searchOverrides: {
-      //   fields: [
-      //     { name: "author", type: "text" },
-      //     // { name: "title", type: "text" },
-      //     // { name: "creator", type: "text" },
-      //   ],
-      // },
     }),
   ],
   localization: {

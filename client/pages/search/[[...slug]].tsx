@@ -29,7 +29,18 @@ const Search: React.FC = () => {
     return bgColorList[rN];
   }
 
-  const fetcher = (url: string) => fetch(url).then((res) => res.json());
+  const fetcher = (url: string) =>
+    fetch(url, {
+      credentials: "include",
+    }).then((res) => res.json());
+  // const fetcher = (url: string) =>
+  //   fetch(url, {
+  //     credentials: "include",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //       authorization: `JWT ${session?.user?.token}`,
+  //     },
+  //   }).then((res) => res.json());
   let queryString;
   if (slug.length > 0 && slug.length === 3) {
     if (slug.includes("q") && slug.includes("podcast")) {
@@ -37,7 +48,7 @@ const Search: React.FC = () => {
       console.log("query String: ", queryString);
     }
     if (slug.includes("q") && slug.includes("audiobook")) {
-      queryString = `/api/audiobooks/search?q=${slug[2]}`;
+      queryString = `/api/audiobooks/search?q=${slug[2]}&depth=1`;
       console.log("query String: ", queryString);
     }
     if (
@@ -50,7 +61,7 @@ const Search: React.FC = () => {
       slug.includes("audiobook") &&
       (slug.includes("genres") || slug.includes("languages"))
     ) {
-      queryString = `/api/audiobooks?where[${slug[1]}][contains]=${slug[2]}`;
+      queryString = `/api/audiobooks?where[${slug[1]}][contains]=${slug[2]}&depth=1`;
     }
   }
 
@@ -65,7 +76,7 @@ const Search: React.FC = () => {
     if (data?.hasOwnProperty("docs")) setReqData(data.docs);
   }, [data]);
 
-  console.log("[[..req data]]: ", reqData);
+  // console.log("[[..req data]]: ", reqData);
   if (isLoading)
     return <h2 style={{ textAlign: "center" }}>loadBindings...!</h2>;
   if (error)
@@ -83,8 +94,6 @@ const Search: React.FC = () => {
   });
 
   return <div className="container-overflowY">{returnedData}</div>;
-
-  return <p>hello</p>;
 };
 
 export default Search;

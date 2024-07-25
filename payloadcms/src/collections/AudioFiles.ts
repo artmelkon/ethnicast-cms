@@ -2,12 +2,14 @@ import { CollectionConfig } from 'payload/types';
 import { isLoggedIn } from '../access/isLoggedIn';
 import { isAdminOrContributor } from '../access/isAdminOrContributor';
 import { anyone } from '../access/anyone';
+import { isAdminOrSelf } from '../../src/access/isAdminOrSelf';
+import { isAdminOrHasSiteAccess } from '../access/isAdminOrHasSiteAcess';
 
 const AudioFiles: CollectionConfig = {
   slug: 'audiofiles',
   admin: {
     useAsTitle: 'filename',
-    defaultColumns: ['filename', 'id']
+    defaultColumns: ['filename', 'id'],
   },
   upload: {
     staticURL: '/audio',
@@ -34,9 +36,6 @@ const AudioFiles: CollectionConfig = {
       defaultValue: ({ user }) => {
         if (!user.roles.includes('admin') && user.profiles?.[0]) return user.profiles[0]
       },
-      // access: {
-      //   read: () => true
-      // }
     }
   ]
 }
