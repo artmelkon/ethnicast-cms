@@ -64,31 +64,31 @@ export interface Page {
   id: string;
   title: string;
   layout?:
-  | (
-    | {
-      form: string | Form;
-      enableIntro?: boolean | null;
-      introContent?:
-      | {
-        [k: string]: unknown;
-      }[]
-      | null;
-      id?: string | null;
-      blockName?: string | null;
-      blockType: 'formBlock';
-    }
-    | {
-      content?:
-      | {
-        [k: string]: unknown;
-      }[]
-      | null;
-      id?: string | null;
-      blockName?: string | null;
-      blockType: 'content';
-    }
-  )[]
-  | null;
+    | (
+        | {
+            form: string | Form;
+            enableIntro?: boolean | null;
+            introContent?:
+              | {
+                  [k: string]: unknown;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'formBlock';
+          }
+        | {
+            content?:
+              | {
+                  [k: string]: unknown;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'content';
+          }
+      )[]
+    | null;
   slug?: string | null;
   profile?: (string | null) | Profile;
   updatedAt: string;
@@ -103,129 +103,129 @@ export interface Form {
   id: string;
   title: string;
   fields?:
-  | (
-    | {
-      name: string;
-      label?: string | null;
-      width?: number | null;
-      required?: boolean | null;
-      defaultValue?: boolean | null;
-      id?: string | null;
-      blockName?: string | null;
-      blockType: 'checkbox';
-    }
-    | {
-      name: string;
-      label?: string | null;
-      width?: number | null;
-      required?: boolean | null;
-      id?: string | null;
-      blockName?: string | null;
-      blockType: 'country';
-    }
-    | {
-      name: string;
-      label?: string | null;
-      width?: number | null;
-      required?: boolean | null;
-      id?: string | null;
-      blockName?: string | null;
-      blockType: 'email';
-    }
-    | {
-      message?:
-      | {
-        [k: string]: unknown;
-      }[]
-      | null;
-      id?: string | null;
-      blockName?: string | null;
-      blockType: 'message';
-    }
-    | {
-      name: string;
-      label?: string | null;
-      width?: number | null;
-      defaultValue?: number | null;
-      required?: boolean | null;
-      id?: string | null;
-      blockName?: string | null;
-      blockType: 'number';
-    }
-    | {
-      name: string;
-      label?: string | null;
-      width?: number | null;
-      defaultValue?: string | null;
-      options?:
-      | {
-        label: string;
-        value: string;
-        id?: string | null;
-      }[]
-      | null;
-      required?: boolean | null;
-      id?: string | null;
-      blockName?: string | null;
-      blockType: 'select';
-    }
-    | {
-      name: string;
-      label?: string | null;
-      width?: number | null;
-      required?: boolean | null;
-      id?: string | null;
-      blockName?: string | null;
-      blockType: 'state';
-    }
-    | {
-      name: string;
-      label?: string | null;
-      width?: number | null;
-      defaultValue?: string | null;
-      required?: boolean | null;
-      id?: string | null;
-      blockName?: string | null;
-      blockType: 'text';
-    }
-    | {
-      name: string;
-      label?: string | null;
-      width?: number | null;
-      defaultValue?: string | null;
-      required?: boolean | null;
-      id?: string | null;
-      blockName?: string | null;
-      blockType: 'textarea';
-    }
-  )[]
-  | null;
+    | (
+        | {
+            name: string;
+            label?: string | null;
+            width?: number | null;
+            required?: boolean | null;
+            defaultValue?: boolean | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'checkbox';
+          }
+        | {
+            name: string;
+            label?: string | null;
+            width?: number | null;
+            required?: boolean | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'country';
+          }
+        | {
+            name: string;
+            label?: string | null;
+            width?: number | null;
+            required?: boolean | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'email';
+          }
+        | {
+            message?:
+              | {
+                  [k: string]: unknown;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'message';
+          }
+        | {
+            name: string;
+            label?: string | null;
+            width?: number | null;
+            defaultValue?: number | null;
+            required?: boolean | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'number';
+          }
+        | {
+            name: string;
+            label?: string | null;
+            width?: number | null;
+            defaultValue?: string | null;
+            options?:
+              | {
+                  label: string;
+                  value: string;
+                  id?: string | null;
+                }[]
+              | null;
+            required?: boolean | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'select';
+          }
+        | {
+            name: string;
+            label?: string | null;
+            width?: number | null;
+            required?: boolean | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'state';
+          }
+        | {
+            name: string;
+            label?: string | null;
+            width?: number | null;
+            defaultValue?: string | null;
+            required?: boolean | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'text';
+          }
+        | {
+            name: string;
+            label?: string | null;
+            width?: number | null;
+            defaultValue?: string | null;
+            required?: boolean | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'textarea';
+          }
+      )[]
+    | null;
   submitButtonLabel?: string | null;
   confirmationType?: ('message' | 'redirect') | null;
   confirmationMessage?:
-  | {
-    [k: string]: unknown;
-  }[]
-  | null;
+    | {
+        [k: string]: unknown;
+      }[]
+    | null;
   redirect?: {
     url: string;
   };
   emails?:
-  | {
-    emailTo?: string | null;
-    cc?: string | null;
-    bcc?: string | null;
-    replyTo?: string | null;
-    emailFrom?: string | null;
-    subject: string;
-    message?:
     | {
-      [k: string]: unknown;
-    }[]
+        emailTo?: string | null;
+        cc?: string | null;
+        bcc?: string | null;
+        replyTo?: string | null;
+        emailFrom?: string | null;
+        subject: string;
+        message?:
+          | {
+              [k: string]: unknown;
+            }[]
+          | null;
+        id?: string | null;
+      }[]
     | null;
-    id?: string | null;
-  }[]
-  | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -289,12 +289,12 @@ export interface Audiobook {
     isSexual: 'yes' | 'no';
   };
   rawPlaylistTracks?:
-  | {
-    audiofile?: string | Audiofile | null;
-    isSample?: boolean | null;
-    id?: string | null;
-  }[]
-  | null;
+    | {
+        audiofile?: string | Audiofile | null;
+        isSample?: boolean | null;
+        id?: string | null;
+      }[]
+    | null;
   languages?: string | null;
   genres?: (string | AudiobookGenre)[] | null;
   publisher_data: {
@@ -370,12 +370,12 @@ export interface FormSubmission {
   id: string;
   form: string | Form;
   submissionData?:
-  | {
-    field: string;
-    value: string;
-    id?: string | null;
-  }[]
-  | null;
+    | {
+        field: string;
+        value: string;
+        id?: string | null;
+      }[]
+    | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -388,14 +388,14 @@ export interface Search {
   title?: string | null;
   priority?: number | null;
   doc:
-  | {
-    relationTo: 'podcasts';
-    value: string | Podcast;
-  }
-  | {
-    relationTo: 'audiobooks';
-    value: string | Audiobook;
-  };
+    | {
+        relationTo: 'podcasts';
+        value: string | Podcast;
+      }
+    | {
+        relationTo: 'audiobooks';
+        value: string | Audiobook;
+      };
   updatedAt: string;
   createdAt: string;
 }
@@ -411,14 +411,14 @@ export interface PayloadPreference {
   };
   key?: string | null;
   value?:
-  | {
-    [k: string]: unknown;
-  }
-  | unknown[]
-  | string
-  | number
-  | boolean
-  | null;
+    | {
+        [k: string]: unknown;
+      }
+    | unknown[]
+    | string
+    | number
+    | boolean
+    | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -440,20 +440,20 @@ export interface PayloadMigration {
 export interface MainMenu {
   id: string;
   navItems?:
-  | {
-    link: {
-      type?: ('reference' | 'custom') | null;
-      newTab?: boolean | null;
-      reference?: {
-        relationTo: 'pages';
-        value: string | Page;
-      } | null;
-      url?: string | null;
-      label: string;
-    };
-    id?: string | null;
-  }[]
-  | null;
+    | {
+        link: {
+          type?: ('reference' | 'custom') | null;
+          newTab?: boolean | null;
+          reference?: {
+            relationTo: 'pages';
+            value: string | Page;
+          } | null;
+          url?: string | null;
+          label: string;
+        };
+        id?: string | null;
+      }[]
+    | null;
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -464,25 +464,25 @@ export interface MainMenu {
 export interface Footer {
   id: string;
   nav?:
-  | {
-    link: {
-      type?: ('reference' | 'custom') | null;
-      newTab?: boolean | null;
-      reference?: {
-        relationTo: 'pages';
-        value: string | Page;
-      } | null;
-      url?: string | null;
-      label: string;
-    };
-    id?: string | null;
-  }[]
-  | null;
+    | {
+        link: {
+          type?: ('reference' | 'custom') | null;
+          newTab?: boolean | null;
+          reference?: {
+            relationTo: 'pages';
+            value: string | Page;
+          } | null;
+          url?: string | null;
+          label: string;
+        };
+        id?: string | null;
+      }[]
+    | null;
   updatedAt?: string | null;
   createdAt?: string | null;
 }
 
 
 declare module 'payload' {
-  export interface GeneratedTypes extends Config { }
+  export interface GeneratedTypes extends Config {}
 }
