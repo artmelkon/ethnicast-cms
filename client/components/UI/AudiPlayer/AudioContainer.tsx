@@ -1,9 +1,9 @@
 import { useState, useRef, Fragment } from "react";
 
-import AudioPlayer from "@component/UI/AudiPlayer";
-import Controls from "@component/UI/AudiPlayer/Controls";
-import ProgressBar from "@component/UI/AudiPlayer/ProgressBar";
-import Volume from "@component/UI/AudiPlayer/Volulme";
+import AudioPlayer from ".";
+import Controls from "./Controls";
+import ProgressBar from "./ProgressBar";
+import Volume from "./Volulme";
 import classes from "./AudioPlayer.module.scss";
 
 const AudioContainer = () => {
@@ -15,13 +15,13 @@ const AudioContainer = () => {
   return (
     <Fragment>
       <div className={classes.controllers}>
-          <AudioPlayer {...{ audioRef, progressBarRef, setDuration }} />
-          <Controls
-            {...{ audioRef, duration, progressBarRef, setTimeProgress }}
-          />
-          <ProgressBar
-            {...{ audioRef, duration, progressBarRef, timeProgress }}
-          />
+        <AudioPlayer {...{ audioRef, progressBarRef, setDuration }} />
+        <Controls
+          {...{ audioRef, duration, progressBarRef, setTimeProgress }}
+        />
+        <ProgressBar
+          {...{ audioRef, duration, progressBarRef, timeProgress }}
+        />
       </div>
       <div className={classes.controllers}>
         <Volume {...{ audioRef }} />

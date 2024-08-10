@@ -1,7 +1,7 @@
 import { GetServerSideProps } from "next";
 import { getSession } from "next-auth/react";
 
-import UserProfile from "@component/Profile";
+import UserProfile from "../_components/Profile";
 
 const ProfilePage = () => {
   return <UserProfile />;
@@ -9,8 +9,6 @@ const ProfilePage = () => {
 
 export async function getServerSideProps<GetServerSideProps>(ctx: any) {
   const session = await getSession({ req: ctx.req });
-
-  console.log(session)
 
   if (!session) {
     return {

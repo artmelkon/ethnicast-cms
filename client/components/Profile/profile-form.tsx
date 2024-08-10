@@ -9,10 +9,10 @@ interface ResetInput {
 }
 
 interface Props {
-  onChangePassword: () => any;
+  onChangePassword: () => void;
 }
 
-const ProfileForm: React.FC<Props> = ({ onChangePassword }) => {
+const ProfileForm = ({ onChangePassword }) => {
   const [isPasswordSame, setIsPasswordSame] = useState(false);
   const errorMessages = {
     required: {

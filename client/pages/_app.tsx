@@ -1,15 +1,15 @@
 import React, { Fragment, useState } from "react";
 import { AppProps } from "next/app";
-import { SessionProvider } from "next-auth/react";
 import Head from "next/head";
+import { AuthProvider } from "../context/Auth";
 
 import { MediaProvider } from "../context/media-context";
-import Layout from "@component/Layout";
+import Layout from "../components/Layout";
 import "../styles/globals.scss";
 
 const App = ({ Component, pageProps: { session, ...pageProps } }: AppProps) => {
   return (
-    <SessionProvider session={session} baseUrl={process.env.NEXTAUTH_URL}>
+    <AuthProvider>
       <MediaProvider>
         <Layout>
           <Head>
@@ -22,7 +22,7 @@ const App = ({ Component, pageProps: { session, ...pageProps } }: AppProps) => {
           <Component {...pageProps} />
         </Layout>
       </MediaProvider>
-    </SessionProvider>
+    </AuthProvider>
   );
 };
 

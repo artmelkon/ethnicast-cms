@@ -6,12 +6,13 @@ import { useRouter } from "next/router";
 import _ from "lodash";
 
 import classes from "./index.module.scss";
-import SearchForm from "@component/UI/Search";
+import SearchForm from "../UI/Search";
+import { UseAuth } from "../../context/Auth";
 
 const Header = () => {
   const router = useRouter();
   const pathName = router.pathname;
- 
+  const {user} = UseAuth();
   return (
     <>
       <Link href="/">
@@ -23,7 +24,7 @@ const Header = () => {
           className={classes.logo}
         />
       </Link>
-      {pathName !== "/" && <SearchForm />}
+      {pathName !== "/" && user && <SearchForm />}
       <NavBar className={classes} />
     </>
   );

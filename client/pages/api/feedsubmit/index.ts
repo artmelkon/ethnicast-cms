@@ -9,8 +9,8 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-    const session = await getServerSession(req, res, authOptions)
-    console.log('server session ', session?.user?.token)
+  const session = await getServerSession(req, res, authOptions)
+  console.log('server session ', session?.user?.token)
   if (!session) {
     res.status(401).json({ message: "You must be loggedin!" })
   }

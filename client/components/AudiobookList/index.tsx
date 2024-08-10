@@ -1,4 +1,3 @@
-import { useSession } from "next-auth/react";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -9,8 +8,6 @@ interface AudoBookProps {
 }
 
 const AudiobookList = ({ data }: { data: any }) => {
-
-  const { data: session, status } = useSession();
   const podcast = data.map(
     ({
       id,
@@ -21,7 +18,6 @@ const AudiobookList = ({ data }: { data: any }) => {
       title: string;
       publisher_data: any;
     }) => {
-      console.log("publisher data: ", publisher_data);
       return (
         <li key={id} className={classes.podcast__item}>
           <Link href={`/audiobook/${id}`} className={classes.card__item}>

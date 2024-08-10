@@ -1,15 +1,12 @@
 import { useEffect, useState } from "react";
 import _ from "lodash";
 import { useRouter } from "next/router";
-import { useSession } from "next-auth/react";
 import useSWR from "swr";
 
 import Card from "../../components/UI/Card";
 
 const Search: React.FC = () => {
   const [reqData, setReqData] = useState(null);
-  const { data: session } = useSession();
-  console.log("catch all session: ", session);
   const router = useRouter();
   const { slug = [] } = router.query;
   function bgcolorSelector() {

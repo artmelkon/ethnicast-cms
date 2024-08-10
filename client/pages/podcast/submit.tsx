@@ -1,6 +1,6 @@
 import _ from "lodash";
 
-import PodcastSubmit from "../../components/PodcastsList/Submit";
+import PodcastSubmit from "../_components/PodcastsList/Submit";
 
 const FeedSubmit: React.FC<any> = (props) => {
   return <PodcastSubmit {...props} />;

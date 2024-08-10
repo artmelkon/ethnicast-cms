@@ -7,7 +7,7 @@ import classes from "./index.module.scss";
 const SelectedPodcst = ({ parsedFeed }: any) => {
   const { playMedia } = useContext(MediaContext);
   const { title, image, description } = parsedFeed;
-  console.log('parsed feed ', parsedFeed.language)
+  console.log("parsed feed ", parsedFeed.language);
 
   const selectedPod = parsedFeed.items.map((item: string, i: number) => (
     <li key={i} className={classes.episodes__item}>
@@ -21,11 +21,12 @@ const SelectedPodcst = ({ parsedFeed }: any) => {
             className={classes.episode__subText}
             dangerouslySetInnerHTML={{ __html: item.content }}
           ></div>
-          <input type='radio'
+          <input
+            type="radio"
             onClick={() => playMedia(item.enclosure.url)}
             className={classes.audioplay__btn}
             name="play"
-           />
+          />
         </div>
       </div>
     </li>

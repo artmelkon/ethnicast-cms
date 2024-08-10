@@ -1,6 +1,6 @@
-import Header from "@component/Header";
-import SideBar from "@component/SideBar";
-import Footer from "@component/Footer";
+import Header from "../Header";
+import SideBar from "../SideBar";
+import Footer from "../Footer";
 import classes from "./index.module.scss";
 
 const LayoutTemplate: React.FC<any> = ({ children }) => {

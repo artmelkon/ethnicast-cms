@@ -1,4 +1,3 @@
-import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 
 interface Function {
@@ -7,13 +6,12 @@ interface Function {
 
 const ChangePassword: React.FC<Function> = ({ changPasswordHandler }) => {
   const router = useRouter();
-  const { data: session, status } = useSession();
-  console.log("session ", session?.user?.user.email);
+  // console.log("session ", session?.user?.user.email);
   async function onSubmit(e: any) {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
     const email = formData.get("email");
-    console.log(email);
+    console.log("change password emai: ", email);
     const result = await fetch(
       `${process.env.CMS_URI}/api/users/forgot-password`,
       {
@@ -26,7 +24,7 @@ const ChangePassword: React.FC<Function> = ({ changPasswordHandler }) => {
       }
     );
 
-    if(result.ok) router.push('/auth/success')
+    if (result.ok) router.push("/auth/success");
   }
   return (
     <form onSubmit={onSubmit}>
@@ -34,7 +32,7 @@ const ChangePassword: React.FC<Function> = ({ changPasswordHandler }) => {
         type="hidden"
         name="email"
         id="email"
-        value={session?.user?.user?.email}
+        // value={session?.user?.user?.email}
       />
       <button>Click to request password change</button>
     </form>

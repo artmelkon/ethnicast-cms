@@ -2,7 +2,7 @@ import React, { Fragment } from "react";
 import { GetStaticProps, GetStaticPropsContext, GetStaticPaths } from "next";
 import { parseRss } from "../../lib/rss";
 
-import SelectedPodcst from "@component/PodcastsList/Selected";
+import SelectedPodcst from "../../components/PodcastsList/Selected";
 
 type Props = {
   parsedFeed: any;

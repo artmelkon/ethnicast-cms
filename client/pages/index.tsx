@@ -1,5 +1,5 @@
-import AudiobookList from "@component/AudiobookList";
-import PodcastList from "@component/PodcastsList";
+import AudiobookList from "../components/AudiobookList";
+import PodcastList from "../components/PodcastsList";
 import { GetStaticProps } from "next";
 
 interface ContentType {

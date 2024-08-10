@@ -1,14 +1,14 @@
-import { useState } from "react";
-import { useForm, SubmitHandler } from "react-hook-form";
+import { useState, useCallback } from "react";
+import { useForm, SubmitHandler, FieldValue } from "react-hook-form";
 import { useRouter } from "next/router";
-import { signIn } from "next-auth/react";
 import Link from "next/link";
 
+import { UseAuth } from "../../context/Auth";
 import classes from "./index.module.scss";
 
 interface Input {
-  email: string;
-  password: string;
+  email?: string;
+  password?: string;
   confirmPassword?: string;
   firstName?: string;
   lastName?: string;
@@ -30,39 +30,43 @@ async function createUser(data: Input) {
 }
 
 const AuthForm = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const [isLoggingIn, setIsLoggingIn] = useState(true);
+  const [error, setError] = useState("");
   const router = useRouter();
-  const { register, handleSubmit } = useForm();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+  const { login } = UseAuth();
 
   function toggleAuthMethodHandler() {
-    setIsLoggedIn((prevState) => !prevState);
+    setIsLoggingIn((prevState) => !prevState);
   }
 
-  const onSubmit: SubmitHandler<Input> = async (data) => {
-    if (isLoggedIn) {
-      const result = await signIn("credentials", {
-        redirect: false,
-        email: data.email,
-        password: data.password,
-      });
-
-      // if (!result?.error) {
-      //   router.replace("/");
-      // }
-    } else {
-      console.log("is logged in ", isLoggedIn);
-
-      createUser(data);
-    }
-  };
+  const onSubmit = useCallback(
+    async (data: any) => {
+      try {
+        console.log("auth-form data: ", data);
+        await login(data);
+        router.push("/");
+      } catch (err) {
+        setError(
+          "There was an error with the credentials provided. Please try again."
+        );
+      }
+    },
+    [login, router]
+  );
 
   return (
     <section className={classes.auth}>
       <div className={classes.auth__wrapper}>
         <form onSubmit={handleSubmit(onSubmit)} className={classes.form}>
           <h2 className={classes.form__title}>
-            {isLoggedIn ? "Sign In" : "Sign Up"}
+            {isLoggingIn ? "Sign In" : "Sign Up"}
           </h2>
+          {error && <div className={classes.alert}>{error}</div>}
           <div className={classes.form__control}>
             <label htmlFor="email" className={classes.form__label}>
               Your Email
@@ -70,9 +74,12 @@ const AuthForm = () => {
             <input
               type="email"
               id="email"
-              {...register("email")}
+              {...register("email", { required: true })}
               className={classes.form__input}
             />
+            {errors.email?.type === "required" && (
+              <p className={classes.alert}>Email required!</p>
+            )}
           </div>
           <div className={classes.form__control}>
             <label htmlFor="password" className={classes.form__label}>
@@ -81,11 +88,18 @@ const AuthForm = () => {
             <input
               type="password"
               id="password"
-              {...register("password", { minLength: 4, maxLength: 36 })}
+              {...register("password", {
+                required: true,
+                minLength: 4,
+                maxLength: 36,
+              })}
               className={classes.form__input}
             />
+            {errors.password?.type === "required" && (
+              <p className={classes.alert}>Password required!</p>
+            )}
           </div>
-          {!isLoggedIn && (
+          {!isLoggingIn && (
             <>
               <div className={classes.form__control}>
                 <label
@@ -98,6 +112,7 @@ const AuthForm = () => {
                   type="password"
                   id="confirmPassword"
                   {...register("confirmPassword", {
+                    required: true,
                     minLength: 4,
                     maxLength: 36,
                   })}
@@ -105,10 +120,7 @@ const AuthForm = () => {
                 />
               </div>
               <div className={classes.form__control}>
-                <label
-                  htmlFor="firstName"
-                  className={classes.form__label}
-                >
+                <label htmlFor="firstName" className={classes.form__label}>
                   First Name
                 </label>
                 <input
@@ -119,10 +131,7 @@ const AuthForm = () => {
                 />
               </div>
               <div className={classes.form__control}>
-                <label
-                  htmlFor="lastName"
-                  className={classes.form__label}
-                >
+                <label htmlFor="lastName" className={classes.form__label}>
                   Last Name
                 </label>
                 <input
@@ -135,20 +144,18 @@ const AuthForm = () => {
             </>
           )}
           <div className={classes.actions}>
-            <button>{isLoggedIn ? "Login" : "Create Account"}</button>
+            <button>{isLoggingIn ? "Login" : "Create Account"}</button>
           </div>
         </form>
-        <div>
-
-        </div>
+        <div></div>
         <div className={classes.actions}>
           <button className={classes.toggle} onClick={toggleAuthMethodHandler}>
-            {isLoggedIn
+            {isLoggingIn
               ? "Sign up a new account"
               : "Sign in with existint account"}
           </button>
         </div>
-        {isLoggedIn && (
+        {isLoggingIn && (
           <div className={classes.forgotPassword}>
             <Link href="/auth/forgot-password">Forgot Password?</Link>
           </div>

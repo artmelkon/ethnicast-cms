@@ -1,9 +1,11 @@
 import Head from "next/head";
 import { Fragment } from "react";
 
-import AudiobookList from "@component/AudiobookList";
+import AudiobookList from "../../components/AudiobookList";
 
 const AudioBookPage = ({ audiobooks }: { audiobooks: any }) => {
+  console.log("audiobook list: ", audiobooks);
+
   return (
     <Fragment>
       <Head>

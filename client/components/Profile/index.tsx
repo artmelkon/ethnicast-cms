@@ -1,10 +1,11 @@
 import classes from "./index.module.scss";
-// import ProfileForm from "./profile-form";
 import ChangePassword from "./change-password";
 
-
 const UserProfile = () => {
-  async function changPasswordHandler(passwordData: PatchInput) {
+
+  if (status === "loading") return <p>Loading...!</p>;
+
+  async function changPasswordHandler(passwordData: any) {
     const result = await fetch(`/api/users/reset-password`, {
       method: "POST",
       body: JSON.stringify(passwordData),
@@ -12,7 +13,7 @@ const UserProfile = () => {
         "Content-Type": "application/json",
       },
     });
-    console.log("the resule ", result);
+    console.log("profile resule ", result);
 
     const data = await result.json();
   }
