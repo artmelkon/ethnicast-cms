@@ -1,9 +1,9 @@
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 import { useForm, SubmitHandler, FieldValue } from "react-hook-form";
 import { useRouter } from "next/router";
 import Link from "next/link";
 
-import { UseAuth } from "../../context/Auth";
+import { useAuth } from "../../context/Auth";
 import classes from "./index.module.scss";
 
 interface Input {
@@ -23,7 +23,7 @@ async function createUser(data: Input) {
     },
   });
 
-  if (!result.ok) throw Error(result.statusText || "Something went wrong!");
+  if (!result.ok) throw new Error(result.statusText || "Something went wrong!");
 
   const user = await result.json();
   return user;
@@ -38,7 +38,7 @@ const AuthForm = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const { login } = UseAuth();
+  const { login } = useAuth();
 
   function toggleAuthMethodHandler() {
     setIsLoggingIn((prevState) => !prevState);
@@ -47,9 +47,13 @@ const AuthForm = () => {
   const onSubmit = useCallback(
     async (data: any) => {
       try {
-        console.log("auth-form data: ", data);
-        await login(data);
-        router.push("/");
+        if (isLoggingIn) {
+          console.log("auth-form data: ", data);
+          await login(data);
+          router.push("/");
+        } else {
+          createUser(data);
+        }
       } catch (err) {
         setError(
           "There was an error with the credentials provided. Please try again."

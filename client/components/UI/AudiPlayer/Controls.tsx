@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback, useRef, Fragment } from "react";
+import { useState, useEffect, useCallback, useRef, Fragment, MutableRefObject } from "react";
 import {
   MdPlayArrow,
   MdOutlinePause,
@@ -7,9 +7,21 @@ import {
 } from "react-icons/md";
 import classes from "./AudioPlayer.module.scss";
 
-const Controls = ({ audioRef, duration, progressBarRef, setTimeProgress }) => {
+interface ControlType {
+  audioRef: any;
+  duration: number;
+  progressBarRef: any;
+  setTimeProgress: (currentTime: number) => void;
+}
+
+const Controls: React.FC<ControlType> = ({
+  audioRef,
+  duration,
+  progressBarRef,
+  setTimeProgress,
+}) => {
   const [isPlaying, setIsPlaying] = useState(false);
-  const playAnimationRef = useRef();
+  const playAnimationRef = useRef() as MutableRefObject<any>;
 
   console.log("audio Ref: ", audioRef.current?.duration || 0);
   const episodeDuration = audioRef.current?.duration || 0;
@@ -43,6 +55,7 @@ const Controls = ({ audioRef, duration, progressBarRef, setTimeProgress }) => {
   function playForward() {
     audioRef.current.currentTime += 10;
   }
+
   return (
     <div className={classes.controllers__wrapper}>
       <div className={classes.controler}>
@@ -51,7 +64,7 @@ const Controls = ({ audioRef, duration, progressBarRef, setTimeProgress }) => {
             <MdOutlineReplay10 />
           </button>
         ) : (
-          <button style={{backgroundColor: '#aaa'}}>
+          <button style={{ backgroundColor: "#aaa" }}>
             <MdOutlineReplay10 />
           </button>
         )}
@@ -68,11 +81,15 @@ const Controls = ({ audioRef, duration, progressBarRef, setTimeProgress }) => {
         )}
       </div>
       <div className={classes.controler}>
-        {episodeDuration > 0 ? (<button onClick={playForward}>
-          <MdForward10 />
-        </button>) : (<button style={{backgroundColor: '#aaa'}}>
-          <MdForward10 />
-        </button>)}
+        {episodeDuration > 0 ? (
+          <button onClick={playForward}>
+            <MdForward10 />
+          </button>
+        ) : (
+          <button style={{ backgroundColor: "#aaa" }}>
+            <MdForward10 />
+          </button>
+        )}
       </div>
     </div>
   );

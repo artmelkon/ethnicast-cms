@@ -19,6 +19,7 @@
     ],
     "paths": {
       "@component/*": ["./components/*"],
+      "@context/*": ["./context/*"],
       "@lib/*": ["./lib/*"],
       "@scss/*": ["./styles/*"],
       "payload/generated-types": ["./payload-types.ts"],

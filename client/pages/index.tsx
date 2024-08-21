@@ -1,6 +1,7 @@
+import { GetStaticProps } from "next";
+
 import AudiobookList from "../components/AudiobookList";
 import PodcastList from "../components/PodcastsList";
-import { GetStaticProps } from "next";
 
 interface ContentType {
   podcasts: any;
@@ -8,6 +9,7 @@ interface ContentType {
 }
 
 const Page: React.FC<ContentType> = ({ podcasts: pods, audiobooks }) => {
+  // console.log('index user: ', user)
   // console.log("podcast list: ", pods);
   // console.log("audiobook list ", audiobooks);
 

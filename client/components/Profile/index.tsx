@@ -2,8 +2,7 @@ import classes from "./index.module.scss";
 import ChangePassword from "./change-password";
 
 const UserProfile = () => {
-
-  if (status === "loading") return <p>Loading...!</p>;
+  // if (status === "loading") return <p>Loading...!</p>;
 
   async function changPasswordHandler(passwordData: any) {
     const result = await fetch(`/api/users/reset-password`, {

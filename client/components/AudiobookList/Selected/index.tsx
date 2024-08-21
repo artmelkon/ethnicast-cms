@@ -3,7 +3,7 @@ import { useContext, useState, useEffect, useRef } from "react";
 import _ from "lodash";
 import Image from "next/image";
 
-import { MediaContext } from "../../../context/media-context";
+import { MediaContext } from "@context/media-context";
 import classes from "./index.module.scss";
 
 const SelectedAudiobook: React.FC<any> = ({ data }) => {

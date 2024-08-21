@@ -1,13 +1,14 @@
-import { useCallback, useState } from "react";
+import { useCallback, useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
-import { UseAuth } from "../../context/Auth";
+import { useAuth } from "../../context/Auth";
 
 const NavBar = ({ className }: any) => {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [error, setError] = useState("");
   const router = useRouter();
-  const { logout, user } = UseAuth();
-  
+  const { logout, user, setUser } = useAuth();
+
   const logoutHandler = useCallback(async () => {
     try {
       await logout();
@@ -17,9 +18,11 @@ const NavBar = ({ className }: any) => {
     }
   }, []);
 
+  console.log("navbar user: ", user?.user);
+
   return (
     <div className={className.navbar}>
-      {!user && (
+      {!user?.user && (
         <>
           <div className={className.navbar__item}>
             <Link href="/about" className={className.navbar__link}>
@@ -33,7 +36,7 @@ const NavBar = ({ className }: any) => {
           </div>
         </>
       )}
-      {user && (
+      {user?.user && (
         <>
           <div className={className.navbar__item}>
             <Link href="/profile" className={className.navbar__link}>

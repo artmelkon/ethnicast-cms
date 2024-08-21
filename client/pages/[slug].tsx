@@ -11,7 +11,7 @@ const Page: React.FC<{
     page: { layout },
   } = props;
 
-  return <h3>hello</h3>;
+  return <h3>Slug Page</h3>;
 };
 
 export const getStaticProps: GetStaticProps = async (

@@ -23,9 +23,10 @@ const SearchForm: React.FC = () => {
   const [selectedPath, setSelectedPath] = useState();
   const router = useRouter();
   const pathName: any = router.pathname;
+  console.log("search audobook genere: ", pathName);
   const { slug = [] }: any = router.query;
   useEffect(() => {
-    if (pathName === "/podcast" || pathName === "/audiobook") {
+    if (pathName.includes("podcast") || pathName.includes("audiobook")) {
       setSelectedPath(pathName?.split("/").pop());
     }
     if (slug[0] === "podcast" || slug[0] === "audiobook") {
@@ -41,7 +42,8 @@ const SearchForm: React.FC = () => {
     reset,
   } = useForm<Input>();
 
-  const fetcher = (...args: any[]) => fetch(...args).then((res) => res.json());
+  const fetcher = (url: string) =>
+    fetch(url, { credentials: "include" }).then((res) => res.json());
   const languageReq = useSWR(`${process.env.CMS_URI}/api/languages`, fetcher);
   const genreReq = useSWR(`${process.env.CMS_URI}/api/podcast-genres`, fetcher);
   const audiobookReq = useSWR(

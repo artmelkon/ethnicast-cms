@@ -47,7 +47,6 @@ const Card: React.FC<{
       </div>
     </Link>
   );
-  return <h1>Card</h1>;
 };
 
 export default Card;

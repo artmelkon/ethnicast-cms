@@ -1,11 +1,9 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import { getServerSession } from 'next-auth/next';
-import { authOptions } from '../auth/[...nextauth]';
 
-import { hashPassword, matchPassword } from '../../../lib/auth'
+import { hashPassword, matchPassword } from '@lib/auth'
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-  const session = await getServerSession(req, res, authOptions);
+
   // console.log('server session ', session?.user?.token)
   // if (!session) {
   //   res.status(401).json({ message: "You must be loggedin!" })

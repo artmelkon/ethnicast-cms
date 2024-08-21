@@ -35,7 +35,6 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
 
     if (!res.ok) throw new Error("Invalid login!");
     const json = await res.json();
-    console.log("login user: ", json);
     setUser(json);
   }, []);
 
@@ -50,14 +49,14 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
     setUser(null);
   }, []);
 
-  // On mount, get user and set
+  // On mount, get user and fetch user self
   useEffect(() => {
     (async function () {
       const res = await fetch(`${process.env.CMS_URI}/api/users/me`, {
         credentials: "include",
       });
-      if (!res.ok)
-        throw new Error("Something went wrong. Can't authenticate the user");
+      // if (!res.ok)
+      //   throw new Error("Something went wrong. Can't authenticate the user");
       const json = await res.json();
       setUser(json.user || null);
     })();
@@ -71,4 +70,4 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
 };
 
 type UseAuth<T = User> = () => AuthContext;
-export const UseAuth = () => useContext(Context);
+export const useAuth: UseAuth = () => useContext(Context);

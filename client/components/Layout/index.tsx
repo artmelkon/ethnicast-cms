@@ -6,13 +6,11 @@ import classes from "./index.module.scss";
 const LayoutTemplate: React.FC<any> = ({ children }) => {
   return (
     <div className={classes.container}>
-      <header className={classes.header}>
-        <Header />
-      </header>
-      <main className={classes.main}>
+      <header className={classes.header}><Header /></header>
+      <div className={classes.main}>
         <SideBar />
-        <div className={classes.content}>{children}</div>
-      </main>
+        <main className={classes.content}>{children}</main>
+      </div>
       <footer className={classes.footer}>
         <Footer />
       </footer>

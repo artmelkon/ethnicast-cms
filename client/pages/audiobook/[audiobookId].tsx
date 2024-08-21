@@ -1,26 +1,35 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import useSWR from "swr";
 
-import { UseAuth } from "../../context/Auth";
+import { useAuth } from "../../context/Auth";
 import SelectedAudiobook from "../../components/AudiobookList/Selected";
+import { includes } from "lodash";
 
 type Props = {
   audiobookId: string;
 };
 
 const FilterPods: React.FC<Props> = () => {
+  const [audiobook, setAudiobook] = useState();
   const router = useRouter();
   const { audiobookId } = router.query;
   console.log("audiobook params: ", audiobookId);
-  const { user } = UseAuth();
+  const { user, setUser } = useAuth();
   console.log("audiobook ID user: ", user);
 
   useEffect(() => {
-    if (!user) {
-      router.push("/auth");
-    }
-  }, [user]);
+    (async function () {
+      const result = await fetch(`${process.env.CMS_URI}/api/users/me`, {
+        credentials: "include",
+      });
+      console.log("audiobook result: ", result);
+      const data = await result.json();
+      if (!data.user) router.push("/auth");
+      console.log("adudiobook valid user ", data);
+      setUser(data);
+    })();
+  }, []);
 
   const fetcher = (url: string) =>
     fetch(url, {

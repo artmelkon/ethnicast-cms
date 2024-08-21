@@ -1,5 +1,7 @@
 import React, { createContext, useState } from "react";
 
+
+
 const MediaContext = createContext();
 
 const MediaProvider = ({ children }: any) => {

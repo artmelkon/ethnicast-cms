@@ -23,6 +23,7 @@ const PodcastList: React.FC<PodsProps> = ({ data }) => {
       </Link>
     </li>
   ));
+
   return (
     <div className={classes.podcast}>
       <h2 className={classes.podcast__heading}>Home Podcast</h2>
