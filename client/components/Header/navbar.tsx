@@ -4,7 +4,6 @@ import Link from "next/link";
 import { useAuth } from "../../context/Auth";
 
 const NavBar = ({ className }: any) => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [error, setError] = useState("");
   const router = useRouter();
   const { logout, user, setUser } = useAuth();
@@ -18,11 +17,11 @@ const NavBar = ({ className }: any) => {
     }
   }, []);
 
-  console.log("navbar user: ", user?.user);
+  console.log("navbar user: ", user);
 
   return (
     <div className={className.navbar}>
-      {!user?.user && (
+      {!user && (
         <>
           <div className={className.navbar__item}>
             <Link href="/about" className={className.navbar__link}>
@@ -36,7 +35,7 @@ const NavBar = ({ className }: any) => {
           </div>
         </>
       )}
-      {user?.user && (
+      {user && (
         <>
           <div className={className.navbar__item}>
             <Link href="/profile" className={className.navbar__link}>

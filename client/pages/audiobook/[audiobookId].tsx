@@ -16,7 +16,6 @@ const FilterPods: React.FC<Props> = () => {
   const { audiobookId } = router.query;
   console.log("audiobook params: ", audiobookId);
   const { user, setUser } = useAuth();
-  console.log("audiobook ID user: ", user);
 
   useEffect(() => {
     (async function () {
@@ -25,9 +24,10 @@ const FilterPods: React.FC<Props> = () => {
       });
       console.log("audiobook result: ", result);
       const data = await result.json();
+      console.log('audiobook user auth: ', data.user)
       if (!data.user) router.push("/auth");
       console.log("adudiobook valid user ", data);
-      setUser(data);
+      setUser(data.user);
     })();
   }, []);
 

@@ -9,9 +9,6 @@ interface ContentType {
 }
 
 const Page: React.FC<ContentType> = ({ podcasts: pods, audiobooks }) => {
-  // console.log('index user: ', user)
-  // console.log("podcast list: ", pods);
-  // console.log("audiobook list ", audiobooks);
 
   return (
     <div className="card-wrapper">

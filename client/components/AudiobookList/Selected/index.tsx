@@ -20,7 +20,7 @@ const SelectedAudiobook: React.FC<any> = ({ data }) => {
     rawPlaylistTracks,
   } = data;
 
-  console.log("raw Palyst Track: ", rawPlaylistTracks);
+  console.log("raw Playlist Track: ", rawPlaylistTracks);
 
   const selectedMedia = _.map(
     rawPlaylistTracks,
